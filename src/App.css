@@ -1,7 +1,14 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
- 
   text-align: center;
 }
 
+body {
+  font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: auto;
+  background-color: #fff;
+}
+input::placeholder {
+  color: transparent;
+}

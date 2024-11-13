@@ -1,10 +1,60 @@
+import { useEffect, useRef } from 'react';
+import BelezaWeb from '../../assets/logo-bw.svg';
+import VideoBeleza from '../../assets/videos/videoapp.webm';
 const Header = () => {
+  const videoRef = useRef(null);
+
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Autoplay prevented:", error);
+      });
+    }
+  }, []);
   return (
-    <header className="fixed top-0 left-0 w-full flex items-center justify-between bg-white p-4 shadow-md z-10">
-      <img src="/images/opinilogo.png" alt="OpinaPro Logo" className="h-10" />
-      <button className="bg-green-500 text-white font-bold py-2 px-4 rounded-full text-lg shadow-md">
-        R$ 133.00
-      </button>
+    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-10">
+      <div className="flex items-center justify-between max-w-md mx-auto px-4 py-6">
+        <video
+          src={VideoBeleza}
+          className="absolute top-0 left-0 w-full object-contain"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      </div>
+      <div className="flex items-center justify-between max-w-md mx-auto px-10 py-2">
+        <img src={BelezaWeb} alt="OpinaPro Logo" width={80} height={100} />
+        <span className="bag-full relative">
+          <span id="cart-summary-quantity" className="absolute top-0 right-0 bg-[#4d057a] text-white text-xs font-normal rounded-full w-5 h-5 flex items-center justify-center -translate-y-1/3 translate-x-1/3">
+            1
+          </span>
+
+          <svg
+            className="icon-bag-full menu-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#4d057a"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Sacola de compras</title>
+            <path
+              className="menu-icon-path"
+              d="M14.6429 10.9313C14.5574 11.8995 13.6704 12.75 12.4799 12.75C11.2893 12.75 10.4024 11.8995 10.3169 10.9313C10.2804 10.5188 9.92988 10.2152 9.53391 10.2532C9.13794 10.2911 8.84648 10.6562 8.88291 11.0687C9.04702 12.9266 10.6643 14.25 12.4799 14.25C14.2954 14.25 15.9127 12.9266 16.0769 11.0687C16.1133 10.6562 15.8218 10.2911 15.4259 10.2532C15.0299 10.2152 14.6793 10.5188 14.6429 10.9313Z"
+              fill="#007A54"
+            ></path>
+            <path
+              className="menu-icon-path"
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M7.60347 5.9239L7.49224 7.31431C7.3932 7.32361 7.29716 7.33426 7.20408 7.34645C6.43632 7.44698 5.78284 7.66107 5.22621 8.15272C4.67056 8.64351 4.35761 9.28179 4.12991 10.0578C3.9108 10.8045 3.74904 11.7603 3.54877 12.9435L3.18004 15.1219C2.90174 16.7658 2.67949 18.0788 2.64472 19.1175C2.60889 20.1884 2.76484 21.1068 3.36687 21.8654C3.97042 22.6259 4.80457 22.9515 5.8149 23.1033C6.79217 23.25 8.05801 23.25 9.63936 23.25H15.3204C16.9018 23.25 18.1676 23.25 19.1449 23.1033C20.1552 22.9515 20.9893 22.6259 21.5929 21.8654C22.1949 21.1068 22.3509 20.1884 22.315 19.1175C22.2803 18.0788 22.058 16.7659 21.7797 15.1219L21.411 12.9435C21.2107 11.7603 21.049 10.8045 20.8299 10.0578C20.6022 9.28179 20.2892 8.64351 19.7336 8.15272C19.1769 7.66107 18.5234 7.44698 17.7557 7.34645C17.6626 7.33426 17.5666 7.32361 17.4675 7.31431L17.3563 5.9239C17.1449 3.28206 15.0248 1.25 12.4799 1.25C9.93493 1.25 7.81482 3.28206 7.60347 5.9239ZM12.4799 2.75C10.6839 2.75 9.18765 4.18407 9.0385 6.04847L8.9421 7.25347C9.2721 7.24999 9.62461 7.24999 10.0008 7.25H14.959C15.3351 7.24999 15.6877 7.24999 16.0177 7.25347L15.9213 6.04847C15.7721 4.18407 14.2759 2.75 12.4799 2.75ZM7.38367 8.83474C6.76758 8.91541 6.42143 9.06369 6.1575 9.2968C5.8926 9.53078 5.69167 9.86693 5.50702 10.4962C5.31675 11.1447 5.16911 12.0094 4.95875 13.2521L4.60812 15.3235C4.3176 17.0398 4.11467 18.2488 4.08385 19.1698C4.05369 20.0709 4.19583 20.5557 4.47672 20.9096C4.7561 21.2616 5.17894 21.4922 6.0204 21.6186C6.88288 21.7482 8.04446 21.75 9.6979 21.75H15.2619C16.9153 21.75 18.0769 21.7482 18.9394 21.6186C19.7808 21.4922 20.2037 21.2616 20.483 20.9096C20.7639 20.5557 20.9061 20.0709 20.8759 19.1698C20.8451 18.2488 20.6422 17.0398 20.3516 15.3235L20.001 13.2521C19.7907 12.0094 19.643 11.1447 19.4527 10.4962C19.2681 9.86693 19.0672 9.53078 18.8023 9.2968C18.5383 9.06369 18.1922 8.91541 17.5761 8.83474C16.9394 8.75138 16.1085 8.75 14.9112 8.75H10.0485C8.85124 8.75 8.02032 8.75138 7.38367 8.83474Z"
+              fill="#007A54"
+            ></path>
+          </svg>
+        </span>
+      </div>
     </header>
   );
 };
