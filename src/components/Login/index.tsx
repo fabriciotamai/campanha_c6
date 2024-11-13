@@ -34,7 +34,7 @@ const Login = ({ setCurrentPage }: any) => {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={`w-full mt-6 py-3 px-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-sm ${error ? "border-red-500" : "border-gray-300"
+          className={`w-full mt-6 py-3 px-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-base ${error ? "border-red-500" : "border-gray-300"
             }`}
           placeholder="Digite seu email"
         />
@@ -43,7 +43,7 @@ const Login = ({ setCurrentPage }: any) => {
         )}
         <button
           onClick={handleLogin}
-          className="w-full mt-6 bg-[#a000e4] text-white font-bold py-4 rounded-md hover:bg-green-600 transition duration-200 text-sm"
+          className="w-full mt-6 bg-[#a000e4] text-white font-bold py-4 rounded-md hover:bg-green-600 transition duration-200 text-base"
         >
           ENTRAR
         </button>
