@@ -1,25 +1,26 @@
-// src/hooks/useResizeObserver.ts
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const useResizeObserver = (
-  ref: React.RefObject<HTMLElement>,
-  callback: (rect: DOMRectReadOnly) => void
-) => {
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
   useEffect(() => {
-    if (!ref.current) return;
-
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        callback(entry.contentRect);
-      }
-    });
-
-    observer.observe(ref.current);
-
-    return () => {
-      observer.disconnect();
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
     };
-  }, [ref, callback]);
+
+    window.addEventListener('resize', handleResize);
+
+    // Remove o event listener ao desmontar o componente
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowSize;
 };
 
-export default useResizeObserver;
+export default useWindowSize;
