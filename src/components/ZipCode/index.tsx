@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 
-const EditAddress = ({ setCurrentPage, address }) => {
+const EditAddress = ({ address }: any) => {
 
   useEffect(() => {
     console.log(address)

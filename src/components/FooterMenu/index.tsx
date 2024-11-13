@@ -6,7 +6,7 @@ import IconPaid from '../../assets/iconMoney.svg';
 import IconHelp from '../../assets/iconSearch.svg';
 import IconHelpOff from '../../assets/iconSearchOff.svg';
 
-const FooterMenu = ({ setCurrentPage, currentPage }) => {
+const FooterMenu = ({ setCurrentPage, currentPage }: any) => {
   const footerRef = useRef(null);
 
   return (

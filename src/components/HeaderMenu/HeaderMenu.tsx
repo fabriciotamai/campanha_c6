@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 import BelezaWeb from '../../assets/logo-bw.svg';
 import VideoBeleza from '../../assets/videos/videoapp.webm';
-const Header = () => {
-  const videoRef = useRef(null);
 
+const Header = ({ cartActive }: any) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(error => {
+      videoRef.current.play().catch((error: any) => {
         console.log("Autoplay prevented:", error);
       });
     }
@@ -27,9 +27,10 @@ const Header = () => {
       <div className="flex items-center justify-between max-w-md mx-auto px-10 py-2">
         <img src={BelezaWeb} alt="OpinaPro Logo" width={80} height={100} />
         <span className="bag-full relative">
-          <span id="cart-summary-quantity" className="absolute top-0 right-0 bg-[#4d057a] text-white text-xs font-normal rounded-full w-5 h-5 flex items-center justify-center -translate-y-1/3 translate-x-1/3">
+          {cartActive && <span id="cart-summary-quantity" className="absolute top-0 right-0 bg-[#4d057a] text-white text-xs font-normal rounded-full w-5 h-5 flex items-center justify-center -translate-y-1/3 translate-x-1/3">
             1
-          </span>
+          </span>}
+
 
           <svg
             className="icon-bag-full menu-icon"

@@ -1,14 +1,31 @@
-const Login = ({ setCurrentPage }) => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { useState } from "react";
+import BelezanaWeb from '../../assets/logo-bw.svg';
+
+const Login = ({ setCurrentPage }: any) => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleLogin = () => {
+    if (!email) {
+      setError(true);
+    } else {
+      setError(false);
+      setCurrentPage('inicio');
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-[calc(85vh)] bg-gray-100 px-4 py-8">
-      <div className="w-full max-w-xs sm:max-w-sm bg-white shadow-xl rounded-xl p-6">
+    <div className="flex flex-col items-center justify-center h-[calc(85vh)] bg-gray-100  py-8">
+      <div className="  max-w-[370px] sm:max-w-sm bg-white shadow-xl rounded-xl p-6">
         <img
-          src="/images/opinilogo.png"
+          src={BelezanaWeb}
           alt="OpinaPro Logo"
-          className="w-20 h-auto mx-auto mb-4"
+          className="w-40 h-auto mx-auto mb-4"
         />
-        <p className="text-gray-700 font-bold text-center mb-2 text-base">
-          Bem-vindo(a) ao Ajude nos Beleza Web Feedback
+        <p className="text-gray-700 font-bold text-center mb-2 text-[1.20rem]">
+          Bem-vindo(a) ao Ajude nos Beleza na Web Feedback
         </p>
         <p className="text-gray-600 text-center text-sm">
           Insira seu e-mail para prosseguir!
@@ -17,20 +34,31 @@ const Login = ({ setCurrentPage }) => {
           type="email"
           name="email"
           id="email"
-          className="w-full mt-6 p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 text-center text-sm"
-          placeholder="E-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={`w-full mt-6 py-3 px-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-sm ${error ? "border-red-500" : "border-gray-300"
+            }`}
+          placeholder="Digite seu email"
         />
+        {error && (
+          <p className="text-red-500 text-xs mt-2">Por favor, insira seu e-mail.</p>
+        )}
         <button
-          onClick={() => setCurrentPage('inicio')}
-          className="w-full mt-6 bg-green-500 text-white font-bold py-3 rounded-full hover:bg-green-600 transition duration-200 text-sm"
+          onClick={handleLogin}
+          className="w-full mt-6 bg-[#a000e4] text-white font-bold py-4 rounded-md hover:bg-green-600 transition duration-200 text-sm"
         >
           ENTRAR
         </button>
       </div>
 
       <div className="mt-8 text-center text-gray-600 text-xs">
-        <p className="font-bold">2024 OpinaPro LLC</p>
-        <p className="mt-1">Termos e Política de Privacidade</p>
+        <p className="font-bold">2007 - 2024 Beleza na Web</p>
+        <button onClick={() => {
+          window.location.href = "https://www.belezanaweb.com.br/institucional/condicoes-de-uso/";
+        }}>
+
+          <p className="mt-1">Termos e Política de Privacidade</p>
+        </button>
       </div>
     </div>
   );

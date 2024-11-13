@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import AdSection from './components/AdSection';
 import HeaderMenu from './components/HeaderMenu/HeaderMenu';
@@ -8,16 +8,35 @@ import ShoppingCart from './components/ShoppingCart';
 import ThankYouScreen from './components/ThankYouScreen';
 import EditAddress from './components/ZipCode';
 
-
-
 function App() {
   const [currentPage, setCurrentPage] = useState('login');
-  const [cartValue, setCartValue] = useState(0);
+  const [cartActive, setCartActive] = useState(false);
   const [address, setAddress] = useState(null);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    // Define o estado `isMobile` com base na largura da tela
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Define o limite de largura para mobile
+    };
+
+    checkIsMobile(); // Verifica no carregamento inicial
+
+    // Adiciona um listener para atualizar `isMobile` quando a tela é redimensionada
+    window.addEventListener('resize', checkIsMobile);
+
+    // Limpa o listener quando o componente é desmontado
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const handleComplete = () => {
     setCurrentPage('agradecimento');
   };
+
+  const loadCardShop = () => {
+    setCartActive(true); // Define cartActive como true
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'login':
@@ -27,7 +46,7 @@ function App() {
       case 'saque':
         return <SaquePage />;
       case 'agradecimento':
-        return <ThankYouScreen setCurrentPage={setCurrentPage} />;
+        return <ThankYouScreen setCurrentPage={setCurrentPage} loadCardShop={loadCardShop} />;
       case 'endereco':
         return <ShoppingCart setCurrentPage={setCurrentPage} onAddressUpdate={setAddress} />;
       case 'finished':
@@ -37,11 +56,21 @@ function App() {
     }
   };
 
+  if (!isMobile) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100 text-center p-4">
+        <p className="text-lg font-semibold text-gray-800">
+          Este site está disponível apenas para dispositivos móveis. Por favor, acesse em um dispositivo com uma tela menor.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="App min-h-screen flex flex-col">
       {/* Header fixo no topo */}
       <header>
-        <HeaderMenu setCurrentPage={setCurrentPage} />
+        <HeaderMenu cartActive={cartActive} />
       </header>
 
       {/* Main com padding-top ajustado */}

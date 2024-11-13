@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { useState } from 'react';
 import InputMask from 'react-input-mask';
 import { ClipLoader } from 'react-spinners';
 import Skincaremobile from '../../assets/images/skincaremobile.webp';
 
-const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
+const ShoppingCart = ({ setCurrentPage, onAddressUpdate }: any) => {
   const [zipCode, setZipCode] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -23,7 +24,8 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
 
       setAddress(response.data);
       onAddressUpdate(response.data);
-    } catch (err) {
+    } catch (error) {
+      console.log(error)
       setError("Informe um CEP válido");
     } finally {
       setLoading(false);
@@ -41,7 +43,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
 
         try {
 
-          const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=YOUR_API_KEY`);
+          const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=8440ff5adb274b5abf90cf1598d1c0c1`);
           const results = response.data.results;
 
           if (results.length > 0) {
@@ -52,6 +54,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
             setError("Não foi possível encontrar o CEP com base na sua localização.");
           }
         } catch (err) {
+          console.log(err)
           setError("Erro ao buscar CEP com base na localização.");
         } finally {
           setLoading(false);
@@ -109,7 +112,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
               placeholder="0000-000"
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
-              className={`border rounded-md px-2 py-3 w-full text-sm bg-white focus:outline-none ${error && !isFocused ? 'border-red-500' : isFocused ? 'border-purple-500' : 'border-green-500'
+              className={`border rounded-md px-3 py-3 w-full text-sm bg-white focus:outline-none ${error && !isFocused ? 'border-red-500' : isFocused ? 'border-purple-500' : 'border-green-500'
                 }`}
             />
 
@@ -130,10 +133,10 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
             </a>
           </button>
 
-          <div className="p-3 bg-[#f9f9f9] rounded-md mb-4 flex justify-between">
+          {address && <div className="p-3 bg-[#f9f9f9] rounded-md mb-4 flex justify-between">
             <p className="text-sm">Normal (até 5 dias úteis)</p>
-            <p className="text-sm font-normal">R$ 26,90</p>
-          </div>
+            <p className="text-sm font-normal">R$ 29,90</p>
+          </div>}
 
           <div className="border-t border-gray-200 pt-4">
             <div className="flex items-start gap-4">
