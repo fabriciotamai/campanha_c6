@@ -15,7 +15,7 @@ function App() {
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    // Define o estado `isMobile` com base na largura da tela
+
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth <= 768); // Define o limite de largura para mobile
     };
