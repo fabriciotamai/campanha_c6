@@ -13,6 +13,7 @@ import EditAddress from './components/ZipCode';
 function App() {
   const [currentPage, setCurrentPage] = useState('login');
   const [cartValue, setCartValue] = useState(0);
+  const [address, setAddress] = useState(null);
 
   const handleComplete = () => {
     setCurrentPage('agradecimento');
@@ -28,9 +29,9 @@ function App() {
       case 'agradecimento':
         return <ThankYouScreen setCurrentPage={setCurrentPage} />;
       case 'endereco':
-        return <ShoppingCart setCurrentPage={setCurrentPage} />;
+        return <ShoppingCart setCurrentPage={setCurrentPage} onAddressUpdate={setAddress} />;
       case 'finished':
-        return <EditAddress setCurrentPage={setCurrentPage} />;
+        return <EditAddress setCurrentPage={setCurrentPage} address={address} />;
       default:
         return <Login setCurrentPage={setCurrentPage} />;
     }

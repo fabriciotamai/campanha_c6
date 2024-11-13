@@ -1,5 +1,10 @@
+import { useEffect } from "react";
 
-const EditAddress = ({ setCurrentPage }) => {
+const EditAddress = ({ setCurrentPage, address }) => {
+
+  useEffect(() => {
+    console.log(address)
+  }, [])
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-semibold text-center mb-6">Edite seu endereço</h2>
@@ -29,8 +34,9 @@ const EditAddress = ({ setCurrentPage }) => {
 
             <input
               type="text"
+              value={address?.cep}
               placeholder="12345-000"
-              className="w-[50%] rounded-md p-2 mt-1 px-1"
+              className="w-[50%] rounded-md p-2 mt-1 px-3"
             />
 
             <a href="#" className="text-sm text-[#777777] underline px-4">
@@ -47,14 +53,13 @@ const EditAddress = ({ setCurrentPage }) => {
         </svg>
         Usar localização atual
       </a>
-
-
       <div className="mb-4">
         <label className="text-sm font-medium flex ">Endereço:</label>
         <input
           type="text"
-          placeholder="Rua João Bettega"
-          className="w-full border border-gray-300 rounded-md p-2 mt-1"
+          value={address?.logradouro}
+          placeholder="Rua Maria jose "
+          className="w-full border border-gray-300 rounded-md p-2 mt-1 px-3"
         />
       </div>
 
@@ -64,7 +69,7 @@ const EditAddress = ({ setCurrentPage }) => {
           <label className="text-sm font-medium flex">Número da residência:</label>
           <input
             type="text"
-            placeholder="644"
+            placeholder="2024"
             className="w-full border border-gray-300 rounded-md p-2 mt-1"
           />
         </div>
@@ -81,7 +86,7 @@ const EditAddress = ({ setCurrentPage }) => {
           <label className="text-sm font-medium flex">Complemento:</label>
           <input
             type="text"
-            placeholder="ap 607"
+            placeholder="Sobrado 1  ap 1 "
             className="w-full border border-gray-300 rounded-md p-2 mt-1"
           />
         </div>
@@ -89,7 +94,8 @@ const EditAddress = ({ setCurrentPage }) => {
           <label className="text-sm font-medium flex">Bairro:</label>
           <input
             type="text"
-            placeholder="Portão"
+            value={address?.bairro}
+            placeholder="Bairro"
             className="w-full border border-gray-300 rounded-md p-2 mt-1"
           />
         </div>
@@ -100,7 +106,8 @@ const EditAddress = ({ setCurrentPage }) => {
         <label className="text-sm font-medium flex">Cidade/Estado:</label>
         <input
           type="text"
-          placeholder="Curitiba/PR"
+          value={`${address?.localidade}/${address.uf}`}
+          placeholder="São Paulo/SP"
           className="w-full border border-gray-300 rounded-md p-2 mt-1"
         />
       </div>
@@ -116,8 +123,8 @@ const EditAddress = ({ setCurrentPage }) => {
       </div>
 
 
-      <label className="flex items-center gap-2 text-sm text-purple-600 mb-4">
-        <input type="checkbox" className="form-checkbox" />
+      <label className="flex items-center justify-center gap-2 text-sm text-purple-600 mb-4">
+        <input type="checkbox" className="form-checkbox " />
         O titular da conta é o mesmo que irá receber ou retirar a encomenda
       </label>
 
@@ -126,10 +133,15 @@ const EditAddress = ({ setCurrentPage }) => {
         <label className="text-sm font-medium flex">Nome de quem vai receber ou retirar:</label>
         <input
           type="text"
-          placeholder="Fabricio"
+          placeholder="Ex João..."
           className="w-full border border-gray-300 rounded-md p-2 mt-1"
         />
       </div>
+
+      <button className="bg-[#9222DC] w-full py-4 mt-4 rounded-md text-white">
+        Finalizar
+      </button>
+
     </div>
   );
 };

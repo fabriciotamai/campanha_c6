@@ -4,7 +4,7 @@ import InputMask from 'react-input-mask';
 import { ClipLoader } from 'react-spinners';
 import Skincaremobile from '../../assets/images/skincaremobile.webp';
 
-const ShoppingCart = ({ setCurrentPage }) => {
+const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
   const [zipCode, setZipCode] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -22,9 +22,46 @@ const ShoppingCart = ({ setCurrentPage }) => {
       }
 
       setAddress(response.data);
+      onAddressUpdate(response.data);
     } catch (err) {
-      setError("Informe um CEP válido"); // Define a mensagem de erro
+      setError("Informe um CEP válido");
     } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGetLocation = () => {
+    setLoading(true);
+    setError('');
+
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        try {
+
+          const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=YOUR_API_KEY`);
+          const results = response.data.results;
+
+          if (results.length > 0) {
+            const postalCode = results[0].components.postcode;
+            setZipCode(postalCode);
+            await handleLoadCep();
+          } else {
+            setError("Não foi possível encontrar o CEP com base na sua localização.");
+          }
+        } catch (err) {
+          setError("Erro ao buscar CEP com base na localização.");
+        } finally {
+          setLoading(false);
+        }
+      }, () => {
+        setError("Permissão de localização negada.");
+        setLoading(false);
+      });
+    } else {
+      setError("Geolocalização não é suportada pelo seu navegador.");
       setLoading(false);
     }
   };
@@ -64,16 +101,18 @@ const ShoppingCart = ({ setCurrentPage }) => {
         <div className="px-1">
           <h2 className="text-lg text-left font-light text-[#212121] mb-7">Sacola (1 Produto)</h2>
           <p className="py-1 text-left font-light text-sm text-[#212121] text-[0.85rem]">Estime frete e prazo</p>
-          <div className="flex items-center mb-2">
+          <div className="flex items-center ">
             <InputMask
               mask="99999-999"
               value={zipCode}
               onChange={(e) => setZipCode(e.target.value)}
+              placeholder="0000-000"
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
-              className={`border px-2 py-3 rounded-sm w-full text-sm bg-white ${error ? 'border-red-500' : isFocused ? 'border-purple-500' : 'border-green-500'
-                } focus:outline-none placeholder-transparent`} // focus:outline-none e placeholder-transparent
+              className={`border px-2 py-3 rounded-sm w-full text-sm bg-white focus:outline-none ${error && !isFocused ? 'border-red-500' : isFocused ? 'border-purple-500' : 'border-green-500'
+                }`}
             />
+
             <button
               onClick={handleLoadCep}
               className="bg-[#9222DC] text-white font-normal rounded-[0.30rem] ml-3 px-5 py-[0.70rem]"
@@ -82,10 +121,14 @@ const ShoppingCart = ({ setCurrentPage }) => {
               OK
             </button>
           </div>
-          {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
-          <a href="#" className="text-sm text-left py-4 text-[#5466AB] underline mb-2 block">
-            Não sei meu CEP
-          </a>
+          {error && <p className="text-[#FF0014] text-[0.75rem] text-left">{error}</p>}
+          <button className="text-left flex" onClick={() => handleGetLocation()}>
+
+
+            <a href="#" className="text-sm text-left py-4 text-[#5466AB] underline mb-2 block">
+              Não sei meu CEP
+            </a>
+          </button>
 
           <div className="p-3 bg-[#f9f9f9] rounded-md mb-4 flex justify-between">
             <p className="text-sm">Normal (até 5 dias úteis)</p>
