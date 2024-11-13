@@ -95,17 +95,15 @@ const AdSection = ({ onComplete }: AdSectionProps) => {
 
   const imageWidth = windowSize.width
     ? windowSize.width < 768
-      ? windowSize.width * 0.7
+      ? windowSize.width * 0.6
       : 300
     : 300;
-  const imageHeight = imageWidth * 0.7;
+  const imageHeight = imageWidth * 0.6;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white shadow-lg rounded-xl w-full max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto overflow-hidden">
-        <h2 className="text-green-600 text-center text-lg lg:text-xl font-bold">
-          {current?.reward}
-        </h2>
+
 
         <div className="flex justify-center mb-4">
           <div className="w-full flex justify-center">
@@ -132,8 +130,8 @@ const AdSection = ({ onComplete }: AdSectionProps) => {
                   key={idx}
                   onClick={() => handleOptionSelect(index, option)}
                   className={`py-2 px-5 md:px-4 rounded-lg shadow-sm focus:outline-none text-sm lg:text-base ${selectedOptions[index] === option
-                      ? 'bg-[#a000e4] text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-[#a000e4] text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                 >
                   {option}
