@@ -45,10 +45,10 @@ const ThankYouScreen = ({ setCurrentPage, loadCardShop }: any) => {
           </p>
         </section>
 
-        <div className="relative flex justify-center items-center mb-4">
+        <div className="relative flex justify-center items-center mb-4 ">
           <button
             onClick={prevImage}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-200 transition"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#d3d3d3] rounded-md p-2 shadow-md hover:bg-gray-200 transition"
           >
             ◀
           </button>
@@ -65,7 +65,7 @@ const ThankYouScreen = ({ setCurrentPage, loadCardShop }: any) => {
 
           <button
             onClick={nextImage}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-200 transition"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#d3d3d3] rounded-md p-2 shadow-md hover:bg-gray-200 transition"
           >
             ▶
           </button>

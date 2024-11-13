@@ -120,7 +120,7 @@ const AdSection = ({ onComplete }: AdSectionProps) => {
         </div>
 
         {current.questions.map((question, index) => (
-          <div key={index} className="mb-6">
+          <div key={index} className="mb-4">
             <p className="text-center text-gray-700 font-semibold mb-3 text-sm lg:text-base">
               {question.text}
             </p>
@@ -143,7 +143,7 @@ const AdSection = ({ onComplete }: AdSectionProps) => {
       </div>
       <button
         onClick={handleNextQuestionnaire}
-        className="flex items-center justify-center bg-[#9222DC] w-full py-4 rounded-lg mt-10 text-white"
+        className="flex items-center justify-center bg-[#9222DC] w-full py-4 rounded-lg mt-8 text-white"
       >
         Enviar respostas
       </button>
