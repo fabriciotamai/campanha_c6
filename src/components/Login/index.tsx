@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useState } from "react";
 import BelezanaWeb from '../../assets/logo-bw.svg';
 
@@ -17,15 +15,15 @@ const Login = ({ setCurrentPage }: any) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[calc(85vh)] bg-gray-100  py-8">
-      <div className="  max-w-[370px] sm:max-w-sm bg-white shadow-xl rounded-xl p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8 antialiased">
+      <div className="max-w-[370px] sm:max-w-sm bg-white shadow-xl rounded-xl p-6 mx-auto">
         <img
           src={BelezanaWeb}
           alt="OpinaPro Logo"
-          className="w-40 h-auto mx-auto mb-4"
+          className="w-40 h-40 mx-auto mb-4"
         />
         <p className="text-gray-700 font-bold text-center mb-2 text-[1.20rem]">
-          Bem-vindo(a) ao Ajude nos Beleza na Web Feedback
+          Bem-vindo(a) ao Ajude-nos Beleza na Web Feedback
         </p>
         <p className="text-gray-600 text-center text-sm">
           Insira seu e-mail para prosseguir!
@@ -53,10 +51,12 @@ const Login = ({ setCurrentPage }: any) => {
 
       <div className="mt-8 text-center text-gray-600 text-xs">
         <p className="font-bold">2007 - 2024 Beleza na Web</p>
-        <button onClick={() => {
-          window.location.href = "https://www.belezanaweb.com.br/institucional/condicoes-de-uso/";
-        }}>
-
+        <button
+          onClick={() => {
+            window.location.href =
+              "https://www.belezanaweb.com.br/institucional/condicoes-de-uso/";
+          }}
+        >
           <p className="mt-1">Termos e Política de Privacidade</p>
         </button>
       </div>
