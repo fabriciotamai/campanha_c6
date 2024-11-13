@@ -74,7 +74,7 @@ function App() {
       </header>
 
       {/* Main com padding-top ajustado */}
-      <main className="bg-gray-100 flex-grow pt-28">
+      <main className="bg-gray-100 flex-grow pt-10">
         {renderPage()}
       </main>
 

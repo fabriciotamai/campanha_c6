@@ -1,5 +1,5 @@
 // src/components/ThankYouScreen.js
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState } from 'react';
 import GiftImage1 from '../../assets/images/skin-1.webp';
 import GiftImage2 from '../../assets/images/skin-2.webp';
@@ -25,7 +25,7 @@ const ThankYouScreen = ({ setCurrentPage, loadCardShop }: any) => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center text-white rounded-xl shadow-lg ">
+    <main className="flex flex-col items-center justify-center text-white rounded-xl shadow-lg min-h-screen ">
       <div className="flex flex-col items-center justify-center bg-gray-100 px-4 py-8">
         <section className="bg-white text-gray-900 rounded-xl shadow-lg w-full max-w-md mx-auto text-center overflow-hidden py-5">
           <section className="px-4 py-1">
@@ -65,19 +65,16 @@ const ThankYouScreen = ({ setCurrentPage, loadCardShop }: any) => {
 
 
           <section className="px-10 mt-3">
-            {/* <button
-              onClick={() => setCurrentPage('endereco')}
-              className="bg-[#a000e4] text-[0.85rem] text-white font-bold py-4 px-6 rounded-lg w-full mt-4 hover:bg-purple-700 transition duration-300">
-              Cadastrar Endereço
-            </button> */}
 
-            <button onClick={onLoadCardShop} className="flex items-center justify-center bg-[#9222DC] w-full py-3 rounded-lg mt-4">
-              <div className="text-white">
-                Cadastrar Endereço
-              </div>
-            </button>
+
+
           </section>
         </section>
+        <button onClick={onLoadCardShop} className="flex items-center justify-center  bg-[#9222DC] w-full py-3 rounded-lg mt-10">
+          <div className="text-white">
+            Cadastrar Endereço
+          </div>
+        </button>
       </div>
     </main>
   );

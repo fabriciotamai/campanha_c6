@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useEffect } from "react";
 
 const EditAddress = ({ address }: any) => {
@@ -7,7 +7,7 @@ const EditAddress = ({ address }: any) => {
     console.log(address)
   }, [])
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-lg mx-auto px-4 bg-white rounded-lg shadow-md min-h-screen">
       <h2 className="text-xl font-semibold text-center mb-6">Edite seu endereço</h2>
       <div className="flex gap-4 mb-4">
         <div className="flex-1">
@@ -20,7 +20,7 @@ const EditAddress = ({ address }: any) => {
         </div>
         <div className="flex-1">
           <label className="text-sm  flex text-[#212121]">Local da entrega:</label>
-          <select className="w-full border border-gray-300 rounded-md p-1 mt-1 ">
+          <select className="w-full border border-gray-300 rounded-md  mt-1 ">
             <option className="" >Casa</option>
           </select>
         </div>
@@ -123,11 +123,14 @@ const EditAddress = ({ address }: any) => {
         />
       </div>
 
+      <div className="flex items-start  py-2">
+        <label className="flex items-start text-xs text-purple-600">
+          <input type="checkbox" className="form-checkbox mt-1 mr-2 " />
+          <span className="text-left font-bold">O titular da conta é o mesmo que irá receber ou retirar a encomenda</span>
+        </label>
+      </div>
 
-      <label className="flex items-center justify-center gap-2 text-xs text-purple-600 mb-4">
-        <input type="checkbox" className="form-checkbox " />
-        O titular da conta receberá ou retirará a encomenda.
-      </label>
+
 
 
       <div className="mb-4">

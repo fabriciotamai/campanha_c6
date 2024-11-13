@@ -74,12 +74,12 @@ const AdSection = ({ onComplete }: any) => {
         {current.questions.map((question: any, index: any) => (
           <div key={index} className="mb-6">
             <p className="text-center text-gray-700 font-semibold mb-3 text-sm lg:text-base">{question.text}</p>
-            <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-4">
               {question.options.map((option: any, idx: any) => (
                 <button
                   key={idx}
                   onClick={() => handleOptionSelect(index, option)}
-                  className={`py-2 px-3 md:px-4 rounded-lg shadow-sm focus:outline-none text-sm lg:text-base ${selectedOptions[index] === option
+                  className={`py-2 px-5 md:px-4 rounded-lg shadow-sm focus:outline-none text-sm lg:text-base ${selectedOptions[index] === option
                     ? 'bg-[#a000e4] text-white'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
@@ -91,13 +91,15 @@ const AdSection = ({ onComplete }: any) => {
           </div>
         ))}
 
-        <button
-          onClick={handleNextQuestionnaire}
-          className="bg-[#a000e4] text-white font-bold py-3 lg:py-4 rounded-lg w-full mt-6 text-sm lg:text-base"
-        >
-          Enviar respostas
-        </button>
+
       </div>
+      <button
+        onClick={handleNextQuestionnaire}
+        className="flex items-center justify-center bg-[#9222DC] w-full py-6 rounded-lg mt-10 text-white"
+      >
+        Enviar respostas
+      </button>
+
     </div>
   );
 };
