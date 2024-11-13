@@ -19,7 +19,8 @@ const ThankYouScreen = ({ setCurrentPage }) => {
 
   return (
     <main className="flex flex-col items-center justify-center text-white rounded-xl shadow-lg ">
-      <section className="bg-white text-gray-900 rounded-xl shadow-lg w-full max-w-md mx-auto text-center overflow-hidden">
+      <div className="flex flex-col items-center justify-center bg-gray-100 px-4 py-8">
+      <section className="bg-white text-gray-900 rounded-xl shadow-lg w-full max-w-md mx-auto text-center overflow-hidden py-5">
         <section className="px-4 py-1">
           <h1 className="text-xl font-bold mb-4">Obrigado pelo seu tempo!</h1>
           <p className="text-base mb-2 leading-5 ">
@@ -56,7 +57,7 @@ const ThankYouScreen = ({ setCurrentPage }) => {
         </div>
 
         <strong className="text-[0.85rem] px-8">Creamy </strong>
-        <section className="px-10 mt-6">
+        <section className="px-10 mt-3">
           <button
             onClick={() => setCurrentPage('endereco')}
             className="bg-[#a000e4] text-[0.85rem] text-white font-bold py-2 px-6 rounded-lg w-full mt-4 hover:bg-purple-700 transition duration-300">
@@ -64,6 +65,7 @@ const ThankYouScreen = ({ setCurrentPage }) => {
           </button>
         </section>
       </section>
+    </div>
     </main>
   );
 };

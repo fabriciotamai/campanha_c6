@@ -18,8 +18,8 @@ const EditAddress = ({ setCurrentPage, address }) => {
           />
         </div>
         <div className="flex-1">
-          <label className="text-sm  flex text-[#212121]">Tipo de local da entrega:</label>
-          <select className="w-full border border-gray-300 rounded-md p-2 mt-1 ">
+          <label className="text-sm  flex text-[#212121]">Local da entrega:</label>
+          <select className="w-full border border-gray-300 rounded-md p-1 mt-1 ">
             <option className="" >Casa</option>
           </select>
         </div>
@@ -123,9 +123,9 @@ const EditAddress = ({ setCurrentPage, address }) => {
       </div>
 
 
-      <label className="flex items-center justify-center gap-2 text-sm text-purple-600 mb-4">
+      <label className="flex items-center justify-center gap-2 text-xs text-purple-600 mb-4">
         <input type="checkbox" className="form-checkbox " />
-        O titular da conta é o mesmo que irá receber ou retirar a encomenda
+        O titular da conta receberá ou retirará a encomenda.
       </label>
 
 

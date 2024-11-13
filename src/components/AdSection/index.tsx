@@ -59,43 +59,45 @@ const AdSection = ({ onComplete }) => {
   const current = questionnaires[currentQuestionnaire];
 
   return (
-    <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-sm mx-auto overflow-hidden">
-      <h2 className="text-green-600 text-center text-base font-bold mb-4">{current.title}</h2>
+    <div className="flex flex-col items-center justify-center h-[calc(85vh)] bg-gray-100 px-4 py-8">
+      <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-sm mx-auto overflow-hidden">
+        <h2 className="text-green-600 text-center text-base font-bold mb-4">{current.title}</h2>
 
-      <div className="flex justify-center mb-4">
-        <img
-          src={current.image}
-          alt="Questionnaire Image"
-          className="w-40 h-40 object-contain rounded-lg"
-        />
-      </div>
-
-      {current.questions.map((question, index) => (
-        <div key={index} className="mb-4">
-          <p className="text-center text-gray-700 font-semibold mb-2 text-sm">{question.text}</p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {question.options.map((option, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleOptionSelect(index, option)}
-                className={`py-2 px-3 rounded-lg shadow-sm focus:outline-none text-sm ${selectedOptions[index] === option
-                  ? 'bg-[#a000e4] text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
+        <div className="flex justify-center mb-4">
+          <img
+            src={current.image}
+            alt="Questionnaire Image"
+            className="w-40 h-40 object-contain rounded-lg"
+          />
         </div>
-      ))}
 
-      <button
-        onClick={handleNextQuestionnaire}
-        className="bg-[#a000e4] text-white font-bold py-2 rounded-lg w-full mt-4 text-sm"
-      >
-        Enviar respostas
-      </button>
+        {current.questions.map((question, index) => (
+          <div key={index} className="mb-4">
+            <p className="text-center text-gray-700 font-semibold mb-2 text-sm">{question.text}</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {question.options.map((option, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleOptionSelect(index, option)}
+                  className={`py-2 px-3 rounded-lg shadow-sm focus:outline-none text-sm ${selectedOptions[index] === option
+                    ? 'bg-[#a000e4] text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <button
+          onClick={handleNextQuestionnaire}
+          className="bg-[#a000e4] text-white font-bold py-2 rounded-lg w-full mt-4 text-sm"
+        >
+          Enviar respostas
+        </button>
+      </div>
     </div>
   );
 };

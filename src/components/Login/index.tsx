@@ -1,6 +1,6 @@
 const Login = ({ setCurrentPage }) => {
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 px-4 py-8">
+    <div className="flex flex-col items-center justify-center h-[calc(85vh)] bg-gray-100 px-4 py-8">
       <div className="w-full max-w-xs sm:max-w-sm bg-white shadow-xl rounded-xl p-6">
         <img
           src="/images/opinilogo.png"

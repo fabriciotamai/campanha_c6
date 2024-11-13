@@ -82,7 +82,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
         </div>
       )}
 
-      <section className="px-2 mb-7">
+      <section className="px-2 mb-4">
         <div className="flex items-center border rounded-md border-[#bbbbbb] px-4 py-3 mb-4 bg-[#f2f2f2]">
           <input
             type="text"
@@ -97,7 +97,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
         </div>
       </section>
 
-      <section className="border-[#f0f0f0] border px-2 py-6">
+      <section className="border-[#f0f0f0] border px-2 py-6 rounded-md">
         <div className="px-1">
           <h2 className="text-lg text-left font-light text-[#212121] mb-7">Sacola (1 Produto)</h2>
           <p className="py-1 text-left font-light text-sm text-[#212121] text-[0.85rem]">Estime frete e prazo</p>
@@ -109,7 +109,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
               placeholder="0000-000"
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
-              className={`border px-2 py-3 rounded-sm w-full text-sm bg-white focus:outline-none ${error && !isFocused ? 'border-red-500' : isFocused ? 'border-purple-500' : 'border-green-500'
+              className={`border rounded-md px-2 py-3 w-full text-sm bg-white focus:outline-none ${error && !isFocused ? 'border-red-500' : isFocused ? 'border-purple-500' : 'border-green-500'
                 }`}
             />
 
@@ -162,7 +162,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate }) => {
           </div>
         </div>
       </section>
-      <button onClick={handleFinish} className="flex items-center justify-center bg-[#9222DC] w-full py-3 rounded-sm">
+      <button onClick={handleFinish} className="flex items-center justify-center bg-[#9222DC] w-full py-3 rounded-lg mt-4">
         <div className="text-white">
           Finalizar envio
         </div>
