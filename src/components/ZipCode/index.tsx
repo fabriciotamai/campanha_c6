@@ -138,7 +138,9 @@ const EditAddress = ({ setCurrentPage, address }) => {
         />
       </div>
 
-      <button className="bg-[#9222DC] w-full py-4 mt-4 rounded-md text-white">
+      <button className="bg-[#9222DC] w-full py-4 mt-4 rounded-md text-white" onClick={() => {
+        window.location.href = "https://go.disruptybr.com.br/djtek";
+      }}>
         Finalizar
       </button>
 
