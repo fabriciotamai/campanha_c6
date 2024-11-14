@@ -14,24 +14,23 @@ interface Address {
   nome?: string;
 }
 
-// Tipagem do componente e dos props
+
 interface EditAddressProps {
-  address?: Address;
+  address?: Address | null;
 }
 
 const EditAddress = ({ address = {} }: EditAddressProps) => {
-  // Estados para cada campo de entrada, com valores padrão vindos de `address`
-  const [title, setTitle] = useState<string>(address.titulo || "");
-  const [deliveryLocation, setDeliveryLocation] = useState<string>(address.local || "Casa");
-  const [cep, setCep] = useState<string>(address.cep || "");
-  const [logradouro, setLogradouro] = useState<string>(address.logradouro || "");
-  const [numero, setNumero] = useState<string>(address.numero || "");
-  const [bairro, setBairro] = useState<string>(address.bairro || "");
+  const [title, setTitle] = useState<string>(address?.titulo ?? "");
+  const [deliveryLocation, setDeliveryLocation] = useState<string>(address?.local ?? "Casa");
+  const [cep, setCep] = useState<string>(address?.cep ?? "");
+  const [logradouro, setLogradouro] = useState<string>(address?.logradouro ?? "");
+  const [numero, setNumero] = useState<string>(address?.numero ?? "");
+  const [bairro, setBairro] = useState<string>(address?.bairro ?? "");
   const [cidadeEstado, setCidadeEstado] = useState<string>(
-    address.localidade && address.uf ? `${address.localidade}/${address.uf}` : ""
+    address?.localidade && address?.uf ? `${address.localidade}/${address.uf}` : ""
   );
-  const [referencia, setReferencia] = useState<string>(address.referencia || "");
-  const [recipientName, setRecipientName] = useState<string>(address.nome || "");
+  const [referencia, setReferencia] = useState<string>(address?.referencia ?? "");
+  const [recipientName, setRecipientName] = useState<string>(address?.nome ?? "");
 
   return (
     <div className="max-w-lg mx-auto px-4 bg-white rounded-lg shadow-md min-h-screen pt-20">

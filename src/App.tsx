@@ -50,7 +50,7 @@ function App() {
       case 'endereco':
         return <ShoppingCart setCurrentPage={setCurrentPage} onAddressUpdate={setAddress} />;
       case 'finished':
-        return <EditAddress setCurrentPage={setCurrentPage} address={address} />;
+        return <EditAddress address={address || undefined} />;
       default:
         return <Login setCurrentPage={setCurrentPage} />;
     }
