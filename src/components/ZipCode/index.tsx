@@ -51,7 +51,7 @@ const EditAddress = ({ address = {} }: EditAddressProps) => {
           <select
             value={deliveryLocation}
             onChange={(e) => setDeliveryLocation(e.target.value)}
-            className="w-full border border-gray-300 rounded-md p-2 mt-1 text-[0.80rem]"
+            className="w-full h-10 border border-gray-300 rounded-md p-2 mt-1 text-[0.80rem] appearance-none"
           >
             <option value="Casa">Casa</option>
             <option value="Trabalho">Trabalho</option>
