@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// Interface para tipar os dados de endereço
+
 interface Address {
   titulo?: string;
   local?: string;
@@ -51,7 +51,7 @@ const EditAddress = ({ address = {} }: EditAddressProps) => {
           <select
             value={deliveryLocation}
             onChange={(e) => setDeliveryLocation(e.target.value)}
-            className="w-full h-10 border border-gray-300 rounded-md p-2 mt-1 text-[0.80rem] appearance-none"
+            className="w-full h-10 border border-gray-300 bg-transparent rounded-md p-2 mt-1 text-[0.80rem] appearance-none custom-focus"
           >
             <option value="Casa">Casa</option>
             <option value="Trabalho">Trabalho</option>
