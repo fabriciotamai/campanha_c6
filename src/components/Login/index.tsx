@@ -10,7 +10,7 @@ const Login = ({ setCurrentPage }: any) => {
       setError(true);
     } else {
       setError(false);
-      setCurrentPage('inicio');
+      setCurrentPage('selectmarket');
     }
   };
 
@@ -26,7 +26,7 @@ const Login = ({ setCurrentPage }: any) => {
           Bem-vindo(a) ao Ajude-nos Beleza na Web Feedback
         </p>
         <p className="text-gray-600 text-center text-sm">
-          Insira seu e-mail para prosseguir!
+          A Beleza na Web, em parceria com nossos aliados estratégicos, está comprometida em oferecer a você, nosso cliente especial, uma experiência cada vez melhor. Queremos ouvir sua opinião para aprimorar a qualidade dos nossos produtos e serviços. Participe do nosso rápido quiz e, como forma de agradecimento, receba um kit exclusivo preparado especialmente para você!
         </p>
         <input
           type="email"
