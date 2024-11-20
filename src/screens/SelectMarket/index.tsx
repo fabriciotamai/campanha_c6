@@ -21,7 +21,7 @@ export function SelectMarket() {
 
   return (
     <main
-      className="flex flex-col items-center px-6 pt-16 space-y-6 min-h-screen mb-4"
+      className="flex flex-col items-center px-6 pt-20 space-y-6 min-h-screen mb-4"
     >
       <strong className="text-[1rem] font-medium text-[#212121] text-left w-full max-w-sm">
         Selecione abaixo a marca que você mais se identifica:
