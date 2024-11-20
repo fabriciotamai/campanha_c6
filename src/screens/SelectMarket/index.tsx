@@ -14,10 +14,6 @@ export function SelectMarket() {
     setLocalBrand(brand);
   };
 
-
-
-
-
   const handleAdvance = () => {
     setSelectedBrand(localBrand);
     setCurrentStep(2);
@@ -26,15 +22,12 @@ export function SelectMarket() {
 
   return (
     <main
-      className="flex min-h-screen flex-col justify-start space-y-4 px-6"
-      style={{
-        paddingTop: "64px",
-      }}
+      className="flex flex-col items-center px-6 pt-16 space-y-6 min-h-screen mb-4"
     >
-      <strong className="text-lg font-normal text-[#212121] text-[0.85rem] text-left px-4 pt-4">
-        1 - Selecione abaixo a marca que você mais se identifica;
+      <strong className="text-[1rem] font-medium text-[#212121] text-left w-full max-w-sm">
+        Selecione abaixo a marca que você mais se identifica:
       </strong>
-      <div className="flex flex-col items-center space-y-4">
+      <div className="flex flex-col items-center space-y-3 w-full max-w-sm pb-20">
         {[
           { name: "Wella", image: Wella },
           { name: "Eudora", image: Eudora },
@@ -42,26 +35,25 @@ export function SelectMarket() {
         ].map((brand) => (
           <section
             key={brand.name}
-            className={`rounded-md  shadow-2xl border-[0.1rem] cursor-pointer transition ${localBrand === brand.name ? "border-[#a000e4]" : ""
+            className={`rounded-md border-[0.1rem] shadow-md cursor-pointer transition-all w-full ${localBrand === brand.name ? "border-purple-700" : "border-gray-200"
               }`}
             onClick={() => handleSelect(brand.name as "Wella" | "Creamy" | "Eudora")}
-
           >
-
             <img
               src={brand.image}
               alt={brand.name}
-              className="w-full h-[10rem] rounded-md"
+              className="w-full h-[8rem] sm:h-[10rem] rounded-md object-cover"
             />
           </section>
         ))}
-        <button
-          onClick={handleAdvance}
-          className="flex items-center justify-center bg-purple-700 w-full max-w-md py-3 rounded-lg mt-8 text-white font-semibold"
-        >
-          Avançar
-        </button>
+
       </div>
+      <button
+        onClick={handleAdvance}
+        className="flex items-center justify-center  mb-6 bg-purple-700 w-full py-3 rounded-lg text-white font-semibold hover:bg-purple-800 transition-all"
+      >
+        Avançar
+      </button>
     </main>
   );
 }

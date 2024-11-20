@@ -34,7 +34,7 @@ const Header = () => {
       </div>
 
       {/* Logo e Carrinho */}
-      <div className="flex items-center justify-between max-w-md mx-auto px-8 py-2">
+      <div className="flex items-center justify-between max-w-md mx-auto px-8  py-1">
         <img src={BelezaWeb} alt="Beleza na Web Logo" className="w-20 h-10" />
         <div className="relative">
           {cartActive && (
@@ -69,7 +69,7 @@ const Header = () => {
       </div>
 
       {/* Barra de Progresso */}
-      <div className="flex items-center justify-between mt-2 w-full mx-auto px-4">
+      <div className="flex items-center justify-between  w-full mx-auto px-4 ">
         {steps.map((step, index) => (
           <div key={step} className="flex items-center">
             {/* Passo */}

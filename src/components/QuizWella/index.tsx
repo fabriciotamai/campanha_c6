@@ -94,7 +94,7 @@ const QuizWella = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 antialiased">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 antialiased mb-6">
       <div className="pt-[64px] w-full max-w-md mx-auto bg-white shadow-md rounded-lg flex flex-col h-[calc(100vh-64px)] overflow-y-auto">
 
         <h1 className="text-[1.2rem] font-semibold text-left text-[#333333] px-6">
