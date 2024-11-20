@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Creamy from "../../assets/creamy.svg";
-import Eudora from "../../assets/eudora.svg";
 import Wella from "../../assets/wella.svg";
 import { useAppContext } from "../../context/AppContext";
 
@@ -30,7 +29,7 @@ export function SelectMarket() {
       <div className="flex flex-col items-center space-y-3 w-full max-w-sm pb-20">
         {[
           { name: "Wella", image: Wella },
-          { name: "Eudora", image: Eudora },
+          // { name: "Eudora", image: Eudora },
           { name: "Creamy", image: Creamy },
         ].map((brand) => (
           <section
