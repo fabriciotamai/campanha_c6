@@ -1,45 +1,62 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import InputMask from 'react-input-mask';
-import { ClipLoader } from 'react-spinners';
-import Skincaremobile from '../../assets/images/skincaremobile.webp';
+import axios from "axios";
+import { useState } from "react";
+import InputMask from "react-input-mask";
+import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
-interface ShoppingCartProps {
-  setCurrentPage: (page: string) => void;
-  onAddressUpdate: (address: any) => void;
-  headerHeight: number;
-}
+import { default as CreamyImage } from "../../assets/images/skincaremobile.webp";
+// import Kitcongragulationsfinished from '../../assets/'
+import Wellaskit from "../../assets/kitwellas.webp";
+import { useAppContext } from "../../context/AppContext";
 
-const ShoppingCart = ({ setCurrentPage, onAddressUpdate, headerHeight }: ShoppingCartProps) => {
-  const [zipCode, setZipCode] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
+const ShoppingCart = () => {
+  const [zipCode, setZipCode] = useState<string>("");
+  const [localAddress, setLocalAddress] = useState<string>("");
+  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  useEffect(() => {
+  const { selectedBrand, address, setAddress } = useAppContext();
 
-    document.documentElement.style.setProperty(
-      '--header-height',
-      `${headerHeight || 0}px`
-    );
-  }, [headerHeight]);
+  const brandData: Record<string, { image: string; title: string; description: string; code: string }> = {
+    Wella: {
+      image: Wellaskit,
+      title: "Kit Wella Professionals",
+      description: "Oil Reflections Tratamento (3 Produtos)",
+      code: "WP123456",
+    },
+    Creamy: {
+      image: CreamyImage,
+      title: "Creamy",
+      description: "Kit  Tratamento Antiacne (4 Produtos)",
+      code: "MP152888",
+    },
+    Eudora: {
+      image: Wellaskit,
+      title: "Kit Eudora Premium",
+      description: "Tratamento Intensivo de Beleza (2 Produtos)",
+      code: "EP789012",
+    },
+  };
+
+  const selectedData = brandData[selectedBrand] || brandData["Creamy"];
 
   const handleLoadCep = async () => {
     setLoading(true);
-    setError('');
+    setError("");
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${zipCode}/json/`);
 
       if (response.data.erro) {
-        throw new Error('CEP não encontrado.');
+        throw new Error("CEP não encontrado.");
       }
 
-      setAddress(response.data);
-      onAddressUpdate(response.data);
-    } catch (error) {
-      console.error(error);
-      setError('Informe um CEP válido');
+      setLocalAddress(response.data.logradouro);
+      setAddress(response.data); // Atualiza o endereço no contexto
+    } catch (err) {
+      console.error(err);
+      setError("Informe um CEP válido.");
     } finally {
       setLoading(false);
     }
@@ -47,7 +64,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate, headerHeight }: Shoppin
 
   const handleGetLocation = () => {
     setLoading(true);
-    setError('');
+    setError("");
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -65,60 +82,55 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate, headerHeight }: Shoppin
               setZipCode(postalCode);
               await handleLoadCep();
             } else {
-              setError('Não foi possível encontrar o CEP com base na sua localização.');
+              setError("Não foi possível encontrar o CEP com base na sua localização.");
             }
           } catch (err) {
             console.error(err);
-            setError('Erro ao buscar CEP com base na localização.');
+            setError("Erro ao buscar CEP com base na localização.");
           } finally {
             setLoading(false);
           }
         },
         () => {
-          setError('Permissão de localização negada.');
+          setError("Permissão de localização negada.");
           setLoading(false);
         }
       );
     } else {
-      setError('Geolocalização não é suportada pelo seu navegador.');
+      setError("Geolocalização não é suportada pelo seu navegador.");
       setLoading(false);
     }
   };
 
   const handleFinish = () => {
     if (address) {
-      setCurrentPage('finished');
+      navigate("/finished");
     } else {
-      setError('Informe um CEP válido antes de continuar');
+      setError("Informe um CEP válido antes de continuar.");
     }
   };
 
   return (
-    <div
-      className="relative max-w-md mx-auto p-4 bg-white rounded-md shadow-lg"
-      style={{
-        paddingTop: 'var(--header-height)', // Aplica padding dinâmico
-      }}
-    >
+    <div className="relative max-w-md mx-auto p-4 bg-white rounded-md shadow-lg" style={{ paddingTop: "64px" }}>
       {loading && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <ClipLoader color="#A000E6" size={50} />
         </div>
       )}
 
-      <section className="px-2 mb-4">
+      <section className="px-1 mb-4">
         <div className="flex items-center border rounded-md border-[#bbbbbb] px-4 py-3 mb-4 bg-[#f2f2f2] mt-6">
           <input
             type="text"
             placeholder="O que você procura hoje?"
-            className="flex-grow outline-none text-[1rem] bg-transparent"
+            className="flex-grow outline-none text-[0.85rem] bg-transparent text-[#d3d3d3]"
           />
           <button className="text-gray-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="h-5 w-6"
               fill="none"
-              viewBox="0 0 24 24"
+              viewBox="0 0 14 24"
               stroke="currentColor"
             >
               <path
@@ -139,7 +151,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate, headerHeight }: Shoppin
           <p className="py-1 text-left font-light text-sm text-[#212121] text-[0.85rem]">
             Estime frete e prazo
           </p>
-          <div className="flex items-center ">
+          <div className="flex items-center">
             <InputMask
               mask="99999-999"
               value={zipCode}
@@ -147,7 +159,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate, headerHeight }: Shoppin
               placeholder="0000-000"
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
-              className={`border rounded-md px-3 py-3 w-full text-sm bg-white focus:outline-none ${error && !isFocused ? 'border-red-500' : isFocused ? 'border-purple-500' : 'border-green-500'
+              className={`border rounded-md px-3 py-3 w-full text-sm bg-white focus:outline-none ${error && !isFocused ? "border-red-500" : isFocused ? "border-purple-500" : "border-green-500"
                 }`}
             />
 
@@ -166,7 +178,7 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate, headerHeight }: Shoppin
             </a>
           </button>
 
-          {address && (
+          {localAddress && (
             <div className="p-3 bg-[#f9f9f9] rounded-md mb-4 flex justify-between">
               <p className="text-sm">Normal (até 5 dias úteis)</p>
               <p className="text-sm font-normal">R$ 29,90</p>
@@ -175,20 +187,13 @@ const ShoppingCart = ({ setCurrentPage, onAddressUpdate, headerHeight }: Shoppin
 
           <div className="border-t border-gray-200 pt-4">
             <div className="flex items-start gap-4">
-              <img
-                src={Skincaremobile}
-                alt="Produto"
-                className="w-16 h-16 object-cover"
-              />
+              <img src={selectedData.image} alt={selectedBrand} className="w-16 h-16 object-cover" />
               <div className="flex-grow">
-                <h3 className="font-semibold text-sm text-left">CREAMY</h3>
-                <p className="text-sm text-[#383737] text-left">
-                  Kit Skincare Glicointense Peel e Ácido
-                </p>
-                <p className="text-sm text-[#212121] text-left">Salicílico (2 Produtos)</p>
-                <p className="text-sm text-left mt-2 text-[#777777]">cód: MP152888</p>
+                <h3 className="font-semibold text-sm text-left">{selectedData.title}</h3>
+                <p className="text-[0.85rem] text-[#212121] text-left">{selectedData.description}</p>
+                <p className="text-sm text-[#212121] text-left">cód: {selectedData.code}</p>
                 <p className="text-xs text-gray-500 text-left mt-3">
-                  Vendido por <span className="font-bold">Evas Perfumaria</span> e entregue por{' '}
+                  Vendido por <span className="font-bold">Evas Perfumaria</span> e entregue por{" "}
                   <span className="font-bold">Beleza na Web</span>
                 </p>
               </div>

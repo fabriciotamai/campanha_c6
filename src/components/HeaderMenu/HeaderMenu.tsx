@@ -1,24 +1,26 @@
-import { useEffect, useRef } from 'react';
-import BelezaWeb from '../../assets/logo-bw.svg';
-import VideoBeleza from '../../assets/videos/videoapp.webm';
+import { useEffect, useRef } from "react";
+import BelezaWeb from "../../assets/logo-bw.svg";
+import VideoBeleza from "../../assets/videos/videoapp.webm";
+import { useAppContext } from "../../context/AppContext"; // Importa o contexto
 
-const Header = ({ cartActive, currentStep }: { cartActive: boolean; currentStep: number }) => {
+const Header = () => {
+  const { cartActive, currentStep } = useAppContext(); // Consome o estado do contexto
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    console.log(currentStep)
+
     if (videoRef.current) {
       videoRef.current.play().catch((error) => {
-        console.log('Autoplay prevented:', error);
+        console.log("Autoplay prevented:", error);
       });
     }
-  }, []);
+  }, [currentStep]); // Atualiza quando o passo atual mudar
 
-  const steps = ['Email', 'Marca', 'Quiz', 'Endereço', 'Frete'];
+  const steps = ["Email", "Marca", "Quiz", "Endereço", "Frete"];
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-md z-10">
-
+      {/* Vídeo de Fundo */}
       <div className="relative w-full h-11 overflow-hidden">
         <video
           ref={videoRef}
@@ -73,10 +75,10 @@ const Header = ({ cartActive, currentStep }: { cartActive: boolean; currentStep:
             {/* Passo */}
             <span
               className={`text-[11px] font-normal ${index < currentStep
-                ? 'text-[#66D1E3]'
+                ? "text-[#66D1E3]"
                 : index === currentStep
-                  ? 'text-[#a000e4]'
-                  : 'text-gray-300'
+                  ? "text-[#a000e4]"
+                  : "text-gray-300"
                 }`}
             >
               {step}
@@ -85,10 +87,10 @@ const Header = ({ cartActive, currentStep }: { cartActive: boolean; currentStep:
             {index < steps.length - 1 && (
               <span
                 className={`w-[1.4rem] h-[4px] mx-2 ${index < currentStep
-                  ? 'bg-[#66D1E3]' // Linha azul para passos concluídos
+                  ? "bg-[#66D1E3]"
                   : index === currentStep
-                    ? 'bg-black' // Linha preta no passo atual
-                    : 'bg-gray-300' // Linhas apagadas para passos futuros
+                    ? "bg-black"
+                    : "bg-gray-300"
                   }`}
               />
             )}

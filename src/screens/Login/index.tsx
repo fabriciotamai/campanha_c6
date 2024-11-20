@@ -1,16 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BelezanaWeb from '../../assets/logo-bw.svg';
+import { useAppContext } from "../../context/AppContext";
 
-const Login = ({ setCurrentPage }: any) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
+  const { setCurrentStep } = useAppContext();
 
   const handleLogin = () => {
     if (!email) {
       setError(true);
     } else {
       setError(false);
-      setCurrentPage('selectmarket');
+      setCurrentStep(1);
+      navigate("/selectmarket");
     }
   };
 

@@ -5,9 +5,7 @@ import Shampoo from '../../assets/images/produto-1.webp';
 import useWindowSize from '../../hooks/useResizeObserver';
 
 
-interface AdSectionProps {
-  onComplete: () => void;
-}
+
 
 interface Question {
   text: string;
@@ -20,7 +18,7 @@ interface Questionnaire {
   questions: Question[];
 }
 
-const QuizEuDora = ({ onComplete }: AdSectionProps) => {
+const QuizEuDora = () => {
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState<number>(0);
   const [selectedOptions, setSelectedOptions] = useState<{ [key: number]: string }>({});
   const windowSize = useWindowSize();
@@ -98,7 +96,7 @@ const QuizEuDora = ({ onComplete }: AdSectionProps) => {
 
   const handleNextQuestionnaire = () => {
     if (currentQuestionnaire === questionnaires.length - 1) {
-      onComplete();
+
     } else {
       setCurrentQuestionnaire((prev) => prev + 1);
       setSelectedOptions({});
