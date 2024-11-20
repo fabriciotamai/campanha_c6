@@ -96,17 +96,17 @@ const ThankYouScreen = () => {
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8">
       <div className="w-full sm:max-w-md lg:max-w-lg mx-auto bg-white text-gray-900 rounded-xl shadow-lg overflow-hidden">
         <section className="px-6 py-4">
-          <h1 className="text-xl md:text-2xl font-bold mb-4 pt-8">Obrigado pelo seu tempo!</h1>
-          <p className="text-base mb-2 leading-5 md:leading-6 text-justify">
+          <h1 className="text-xl md:text-2xl font-medium mb-4 pt-8">Obrigado pelo seu tempo!</h1>
+          <p className="text-[0.90rem] mb-2 leading-5 md:leading-6 text-justify text-[#575757]">
             Agradecemos por compartilhar sua opinião conosco! Seu feedback nos ajuda a melhorar nossos produtos e
             serviços.
           </p>
-          <p className="text-base font-semibold text-purple-600 mb-6">
+          <p className="text-base font-semibold text-purple-600 mb-2">
             Como agradecimento, a <span className="text-pink-500 font-bold">Beleza na Web</span> oferece um kit
             especial para você!
           </p>
         </section>
-        <strong className="text-left flex text-[1.20rem] font-medium px-1 bg-[#eeeef0]">
+        <strong className="text-left flex text-[1rem] font-medium px-1 bg-[#eeeef0]">
           {selectedProduct.name}
         </strong>
         <section className="star flex flex-row items-center justify-end px-4 py-2">
@@ -166,7 +166,10 @@ const ThankYouScreen = () => {
       </footer>
       <div className="py-1 w-full bg-[#d3d3d3]" />
       <section className="w-full ">
-        <div className="flex flex-col items-center justify-center w-full  mx-auto bg-white rounded-xl shadow-lg px-4 text-gray-800">
+        <div className="flex flex-col items-center justify-center w-full  mx-auto bg-white rounded-xl shadow-lg text-gray-800">
+
+
+
           {/* Título */}
           <h2 className="font-medium text-[1.25rem] pt-4 ">Avaliações</h2>
 
@@ -217,6 +220,7 @@ const ThankYouScreen = () => {
           </div>
 
           <UserComments />
+
         </div>
 
       </section>

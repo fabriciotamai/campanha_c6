@@ -52,7 +52,7 @@ const commentsData: CommentProps[] = [
 
 const UserComments = () => {
   return (
-    <div className="flex flex-col  w-full mx-auto bg-white rounded-xl shadow-lg  text-gray-800 space-y-4">
+    <div className="flex flex-col  w-full mx-auto bg-white rounded-xl shadow-lg  text-gray-800 space-y-4 px-2">
       {commentsData.map((comment, index) => (
         <div key={index} className="border-b pb-4 mb-4 w-full">
           {/* Nome e Estrelas */}
