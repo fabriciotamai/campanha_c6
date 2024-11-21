@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center  min-h-screen bg-gray-100  antialiased ">
+    <div className="flex flex-col items-center  min-h-screen bg-[#000000]  antialiased ">
       <div className="max-w-[370px] sm:max-w-sm bg-white shadow-xl rounded-xl p-6 mt-32 ">
         <img
           src={BelezanaWeb}

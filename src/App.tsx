@@ -55,56 +55,44 @@ const App = () => {
   }
 
   return (
-    <div className="App min-h-screen flex flex-col">
-      {/* Header */}
-      <header
-        ref={headerRef}
-        className="fixed top-0 left-0 w-full bg-white shadow z-10"
-        style={{ minHeight: "64px" }}
-      >
-        <HeaderMenu />
-      </header>
+    <main className="App min-h-screen flex flex-col bg-[#000000]">
 
-      {/* Main Content */}
-      <main
-        style={{
-          paddingTop: `${headerHeight}px`,
-        }}
-        className="bg-gray-100 flex-grow"
-      >
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/selectmarket"
-            element={<SelectMarket />}
-          />
+      <HeaderMenu />
 
-          <Route
-            path="/quiz"
-            element={
-              <AdSection
 
-              />
-            }
-          />
-          <Route
-            path="/agradecimento"
-            element={<ThankYouScreen />}
-          />
-          <Route
-            path="/endereco"
-            element={
-              <ShoppingCart />
-            }
-          />
-          <Route
-            path="/finished"
-            element={<EditAddress />}
-          />
-        </Routes>
-      </main>
-    </div>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/selectmarket"
+          element={<SelectMarket />}
+        />
+
+        <Route
+          path="/quiz"
+          element={
+            <AdSection
+
+            />
+          }
+        />
+        <Route
+          path="/agradecimento"
+          element={<ThankYouScreen />}
+        />
+        <Route
+          path="/endereco"
+          element={
+            <ShoppingCart />
+          }
+        />
+        <Route
+          path="/finished"
+          element={<EditAddress />}
+        />
+      </Routes>
+
+    </main >
   );
 };
 
