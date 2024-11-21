@@ -1,37 +1,25 @@
-import { useEffect, useRef } from "react";
 import ImgC6 from "../../assets/c6/logoc6bank.svg";
 import { useAppContext } from "../../context/AppContext";
 
 const Header = () => {
-  const { cartActive, currentStep } = useAppContext(); // Consome o estado do contexto
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const { setIsModalOpen } = useAppContext(); // Acessa o manipulador do modal
 
-  useEffect(() => {
-
-    if (videoRef.current) {
-      videoRef.current.play().catch((error) => {
-        console.log("Autoplay prevented:", error);
-      });
-    }
-  }, [currentStep]); // Atualiza quando o passo atual mudar
-
-  const steps = ["Email", "Marca", "Quiz", "Endereço", "Frete"];
+  const handleOpenModal = () => {
+    setIsModalOpen(true); // Abre o modal
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full bg-black shadow-md z-10">
-
-      <section className="flex items-center justify-between">
-        <div className="flex items-center justify-between  ">
-
-          <img src={ImgC6} alt="Beleza na Web Logo" width={100} height={60} />
-
+      <section className="flex items-center justify-between px-8 py-4">
+        <div className="flex items-center justify-between">
+          <img src={ImgC6} alt="C6 Bank Logo" width={80} height={50} />
         </div>
         <div>
-          <button className="bg-[#fbfbfb] rounded-md py-1 px-3">
-            <p>
-
-              Abrir minha conta
-            </p>
+          <button
+            onClick={handleOpenModal} // Abre o modal ao clicar
+            className="bg-[#fbfbfb] font-c6display-light text-[0.90rem] rounded-md py-[0.40rem] px-4"
+          >
+            <p>Abrir minha conta</p>
           </button>
         </div>
       </section>

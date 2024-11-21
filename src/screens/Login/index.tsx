@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BelezanaWeb from '../../assets/logo-bw.svg';
+import C6bank from '../../assets/c6/c6background.jpg';
 import { useAppContext } from "../../context/AppContext";
 
 const Login = () => {
@@ -21,18 +21,17 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center  min-h-screen bg-[#000000]  antialiased ">
-      <div className="max-w-[370px] sm:max-w-sm bg-white shadow-xl rounded-xl p-6 mt-32 ">
-        <img
-          src={BelezanaWeb}
-          alt="OpinaPro Logo"
-          className="w-35 h-30 mx-auto mb-4"
-        />
-        <p className="text-gray-700 font-bold text-center mb-2 text-[1rem]">
+      <div className="max-w-[370px] sm:max-w-sm bg-black shadow-xl rounded-xl py-6 mt-10 ">
+        {/* <p className="text-gray-700 font-bold text-center mb-2 text-[1rem]">
           Bem-vindo(a) ao Ajude-nos Beleza na Web Feedback
-        </p>
-        <p className="text-gray-600 text-center text-[0.80rem] leading-5 ">
-          A Beleza na Web, em parceria com nossos aliados estratégicos, está comprometida em oferecer a você, nosso cliente especial, uma experiência cada vez melhor. Queremos ouvir sua opinião para aprimorar a qualidade dos nossos produtos e serviços. Participe do nosso rápido quiz e, como forma de agradecimento, receba um kit exclusivo preparado especialmente para você!
-        </p>
+        </p> */}
+        <img
+          src={C6bank}
+          style={{ filter: 'blur(3px)' }}
+          alt="OpinaPro Logo"
+          className="mx-auto mb-4 rounded-[4rem]  w-[full] h-[500px] object-cover"
+        />
+
         <input
           type="email"
           name="email"
@@ -46,12 +45,12 @@ const Login = () => {
         {error && (
           <p className="text-red-500 text-xs mt-2">Por favor, insira seu e-mail.</p>
         )}
-        <button
+        {/* <button
           onClick={handleLogin}
           className="w-full mt-4 bg-[#a000e4] text-white font-bold py-3 rounded-md hover:bg-green-600 transition duration-200 text-[1rem]"
         >
           Entrar
-        </button>
+        </button> */}
       </div>
 
       <div className="mb-6 mt-4 text-center text-gray-600 text-xs">

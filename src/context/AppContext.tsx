@@ -1,20 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 
-// Interface para o endereço
-interface Address {
-  titulo?: string;
-  local?: string;
-  cep?: string;
-  logradouro?: string;
-  numero?: string;
-  bairro?: string;
-  localidade?: string;
-  uf?: string;
-  referencia?: string;
-  nome?: string;
-}
-
-// Interface para o contexto
+// Interface do contexto
 interface AppContextType {
   cartActive: boolean;
   setCartActive: (active: boolean) => void;
@@ -22,8 +8,8 @@ interface AppContextType {
   setCurrentStep: (step: number) => void;
   selectedBrand: "Wella" | "Creamy" | "Eudora";
   setSelectedBrand: (brand: "Wella" | "Creamy" | "Eudora") => void;
-  address: Address | null; // Representa o endereço atual
-  setAddress: (address: Address | null) => void; // Atualiza o endereço
+  isModalOpen: boolean;
+  setIsModalOpen: (open: boolean) => void;
 }
 
 // Valores padrão do contexto
@@ -34,8 +20,8 @@ const defaultContextValues: AppContextType = {
   setCurrentStep: () => { },
   selectedBrand: "Wella",
   setSelectedBrand: () => { },
-  address: null,
-  setAddress: () => { },
+  isModalOpen: false,
+  setIsModalOpen: () => { },
 };
 
 // Criação do contexto
@@ -48,7 +34,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedBrand, setSelectedBrand] = useState<"Wella" | "Creamy" | "Eudora">(
     defaultContextValues.selectedBrand
   );
-  const [address, setAddress] = useState<Address | null>(defaultContextValues.address);
+  const [isModalOpen, setIsModalOpen] = useState(defaultContextValues.isModalOpen);
 
   return (
     <AppContext.Provider
@@ -59,8 +45,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setCurrentStep,
         selectedBrand,
         setSelectedBrand,
-        address,
-        setAddress,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}
@@ -68,7 +54,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   );
 };
 
-// Hook para usar o contexto
+// Hook para consumir o contexto
 export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
   if (!context) {
