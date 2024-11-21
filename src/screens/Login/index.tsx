@@ -1,68 +1,83 @@
-import { useState } from "react";
+import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
+import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 import { useNavigate } from "react-router-dom";
-import C6bank from '../../assets/c6/c6background.jpg';
+import C6bank from "../../assets/c6/c6background.jpg";
 import { useAppContext } from "../../context/AppContext";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const { setCurrentStep } = useAppContext();
-
-  const handleLogin = () => {
-    if (!email) {
-      setError(true);
-    } else {
-      setError(false);
-      setCurrentStep(1);
-      navigate("/selectmarket");
-    }
+  const { addToQuizScore } = useAppContext();
+  const handleStart = () => {
+    addToQuizScore(270.98); // Som
+    navigate("/selectmarket");
   };
 
+  const expirationTime = new Date().getTime() + 4 * 60 * 60 * 1000;
+
   return (
-    <div className="flex flex-col items-center  min-h-screen bg-[#000000]  antialiased ">
-      <div className="max-w-[370px] sm:max-w-sm bg-black shadow-xl rounded-xl py-6 mt-10 ">
-        {/* <p className="text-gray-700 font-bold text-center mb-2 text-[1rem]">
-          Bem-vindo(a) ao Ajude-nos Beleza na Web Feedback
-        </p> */}
+    <div className="flex flex-col items-center min-h-screen bg-black overflow-auto pb-16">
+      {/* Conteúdo da página */}
+      <div className="relative max-w-[370px] sm:max-w-sm w-full bg-black rounded-xl overflow-hidden shadow-xl py-6 mt-10">
+        {/* Imagem de Fundo */}
         <img
           src={C6bank}
-          style={{ filter: 'blur(3px)' }}
+          style={{ filter: "blur(3px)" }}
           alt="OpinaPro Logo"
-          className="mx-auto mb-4 rounded-[4rem]  w-[full] h-[500px] object-cover"
+          className="mx-auto mb-4 rounded-[4rem] w-full h-[600px] object-cover border"
         />
+        {/* Camada Preta Translúcida */}
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={`w-full mt-6 py-2 px-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-base ${error ? "border-red-500" : "border-gray-300"
-            }`}
-          placeholder="Digite seu email"
-        />
-        {error && (
-          <p className="text-red-500 text-xs mt-2">Por favor, insira seu e-mail.</p>
-        )}
-        {/* <button
-          onClick={handleLogin}
-          className="w-full mt-4 bg-[#a000e4] text-white font-bold py-3 rounded-md hover:bg-green-600 transition duration-200 text-[1rem]"
-        >
-          Entrar
-        </button> */}
-      </div>
-
-      <div className="mb-6 mt-4 text-center text-gray-600 text-xs">
-        <p className="font-bold">2007 - 2024 Beleza na Web</p>
-        <button
-          onClick={() => {
-            window.location.href =
-              "https://www.belezanaweb.com.br/institucional/condicoes-de-uso/";
-          }}
-        >
-          <p className="mt-1">Termos e Política de Privacidade</p>
-        </button>
+        {/* Conteúdo sobreposto */}
+        <div className="absolute inset-0 flex flex-col py-20 px-6 text-center text-white">
+          <section className="border-l-4 border-white w-[100%]">
+            <h1 className="font-c6text-bold text-[1.90rem] leading-relaxed text-left px-3 sm:text-xl mb-2">
+              <span className="bg-gradient-to-r from-gradient1 via-gradient2 via-gradient3 via-gradient4 via-gradient5 to-gradient6 bg-clip-text text-transparent">
+                Bem Vindo
+                <br />
+                Ao app de Avaliações
+                <br />
+              </span>
+              <span className="text-white">C6Bank</span>
+            </h1>
+          </section>
+          <p className="text-sm sm:text-base mt-4 font-c6display-light text-justify">
+            Sua opinião transforma! Avalie nossos serviços e contribua para moldar o futuro do
+            C6 Bank. Juntos, podemos construir um banco ainda melhor para você e todos os
+            brasileiros!
+          </p>
+          <p className="text-base font-bold text-white mb-6 mt-6">
+            Você já ganhou <span className="text-green-500">R$25,98</span> de bônus, que expira
+            em:
+          </p>
+          {/* Flip Clock Countdown */}
+          <div className="flex justify-center mb-6">
+            <FlipClockCountdown
+              to={expirationTime}
+              className="flip-clock"
+              labels={["Days", "Hours", "Minutos", "Segundos"]}
+              labelStyle={{
+                fontSize: "10px",
+                color: "#fff",
+                marginTop: "",
+              }}
+              digitBlockStyle={{
+                width: "1.5rem",
+                height: "40px",
+                backgroundColor: "#fff",
+                color: "#000",
+                borderRadius: "4px",
+                fontSize: "1rem",
+              }}
+            />
+          </div>
+          <button
+            onClick={handleStart}
+            className="bg-white hover:bg-orange-600 w-full text-black font-c6display-regular py-2 px-6 rounded-md justify-end transition"
+          >
+            Começar
+          </button>
+        </div>
       </div>
     </div>
   );

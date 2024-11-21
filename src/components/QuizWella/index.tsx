@@ -1,31 +1,45 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Wella1 from "../../assets/wella-1.webp";
-import Wella2 from "../../assets/wella-2.webp";
-import Wella3 from "../../assets/wella-3.webp";
+import Wella1 from "../../assets/c6/c6limit.webp";
+import C6SORRISO from "../../assets/c6/c6sorriso.png";
 import { useAppContext } from "../../context/AppContext";
+import { ModalCash } from "../ModalCash";
 
 const QuizWella = () => {
-  const { setCurrentStep, setSelectedBrand } = useAppContext();
+  const { addToQuizScore } = useAppContext();
   const navigate = useNavigate();
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState<number>(0);
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [selectedOptions, setSelectedOptions] = useState<{ [key: number]: string }>({});
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [currentCashValue, setCurrentCashValue] = useState<number>(0); // Valor do prêmio atual
 
+  // Questionários com valores
   const questionnaires = [
     {
-      title: "Kit Wella Professionals Fusion Salon Duo (2 Produtos)",
-      images: [Wella1, Wella2, Wella3],
-      reward: "R$34,00",
+      title: `Responda e ganhe R$ ${47.00}!`,
+      value: 47.90, // Valor do prêmio da etapa 1
+      image: Wella1,
       questions: [
-        { text: "Você já ouviu falar ou usou esse produto ?", options: ["Sim", "Não"] },
-        { text: "Melhorou sua queda de cabelo?", options: ["Pouco", "Nada", "Muito"] },
-        { text: "Você compraria novamente?", options: ["Sim", "Não"] },
+        {
+          text: "Como você avalia o atendimento CDB limite do C6 Bank?",
+          options: ["Excelente", "Satisfatório", "Insatisfatório"],
+        },
+      ],
+    },
+    {
+      title: `Responda e ganhe R$ ${32.00}!`,
+      value: 32.00, // Valor do prêmio da etapa 2
+      image: C6SORRISO,
+      questions: [
+        {
+          text: "Como você avalia o Seguro odontológico do C6 Bank?",
+          options: ["Excelente", "Satisfatório", "Insatisfatório"],
+        },
       ],
     },
   ];
 
-  const current = questionnaires[currentQuestionnaire];
+  const current = questionnaires[currentQuestionnaire]; // Etapa atual
 
   const areAllQuestionsAnswered = () =>
     current.questions.every((_, index) => selectedOptions[index] !== undefined);
@@ -35,89 +49,92 @@ const QuizWella = () => {
   };
 
   const handleNextQuestionnaire = () => {
-    if (currentQuestionnaire === questionnaires.length - 1) {
-      setCurrentStep(3);
-      setSelectedBrand("Wella");
-      navigate("/agradecimento");
+    // Define o valor do prêmio atual para o modal
+    setCurrentCashValue(current.value);
+
+    // Adiciona o prêmio atual ao score total
+    addToQuizScore(current.value);
+
+    // Exibe o modal
+    setModalVisible(true);
+
+    if (currentQuestionnaire < questionnaires.length - 1) {
+      // Avança para o próximo questionário após fechar o modal
+      setTimeout(() => {
+        setModalVisible(false); // Fecha o modal
+        setCurrentQuestionnaire((prev) => prev + 1); // Avança para a próxima etapa
+        setSelectedOptions({}); // Reseta as respostas
+      }, 4000);
     } else {
-      setCurrentQuestionnaire((prev) => prev + 1);
-      setCurrentImageIndex(0);
-      setSelectedOptions({});
+      // Redireciona para a página de agradecimento após a última etapa
+      setTimeout(() => {
+        setModalVisible(false);
+        navigate("/agradecimento");
+      }, 3000);
     }
   };
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % current.images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + current.images.length) % current.images.length);
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 antialiased pt-8 pb-32">
-      <div className="pt-[64px] w-full max-w-md mx-auto bg-white shadow-md rounded-lg flex flex-col flex-grow overflow-y-scroll">
-        <h1 className="text-[1rem] font-semibold text-left text-[#333333] px-6">{current.title}</h1>
-        <div className="relative flex justify-center items-center mb-6 px-4">
-          <button
-            onClick={prevImage}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 px-4 py-2 rounded-md shadow hover:bg-gray-400 transition"
-          >
-            ◀
-          </button>
-          <img
-            src={current.images[currentImageIndex]}
-            alt={`Imagem ${currentImageIndex + 1}`}
-            className="w-full max-w-[300px] h-auto object-contain rounded-lg"
-          />
-          <button
-            onClick={nextImage}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 px-4 py-2 rounded-md shadow hover:bg-gray-400 transition"
-          >
-            ▶
-          </button>
-        </div>
-        <div className="flex justify-center items-center mb-4 px-4">
-          {current.images.map((_, index) => (
-            <div
-              key={index}
-              className={`rounded-full mx-1 ${currentImageIndex === index ? "bg-gray-700 w-8 h-2" : "bg-gray-300 w-3 h-3"
-                }`}
-            ></div>
-          ))}
-        </div>
-        {current.questions.map((question, index) => (
-          <div key={index} className="mb-4 px-4">
-            <p className="text-center text-gray-700 font-normal mb-4 text-[0.90rem]">{question.text}</p>
-            <div className="flex flex-wrap justify-center gap-4">
-              {question.options.map((option, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleOptionSelect(index, option)}
-                  className={`py-[0.50rem] px-6  rounded-md shadow-xl focus:outline-none text-[0.85rem] ${selectedOptions[index] === option
-                    ? "bg-purple-600 text-white"
-                    : "bg-[#EEEEF0] text-gray-700 hover:bg-gray-300"
-                    }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+    <div className="flex flex-col items-center pt-14 min-h-screen antialiased">
+      {/* Modal */}
+      <ModalCash
+        isVisible={isModalVisible}
+        onClose={() => setModalVisible(false)}
+        cashValue={currentCashValue} // Valor do prêmio da etapa atual
+      />
+      <section className="bg-[black] px-6 pt-2">
+        {/* Container Principal */}
+        <div className="w-full max-w-md bg-black shadow-md rounded-xl p-6">
+          {/* Título */}
+          <h1 className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent font-c6text-bold text-center text-lg mb-4">
+            {current.title}
+          </h1>
+          {/* Imagem */}
+          <div className="flex justify-center mb-6">
+            <img
+              src={current.image}
+              alt="Produto"
+              className="w-full h-[200px] object-cover rounded-md"
+            />
           </div>
-        ))}
-        <div className="px-4 mt-4 mb-10 ">
-          <button
-            onClick={handleNextQuestionnaire}
-            disabled={!areAllQuestionsAnswered()}
-            className={`w-full py-3 rounded-lg shadow-md ${areAllQuestionsAnswered()
-              ? "bg-purple-600 text-white hover:bg-purple-700"
-              : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              }`}
-          >
-            {currentQuestionnaire === questionnaires.length - 1 ? "Finalizar" : "Próxima Pergunta"}
-          </button>
+          {/* Perguntas */}
+          {current.questions.map((question, index) => (
+            <div key={index} className="mb-6">
+              <p className="text-center text-white font-medium text-base mb-4">{question.text}</p>
+              {/* Opções */}
+              <div className="flex flex-col gap-4">
+                {question.options.map((option, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleOptionSelect(index, option)}
+                    className={`w-full py-[0.60rem] rounded-lg text-sm font-medium transition-all ${selectedOptions[index] === option
+                      ? "bg-[#fbfbfb] text-[#121212]"
+                      : "bg-black border text-white hover:bg-gray-300"
+                      }`}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+          {/* Botão de Envio */}
+          <div className="mt-14">
+            <button
+              onClick={handleNextQuestionnaire}
+              disabled={!areAllQuestionsAnswered()}
+              className={`w-full py-3 rounded-lg text-[#121212] font-c6display-regular transition-all ${areAllQuestionsAnswered()
+                ? "bg-[#FBC161] hover:bg-orange-600"
+                : "bg-gray-300 cursor-not-allowed"
+                }`}
+            >
+              {currentQuestionnaire < questionnaires.length - 1
+                ? "Próximo"
+                : "Enviar respostas"}
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

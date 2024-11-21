@@ -1,32 +1,47 @@
+import { useState } from "react";
 import HeaderMenu from "./components/HeaderMenu/HeaderMenu";
-import { Modal } from "./components/createaccount"; // Importe o modal
 import { AppProvider } from "./context/AppContext";
 
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import FooterMenu from "./components/FooterMenu/";
+import { Modal } from "./components/createaccount"; // Importe o Modal
 import AdSection from "./screens/AdSection";
 import Login from "./screens/Login";
 import { SelectMarket } from "./screens/SelectMarket";
-import ShoppingCart from "./screens/ShoppingCart";
-import ThankYouScreen from "./screens/ThankYouScreen";
-import EditAddress from "./screens/ZipCode";
+
 
 const App = () => {
+  const [currentPage, setCurrentPage] = useState<string>("inicio");
+  const location = useLocation();
+
+  const hideFooterRoutes = ["/agradecimento"];
+
   return (
     <AppProvider>
-      <main className="App min-h-screen flex flex-col bg-[#000000]">
+      <div className="flex flex-col h-screen bg-black">
+        {/* Header */}
         <HeaderMenu />
 
-        <Modal /> {/* Modal global */}
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/selectmarket" element={<SelectMarket />} />
-          <Route path="/quiz" element={<AdSection />} />
-          <Route path="/agradecimento" element={<ThankYouScreen />} />
-          <Route path="/endereco" element={<ShoppingCart />} />
-          <Route path="/finished" element={<EditAddress />} />
-        </Routes>
-      </main>
+        {/* Modal */}
+        <Modal />
+
+        {/* Conteúdo Principal (Rolável) */}
+        <div className="flex-grow overflow-y-auto pb-16">
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/selectmarket" element={<SelectMarket />} />
+            <Route path="/quiz" element={<AdSection />} />
+
+
+          </Routes>
+        </div>
+
+        {/* Footer Fixo */}
+        {!hideFooterRoutes.includes(location.pathname) && (
+          <FooterMenu currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        )}
+      </div>
     </AppProvider>
   );
 };

@@ -5,7 +5,16 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        gradient1: '#f06a67',
+        gradient2: '#f16968',
+        gradient3: '#f58162',
+        gradient4: '#c6804a',
+        gradient5: '#f8ad52',
+        gradient6: '#f8b64f',
+      },
+    },
     fontFamily: {
       'c6display-light': ['C6Sans-Display-Light', 'sans-serif'],
       'c6display-regular': ['C6Sans-Display-Regular', 'sans-serif'],
