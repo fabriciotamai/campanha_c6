@@ -8,7 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { addToQuizScore } = useAppContext();
   const handleStart = () => {
-    addToQuizScore(270.98); // Som
+    addToQuizScore(25.98); // Som
     navigate("/selectmarket");
   };
 

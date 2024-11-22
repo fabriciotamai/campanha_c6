@@ -66,7 +66,7 @@ export function SelectMarket() {
         <input
           value={email}
           onChange={handleEmailChange} // Valida o email ao digitar
-          className={`rounded-2xl w-full text-white font-c6display-regular text-[0.90rem] py-2 bg-black px-4 placeholder:text-[0.80rem] focus:outline-none focus:ring-1 ${isEmailValid ? "focus:ring-green-500" : "focus:ring-red-500"
+          className={`rounded-2xl w-full text-white font-c6display-regular text-[1rem] py-3 bg-black px-4 placeholder:text-[0.80rem] focus:outline-none focus:ring-1 ${isEmailValid ? "focus:ring-green-500" : "focus:ring-red-500"
             }`}
           placeholder="Digite um email válido"
         />

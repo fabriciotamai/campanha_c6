@@ -27,12 +27,12 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ setCurrentPage, currentPage }) 
           role="button"
           tabIndex={0}
           onClick={() => [setCurrentPage("saque"), navigate("/saque")]}
-          className="flex flex-col items-center justify-between text-center cursor-pointer relative w-16 h-10"
+          className="flex flex-col items-center justify-between text-center cursor-pointer relative w-16 h-8"
         >
           <img
             src={currentPage === "saque" ? IconPaid : IconPaidOff}
             alt="Saque Icon"
-            className="w-6 h-6 mb-1"
+            className="w-6 h-5 mb-1"
           />
           <span
             className={`text-[0.60rem] ${currentPage === "saque" ? "invisible" : "text-gray-500"
@@ -50,12 +50,12 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ setCurrentPage, currentPage }) 
           role="button"
           tabIndex={0}
           onClick={() => setCurrentPage("inicio")}
-          className="flex flex-col items-center justify-between text-center cursor-pointer relative w-16 h-10"
+          className="flex flex-col items-center justify-between text-center cursor-pointer relative w-16 h-8"
         >
           <img
             src={currentPage === "inicio" ? IconHome : IconHomeOff}
             alt="Início Icon"
-            className="w-6 h-6 mb-1"
+            className="w-6 h-5 mb-1"
           />
           <span
             className={`text-[0.60rem] ${currentPage === "inicio" ? "invisible" : "text-gray-500"
@@ -73,12 +73,12 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ setCurrentPage, currentPage }) 
           role="button"
           tabIndex={0}
           onClick={() => setCurrentPage("bonus")}
-          className="flex flex-col items-center justify-between text-center cursor-pointer relative w-16 h-10"
+          className="flex flex-col items-center justify-between text-center cursor-pointer relative w-16 h-8"
         >
           <img
             src={currentPage === "bonus" ? IconHelp : IconHelpOff}
             alt="Bônus Icon"
-            className="w-6 h-6 mb-1"
+            className="w-6 h-5 mb-1"
           />
           <span
             className={`text-[0.60rem] ${currentPage === "bonus" ? "invisible" : "text-gray-500"
