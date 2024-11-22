@@ -7,11 +7,13 @@ interface AppContextType {
   isModalOpen: boolean;
   isModalOpenUnlock: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
+  isModalOpenError: boolean;
+  setIsModalOpenError: (isOpen: boolean) => void;
   setIsModalOpenUnLock: (isOpen: boolean) => void;
-  isModalVisible: boolean; // Adicionado
-  setModalVisible: (isVisible: boolean) => void; // Adicionado
-  currentCashValue: number; // Adicionado
-  setCurrentCashValue: (value: number) => void; // Adicionado
+  isModalVisible: boolean;
+  setModalVisible: (isVisible: boolean) => void;
+  currentCashValue: number;
+  setCurrentCashValue: (value: number) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -19,9 +21,10 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [quizScore, setQuizScore] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpenError, setIsModalOpenError] = useState<boolean>(false);
   const [isModalOpenUnlock, setIsModalOpenUnLock] = useState<boolean>(false);
-  const [isModalVisible, setModalVisible] = useState<boolean>(false); // Estado do novo modal
-  const [currentCashValue, setCurrentCashValue] = useState<number>(0); // Valor atual do prêmio
+  const [isModalVisible, setModalVisible] = useState<boolean>(false);
+  const [currentCashValue, setCurrentCashValue] = useState<number>(0);
 
   const addToQuizScore = (value: number) => {
     setQuizScore((prevScore) => prevScore + value);
@@ -36,11 +39,13 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         isModalOpen,
         setIsModalOpen,
         setIsModalOpenUnLock,
+        isModalOpenError,
+        setIsModalOpenError,
         isModalOpenUnlock,
-        isModalVisible, // Adicionado
-        setModalVisible, // Adicionado
-        currentCashValue, // Adicionado
-        setCurrentCashValue, // Adicionado
+        isModalVisible,
+        setModalVisible,
+        currentCashValue,
+        setCurrentCashValue,
       }}
     >
       {children}
@@ -48,7 +53,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   );
 };
 
-// Hook para consumir o contexto
+
 export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
   if (!context) {

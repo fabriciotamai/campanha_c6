@@ -18,8 +18,9 @@ import Euro from '../../assets/c6/euro.svg';
 const SaquePage = () => {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const { quizScore, setIsModalOpenUnLock } = useAppContext();
+  const { quizScore, setIsModalOpenError } = useAppContext();
   const [isWrapped, setIsWrapped] = useState(false);
+  const [saqueValue, setSaqueValue] = useState<string>("");
 
   useEffect(() => {
     const checkWrap = () => {
@@ -30,7 +31,7 @@ const SaquePage = () => {
       }
     };
 
-    // Verifica o wrap no carregamento e ao redimensionar a tela
+
     window.addEventListener('resize', checkWrap);
     checkWrap();
 
@@ -38,6 +39,16 @@ const SaquePage = () => {
       window.removeEventListener('resize', checkWrap);
     };
   }, []);
+
+  const handleSacar = () => {
+    if (!saqueValue.trim()) {
+
+      setIsModalOpenError(true);
+    } else {
+      // Aqui você pode implementar a lógica para sacar o valor
+      console.log(`Sacando o valor de: R$ ${saqueValue}`);
+    }
+  };
 
 
   return (
@@ -105,7 +116,7 @@ const SaquePage = () => {
           </div>
         </div>
 
-        {/* Euro */}
+
         <div
           className={`${isWrapped ? 'w-full' : 'w-[31.5%]'
             } bg-[#242424] text-white rounded-xl flex flex-col pt-2 border-[#3b3b3b] border justify-between cursor-pointer transition-all`}
@@ -131,17 +142,15 @@ const SaquePage = () => {
 
       <p className="mt-6 mb-4 text-gray-300 text-lg font-bold"></p>
 
-      {/* Grid de opções */}
+
       <div className="grid grid-cols-3 gap-[0.80rem] w-full max-w-md">
-        {/* CPF */}
         <div
-          onClick={() => setSelectedKey('cpf')} // Define como selecionado
+          onClick={() => setSelectedKey('cpf')}
           className={`${selectedKey === 'cpf' ? 'bg-[#fbfbfb] text-black' : 'bg-[#242424] text-white'
             } rounded-xl flex flex-col py-2 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
         >
           <img
-            src={selectedKey === 'cpf' ? IconDocumentBlack : IconDocument} // Alterna ícone
-            alt="CPF"
+            src={selectedKey === 'cpf' ? IconDocumentBlack : IconDocument}
             className="w-4 h-4 mb-2"
           />
           <div className="py-2" />
@@ -150,12 +159,12 @@ const SaquePage = () => {
 
         {/* Telefone */}
         <div
-          onClick={() => setSelectedKey('telefone')} // Define como selecionado
+          onClick={() => setSelectedKey('telefone')}
           className={`${selectedKey === 'telefone' ? 'bg-[#fbfbfb] text-black' : 'bg-[#242424] text-white'
             } rounded-xl flex flex-col py-2 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
         >
           <img
-            src={selectedKey === 'telefone' ? IconCelBlack : IconCel} // Alterna ícone
+            src={selectedKey === 'telefone' ? IconCelBlack : IconCel}
             alt="Telefone"
             className="w-5 h-5 mb-2"
           />
@@ -165,12 +174,12 @@ const SaquePage = () => {
 
         {/* Email */}
         <div
-          onClick={() => setSelectedKey('email')} // Define como selecionado
+          onClick={() => setSelectedKey('email')}
           className={`${selectedKey === 'email' ? 'bg-[#fbfbfb] text-black' : 'bg-[#242424] text-white'
             } rounded-xl flex flex-col py-4 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
         >
           <img
-            src={selectedKey === 'email' ? IconmailBlack : Iconmail} // Alterna ícone
+            src={selectedKey === 'email' ? IconmailBlack : Iconmail}
             alt="Email"
             className="w-5 h-5 mb-2"
           />
@@ -178,7 +187,7 @@ const SaquePage = () => {
           <p className="text-[0.70rem] font-c6display-light">Email</p>
         </div>
 
-        {/* QR Code */}
+
         <div
           onClick={() => setSelectedKey('qrcode')} // Define como selecionado
           className={`${selectedKey === 'qrcode' ? 'bg-[#fbfbfb] text-black' : 'bg-[#242424] text-white'
@@ -208,6 +217,7 @@ const SaquePage = () => {
         <input
           className="w-full p-3 bg-[#242424] border-[#3b3b3b] border text-white  rounded-md mb-4 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500"
           type="text"
+          onChange={(e) => setSaqueValue(e.target.value)}
           placeholder="Digite o valor que deseja sacar"
         />
       </div>
@@ -215,7 +225,7 @@ const SaquePage = () => {
 
 
       {/* Botão */}
-      <button onClick={() => setIsModalOpenUnLock(true)} className="bg-[#ffcd2e] w-full text-black font-c6display-regular  py-2 px-6 rounded-md hover:bg-green-600 transition-all">
+      <button onClick={() => handleSacar()} className="bg-[#ffcd2e] w-full text-black font-c6display-regular  py-2 px-6 rounded-md hover:bg-green-600 transition-all">
         Sacar
       </button>
     </div>

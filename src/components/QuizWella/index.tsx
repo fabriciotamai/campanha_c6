@@ -11,13 +11,13 @@ const QuizWella = () => {
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState<number>(0);
   const [selectedOptions, setSelectedOptions] = useState<{ [key: number]: string }>({});
   const [isModalVisible, setModalVisible] = useState(false);
-  const [currentCashValue, setCurrentCashValue] = useState<number>(0); // Valor do prêmio atual
+  const [currentCashValue, setCurrentCashValue] = useState<number>(0);
 
-  // Questionários com valores
+
   const questionnaires = [
     {
       title: `Responda e ganhe R$ ${47.00}!`,
-      value: 47.90, // Valor do prêmio da etapa 1
+      value: 47.90,
       image: Wella1,
       questions: [
         {
@@ -28,7 +28,7 @@ const QuizWella = () => {
     },
     {
       title: `Responda e ganhe R$ ${32.00}!`,
-      value: 32.00, // Valor do prêmio da etapa 2
+      value: 32.00,
       image: C6SORRISO,
       questions: [
         {
@@ -39,7 +39,7 @@ const QuizWella = () => {
     },
   ];
 
-  const current = questionnaires[currentQuestionnaire]; // Etapa atual
+  const current = questionnaires[currentQuestionnaire];
 
   const areAllQuestionsAnswered = () =>
     current.questions.every((_, index) => selectedOptions[index] !== undefined);
@@ -49,24 +49,24 @@ const QuizWella = () => {
   };
 
   const handleNextQuestionnaire = () => {
-    // Define o valor do prêmio atual para o modal
+
     setCurrentCashValue(current.value);
 
-    // Adiciona o prêmio atual ao score total
+
     addToQuizScore(current.value);
 
-    // Exibe o modal
+
     setModalVisible(true);
 
     if (currentQuestionnaire < questionnaires.length - 1) {
-      // Avança para o próximo questionário após fechar o modal
+
       setTimeout(() => {
-        setModalVisible(false); // Fecha o modal
-        setCurrentQuestionnaire((prev) => prev + 1); // Avança para a próxima etapa
-        setSelectedOptions({}); // Reseta as respostas
+        setModalVisible(false);
+        setCurrentQuestionnaire((prev) => prev + 1);
+        setSelectedOptions({});
       }, 4000);
     } else {
-      // Redireciona para a página de agradecimento após a última etapa
+
       setTimeout(() => {
         setModalVisible(false);
         navigate("/agradecimento");
@@ -80,7 +80,7 @@ const QuizWella = () => {
       <ModalCash
         isVisible={isModalVisible}
         onClose={() => setModalVisible(false)}
-        cashValue={currentCashValue} // Valor do prêmio da etapa atual
+        cashValue={currentCashValue}
       />
       <section className="bg-[#121212] px-6 pt-6">
         {/* Container Principal */}
