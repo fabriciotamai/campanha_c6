@@ -1,11 +1,13 @@
 import lottie from "lottie-web";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Unlock from "../../assets/c6/unlock.json";
 import { useAppContext } from "../../context/AppContext";
 
 export function ModalUnlock() {
   const { isModalOpenUnlock, setIsModalOpenUnLock } = useAppContext();
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isModalOpenUnlock) {
@@ -70,7 +72,10 @@ export function ModalUnlock() {
             <br />
             Valide sua identidade agora e libere seu saque em poucos instantes!
           </p>
-          <button className="bg-[#ffcd2e] text-black font-c6display-regular w-full rounded-md py-2">Liberar saldo <b>R$ 430,00</b> </button>
+          <button onClick={() => {
+            handleCloseModal(); // Fecha o modal
+            navigate("/gateway"); // Redireciona para a página GatewayPage
+          }} className="bg-[#ffcd2e] text-black font-c6display-regular w-full rounded-md py-2">Liberar saldo <b>R$ 430,00</b> </button>
         </div>
       </section>
     </>

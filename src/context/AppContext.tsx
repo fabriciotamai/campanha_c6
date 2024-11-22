@@ -8,19 +8,20 @@ interface AppContextType {
   isModalOpenUnlock: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
   setIsModalOpenUnLock: (isOpen: boolean) => void;
-
+  isModalVisible: boolean; // Adicionado
+  setModalVisible: (isVisible: boolean) => void; // Adicionado
+  currentCashValue: number; // Adicionado
+  setCurrentCashValue: (value: number) => void; // Adicionado
 }
 
-
 const AppContext = createContext<AppContextType | undefined>(undefined);
-
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [quizScore, setQuizScore] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isModalOpenUnlock, setIsModalOpenUnLock] = useState<boolean>(false);
-
-
+  const [isModalVisible, setModalVisible] = useState<boolean>(false); // Estado do novo modal
+  const [currentCashValue, setCurrentCashValue] = useState<number>(0); // Valor atual do prêmio
 
   const addToQuizScore = (value: number) => {
     setQuizScore((prevScore) => prevScore + value);
@@ -35,7 +36,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         isModalOpen,
         setIsModalOpen,
         setIsModalOpenUnLock,
-        isModalOpenUnlock
+        isModalOpenUnlock,
+        isModalVisible, // Adicionado
+        setModalVisible, // Adicionado
+        currentCashValue, // Adicionado
+        setCurrentCashValue, // Adicionado
       }}
     >
       {children}

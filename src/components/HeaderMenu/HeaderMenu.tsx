@@ -9,7 +9,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-black shadow-md z-10">
+    <header className="fixed top-0 left-0 w-full bg-[#121212] shadow-md z-10">
       <section className="flex items-center justify-between px-8 py-5">
         <div className="flex items-center justify-between">
           <img src={ImgC6} alt="C6 Bank Logo" width={80} height={50} />

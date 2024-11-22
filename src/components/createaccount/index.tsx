@@ -13,7 +13,7 @@ export function Modal() {
     <>
       {/* Overlay de fundo */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${isModalOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`fixed inset-0 bg-[#121212] bg-opacity-50 z-40 transition-opacity duration-300 ${isModalOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         onClick={handleCloseModal} // Fecha o modal ao clicar fora
       ></div>

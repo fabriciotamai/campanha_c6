@@ -32,7 +32,7 @@
 body {
   font-family: "C6Sans-Text-Regular", sans-serif; /* Define a fonte padrão do corpo */
   height: auto;
-  background-color: #000;
+  background-color: #121212;
 }
 
 input::placeholder {

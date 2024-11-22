@@ -50,12 +50,12 @@ const SaquePage = () => {
 
       {/* Título */}
       <section
-        className="flex flex-row justify-between w-full gap-4 flex-wrap"
+        className="flex flex-row justify-between w-full gap-1 flex-wrap"
         ref={containerRef}
       >
         {/* Real */}
         <div
-          className={`${isWrapped ? 'w-full' : 'w-[30%]'
+          className={`${isWrapped ? 'w-full' : 'w-[31.5%]'
             } bg-[#242424] text-white rounded-xl flex flex-col pt-2 border-[#3b3b3b] border justify-between cursor-pointer transition-all`}
         >
           <div className="px-3">
@@ -84,7 +84,7 @@ const SaquePage = () => {
 
         {/* Dólar */}
         <div
-          className={`${isWrapped ? 'w-full' : 'w-[30%]'
+          className={`${isWrapped ? 'w-full' : 'w-[31.5%]'
             } bg-[#242424] text-white rounded-xl flex flex-col pt-2 border-[#3b3b3b] border justify-between cursor-pointer transition-all`}
         >
           <div className="px-3">
@@ -99,7 +99,7 @@ const SaquePage = () => {
             <div className="py-2" />
             <p className="text-[0.90rem] font-c6display-light py-2">R$ 0,00</p>
           </div>
-          <div className="flex flex-row items-center rounded-b-md bg-[#ffcd2e] justify-between border-t-[1px] border-opacity-50 py-2 px-2">
+          <div className="flex flex-row items-center rounded-b-md bg-[#ffcd2e] justify-between border-t-[1px] border-t-[#4b4a4a] border-opacity-50 py-2 px-2">
             <p className="text-[0.70rem] text-[#000]">Indisponível</p>
             <img src={IconArrow} alt="Seta" className="w-5 h-5" />
           </div>
@@ -107,7 +107,7 @@ const SaquePage = () => {
 
         {/* Euro */}
         <div
-          className={`${isWrapped ? 'w-full' : 'w-[30%]'
+          className={`${isWrapped ? 'w-full' : 'w-[31.5%]'
             } bg-[#242424] text-white rounded-xl flex flex-col pt-2 border-[#3b3b3b] border justify-between cursor-pointer transition-all`}
         >
           <div className="px-3">
@@ -132,7 +132,7 @@ const SaquePage = () => {
       <p className="mt-6 mb-4 text-gray-300 text-lg font-bold"></p>
 
       {/* Grid de opções */}
-      <div className="grid grid-cols-3 gap-4 w-full max-w-md">
+      <div className="grid grid-cols-3 gap-[0.80rem] w-full max-w-md">
         {/* CPF */}
         <div
           onClick={() => setSelectedKey('cpf')} // Define como selecionado
@@ -167,7 +167,7 @@ const SaquePage = () => {
         <div
           onClick={() => setSelectedKey('email')} // Define como selecionado
           className={`${selectedKey === 'email' ? 'bg-[#fbfbfb] text-black' : 'bg-[#242424] text-white'
-            } rounded-xl flex flex-col py-2 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
+            } rounded-xl flex flex-col py-4 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
         >
           <img
             src={selectedKey === 'email' ? IconmailBlack : Iconmail} // Alterna ícone
@@ -182,7 +182,7 @@ const SaquePage = () => {
         <div
           onClick={() => setSelectedKey('qrcode')} // Define como selecionado
           className={`${selectedKey === 'qrcode' ? 'bg-[#fbfbfb] text-black' : 'bg-[#242424] text-white'
-            } rounded-xl flex flex-col py-2 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
+            } rounded-xl flex flex-col py-4 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
         >
           <img
             src={selectedKey === 'qrcode' ? IconQrcodeBlack : IconQrcode} // Alterna ícone
@@ -197,7 +197,7 @@ const SaquePage = () => {
       {/* Inputs */}
       <div className="mt-6 w-full px-4 max-w-sm py-4 bg-[#242424] rounded-xl antialiased">
         <input
-          className="w-full py-2    text-[1rem] font-c6text-regular  border-[#3b3b3b]  text-white bg-transparent  rounded-md mb-4 placeholder-gray-400 focus:outline-none  focus:ring-green-500"
+          className="w-full py-4    text-[1rem] font-c6text-regular  border-[#3b3b3b]  text-white bg-transparent  rounded-md mb-4 placeholder-gray-400 focus:outline-none  focus:ring-green-500"
           type="text"
           placeholder="Digite uma chave Pix"
 

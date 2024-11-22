@@ -75,16 +75,16 @@ const QuizWella = () => {
   };
 
   return (
-    <div className="flex flex-col items-center pt-14 min-h-screen antialiased">
+    <div className="flex flex-col items-center pt-14 min-h-screen antialiased bg-[#121212]">
       {/* Modal */}
       <ModalCash
         isVisible={isModalVisible}
         onClose={() => setModalVisible(false)}
         cashValue={currentCashValue} // Valor do prêmio da etapa atual
       />
-      <section className="bg-[black] px-6 pt-6">
+      <section className="bg-[#121212] px-6 pt-6">
         {/* Container Principal */}
-        <div className="w-full max-w-md bg-black shadow-md rounded-xl p-6">
+        <div className="w-full max-w-md bg-[#121212] shadow-md rounded-xl p-6">
           {/* Título */}
           <h1 className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent font-c6text-bold text-center text-[1.4rem] mb-4">
             {current.title}
