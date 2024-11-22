@@ -1,22 +1,27 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface AppContextType {
-  quizScore: number; // Pontuação total do quiz
-  setQuizScore: (score: number) => void; // Atualiza diretamente o valor
-  addToQuizScore: (value: number) => void; // Adiciona um valor à pontuação atual
-  isModalOpen: boolean; // Estado para controle do modal
-  setIsModalOpen: (isOpen: boolean) => void; // Função para abrir/fechar o modal
+  quizScore: number;
+  setQuizScore: (score: number) => void;
+  addToQuizScore: (value: number) => void;
+  isModalOpen: boolean;
+  isModalOpenUnlock: boolean;
+  setIsModalOpen: (isOpen: boolean) => void;
+  setIsModalOpenUnLock: (isOpen: boolean) => void;
+
 }
 
-// Criação do contexto
+
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-// Provider do contexto
+
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [quizScore, setQuizScore] = useState<number>(0);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Novo estado para o modal
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpenUnlock, setIsModalOpenUnLock] = useState<boolean>(false);
 
-  // Função para adicionar ao quizScore
+
+
   const addToQuizScore = (value: number) => {
     setQuizScore((prevScore) => prevScore + value);
   };
@@ -29,6 +34,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         addToQuizScore,
         isModalOpen,
         setIsModalOpen,
+        setIsModalOpenUnLock,
+        isModalOpenUnlock
       }}
     >
       {children}

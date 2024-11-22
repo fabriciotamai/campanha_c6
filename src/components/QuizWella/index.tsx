@@ -82,11 +82,11 @@ const QuizWella = () => {
         onClose={() => setModalVisible(false)}
         cashValue={currentCashValue} // Valor do prêmio da etapa atual
       />
-      <section className="bg-[black] px-6 pt-2">
+      <section className="bg-[black] px-6 pt-6">
         {/* Container Principal */}
         <div className="w-full max-w-md bg-black shadow-md rounded-xl p-6">
           {/* Título */}
-          <h1 className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent font-c6text-bold text-center text-lg mb-4">
+          <h1 className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent font-c6text-bold text-center text-[1.4rem] mb-4">
             {current.title}
           </h1>
           {/* Imagem */}
@@ -119,7 +119,7 @@ const QuizWella = () => {
             </div>
           ))}
           {/* Botão de Envio */}
-          <div className="mt-14">
+          <div className="mt-8">
             <button
               onClick={handleNextQuestionnaire}
               disabled={!areAllQuestionsAnswered()}

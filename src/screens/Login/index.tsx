@@ -17,7 +17,7 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center min-h-screen bg-black overflow-auto pb-16">
       {/* Conteúdo da página */}
-      <div className="relative max-w-[370px] sm:max-w-sm w-full bg-black rounded-xl overflow-hidden shadow-xl py-6 mt-10">
+      <div className="relative max-w-[370px] sm:max-w-sm w-full bg-black rounded-xl overflow-hidden shadow-xl py-6 mt-16">
         {/* Imagem de Fundo */}
         <img
           src={C6bank}
@@ -29,7 +29,7 @@ const Login = () => {
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
         {/* Conteúdo sobreposto */}
-        <div className="absolute inset-0 flex flex-col py-20 px-6 text-center text-white">
+        <div className="absolute inset-0 flex flex-col py-24 px-6 text-center text-white">
           <section className="border-l-4 border-white w-[100%]">
             <h1 className="font-c6text-bold text-[1.90rem] leading-relaxed text-left px-3 sm:text-xl mb-2">
               <span className="bg-gradient-to-r from-gradient1 via-gradient2 via-gradient3 via-gradient4 via-gradient5 to-gradient6 bg-clip-text text-transparent">

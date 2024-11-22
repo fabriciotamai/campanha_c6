@@ -5,8 +5,10 @@ import { AppProvider } from "./context/AppContext";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import FooterMenu from "./components/FooterMenu/";
 import { Modal } from "./components/createaccount"; // Importe o Modal
+import { ModalUnlock } from "./components/modalUnlock";
 import AdSection from "./screens/AdSection";
 import Login from "./screens/Login";
+import SaquePage from './screens/SaquePage';
 import { SelectMarket } from "./screens/SelectMarket";
 
 
@@ -24,6 +26,7 @@ const App = () => {
 
         {/* Modal */}
         <Modal />
+        <ModalUnlock />
 
         {/* Conteúdo Principal (Rolável) */}
         <div className="flex-grow overflow-y-auto pb-16">
@@ -31,6 +34,7 @@ const App = () => {
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/selectmarket" element={<SelectMarket />} />
+            <Route path="/saque" element={<SaquePage />} />
             <Route path="/quiz" element={<AdSection />} />
 
 

@@ -17,7 +17,7 @@ const Header = () => {
         <div>
           {quizScore > 0 ? (
             <span className="bg-white text-black font-c6display-light px-6 py-2 rounded-md text-[1.15rem]">
-              R$ {quizScore.toFixed(2)}
+              R$ {quizScore.toFixed(2).replace('.', ',')}
             </span>
           ) : (
             <button
