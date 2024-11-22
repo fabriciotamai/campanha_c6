@@ -12,31 +12,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      // Desabilita o clique com o botão direito do mouse
-      document.addEventListener("contextmenu", (event) => event.preventDefault());
-
-      // Desabilita atalhos de teclado comuns usados para inspeção
-      document.addEventListener("keydown", (event) => {
-        if (
-          (event.ctrlKey && event.shiftKey && event.key === "I") || // Ctrl+Shift+I
-          (event.ctrlKey && event.key === "U") || // Ctrl+U
-          (event.ctrlKey && event.key === "S") || // Ctrl+S
-          (event.key === "F12") // F12
-        ) {
-          event.preventDefault();
-        }
-      });
-
-      // Monitora e bloqueia a abertura do DevTools
-      setInterval(() => {
-        const widthThreshold = window.outerWidth - window.innerWidth > 100;
-        const heightThreshold = window.outerHeight - window.innerHeight > 100;
-        if (widthThreshold || heightThreshold) {
-          document.body.innerHTML = "DevTools detectado. Ação bloqueada!";
-        }
-      }, 1000);
-    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
