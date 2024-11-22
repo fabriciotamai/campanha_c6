@@ -6,16 +6,21 @@ const ErrorModal = () => {
   const { isModalOpenError, setIsModalOpenError } = useAppContext();
   const [progress, setProgress] = useState<number>(0);
 
+  // Função para vibrar o dispositivo
+  const triggerVibration = () => {
+    if ("vibrate" in navigator) {
+      navigator.vibrate(200); // Vibração de 200ms
+    } else {
+      console.warn("API de vibração não suportada neste dispositivo ou navegador.");
+    }
+  };
+
   useEffect(() => {
     let interval: number;
 
     if (isModalOpenError) {
       setProgress(0);
-
-      // Faz o dispositivo vibrar quando o modal abre
-      if (navigator.vibrate) {
-        navigator.vibrate(200); // Vibração de 200ms
-      }
+      triggerVibration(); // Aciona a vibração ao abrir o modal
 
       interval = window.setInterval(() => {
         setProgress((prev) => {
