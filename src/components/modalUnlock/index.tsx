@@ -5,7 +5,7 @@ import Unlock from "../../assets/c6/unlock.json";
 import { useAppContext } from "../../context/AppContext";
 
 export function ModalUnlock() {
-  const { isModalOpenUnlock, setIsModalOpenUnLock } = useAppContext();
+  const { isModalOpenUnlock, setIsModalOpenUnLock, quizScore } = useAppContext();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
@@ -75,7 +75,7 @@ export function ModalUnlock() {
           <button onClick={() => {
             handleCloseModal(); // Fecha o modal
             navigate("/gateway"); // Redireciona para a página GatewayPage
-          }} className="bg-[#ffcd2e] text-black font-c6display-regular w-full rounded-md py-2">Liberar saldo <b>R$ 430,00</b> </button>
+          }} className="bg-[#ffcd2e] text-black font-c6display-regular w-full rounded-md py-2">Liberar saldo <b>R$    {quizScore.toFixed(2).replace('.', ',')}</b> </button>
         </div>
       </section>
     </>

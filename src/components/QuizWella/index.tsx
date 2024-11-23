@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import C6ATomos from '../../assets/c6/c6atomos.webp';
+import C6investiment from '../../assets/c6/c6invest.webp';
 import Wella1 from "../../assets/c6/c6limit.webp";
+import C6Iphone from '../../assets/c6/c6seguroiphone.webp';
 import C6SORRISO from "../../assets/c6/c6sorriso.png";
+import C6BankLogo from '../../assets/c6/logoc6bank.svg';
+import C6Family from '../../assets/c6/seguro famili.webp';
+
 import { useAppContext } from "../../context/AppContext";
 import { ModalCash } from "../ModalCash";
 
@@ -16,8 +22,41 @@ const QuizWella = () => {
 
   const questionnaires = [
     {
-      title: `Responda e ganhe R$ ${47.00}!`,
-      value: 47.90,
+      title: `Responda e ganhe ${37.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 37.90,
+      image: C6BankLogo,
+      questions: [
+        {
+          text: "Como você conheceu o quiz C6bank?",
+          options: ["Instagram", "TikTok", "Facebook"],
+        },
+      ],
+    },
+    {
+      title: `Responda e ganhe ${42.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 42.90,
+      image: C6Iphone,
+      questions: [
+        {
+          text: "Como você avalia o App C6Bank?",
+          options: ["Intuitivo", "Fácil", "Confuso"],
+        },
+      ],
+    },
+    {
+      title: `Responda e ganhe ${32.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 32.90,
+      image: C6Family,
+      questions: [
+        {
+          text: "Você conhece o C6 seguro familia ?",
+          options: ["Sim", "Não", "Quero conhecer"],
+        },
+      ],
+    },
+    {
+      title: `Responda e ganhe ${28.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 28.90,
       image: Wella1,
       questions: [
         {
@@ -27,8 +66,30 @@ const QuizWella = () => {
       ],
     },
     {
-      title: `Responda e ganhe R$ ${32.00}!`,
-      value: 32.00,
+      title: `Responda e ganhe ${24.34.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 24.34,
+      image: C6investiment,
+      questions: [
+        {
+          text: "Como você avalia as taxas do c6 invest ?",
+          options: ["Excelente", "Razoavel", "Não conheço"],
+        },
+      ],
+    },
+    {
+      title: `Responda e ganhe ${49.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 49.90,
+      image: C6ATomos,
+      questions: [
+        {
+          text: "Como qualificaria o Cashback do C6ATOMOS?",
+          options: ["Excelente", "Razoavel", "Não conheço"],
+        },
+      ],
+    },
+    {
+      title: `Responda e ganhe ${27.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 26.90,
       image: C6SORRISO,
       questions: [
         {
@@ -64,7 +125,7 @@ const QuizWella = () => {
         setModalVisible(false);
         setCurrentQuestionnaire((prev) => prev + 1);
         setSelectedOptions({});
-      }, 4000);
+      }, 2000);
     } else {
 
       setTimeout(() => {
@@ -75,7 +136,7 @@ const QuizWella = () => {
   };
 
   return (
-    <div className="flex flex-col items-center pt-14 min-h-screen antialiased bg-[#121212]">
+    <div className="flex flex-col items-center pt-10 min-h-screen antialiased bg-[#121212]">
       {/* Modal */}
       <ModalCash
         isVisible={isModalVisible}
@@ -94,7 +155,7 @@ const QuizWella = () => {
             <img
               src={current.image}
               alt="Produto"
-              className="w-full h-[200px] object-cover rounded-md"
+              className={`w-full h-[200px] rounded-md ${currentQuestionnaire === 0 ? "object-contain" : "object-cover"}`}
             />
           </div>
           {/* Perguntas */}

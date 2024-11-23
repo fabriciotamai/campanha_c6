@@ -8,7 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { addToQuizScore } = useAppContext();
   const handleStart = () => {
-    addToQuizScore(25.98); // Som
+    addToQuizScore(123.98); // Som
     navigate("/selectmarket");
   };
 
@@ -47,7 +47,7 @@ const Login = () => {
             brasileiros!
           </p>
           <p className="text-base font-bold text-white mb-6 mt-6">
-            Você já ganhou <span className="text-green-500">R$25,98</span> de bônus, que expira
+            Você já ganhou <span className="text-green-500">R$ 123,98</span> de bônus, que expira
             em:
           </p>
           {/* Flip Clock Countdown */}

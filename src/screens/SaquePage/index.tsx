@@ -18,9 +18,10 @@ import Euro from '../../assets/c6/euro.svg';
 const SaquePage = () => {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const { quizScore, setIsModalOpenError } = useAppContext();
+  const { quizScore, setIsModalOpenError, setIsModalOpenUnLock } = useAppContext();
   const [isWrapped, setIsWrapped] = useState(false);
   const [saqueValue, setSaqueValue] = useState<string>("");
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -55,16 +56,15 @@ const SaquePage = () => {
 
       setIsModalOpenError(true);
     } else {
+      setIsModalOpenUnLock(true)
 
-      console.log(`Sacando o valor de: R$ ${saqueValue}`);
+
     }
   };
 
 
   return (
     <div className="flex flex-col items-center px-4 pt-20 min-h-screen bg-[#121212] antialiased">
-
-
       <section
         className="flex flex-row justify-between w-full gap-1 flex-wrap"
         ref={containerRef}

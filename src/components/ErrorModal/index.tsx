@@ -6,44 +6,35 @@ const ErrorModal = () => {
   const { isModalOpenError, setIsModalOpenError } = useAppContext();
   const [progress, setProgress] = useState<number>(0);
 
-  // Função para vibrar o dispositivo
-  const triggerVibration = () => {
-    if ("vibrate" in navigator) {
-      navigator.vibrate(200); // Vibração de 200ms
-    } else {
-      console.warn("API de vibração não suportada neste dispositivo ou navegador.");
-    }
-  };
-
   useEffect(() => {
-    let interval: number;
+    let interval: number | undefined;
 
     if (isModalOpenError) {
-      setProgress(0);
-      triggerVibration(); // Aciona a vibração ao abrir o modal
+      setProgress(0); // Reinicia o progresso ao abrir o modal
 
       interval = window.setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
-            clearInterval(interval);
-            closeModal(); // Fecha o modal automaticamente ao atingir 100%
+            clearInterval(interval); // Limpa o intervalo ao atingir 100%
+            setTimeout(closeModal, 500); // Fecha o modal automaticamente após 500ms
             return 100;
           }
           return prev + 2; // Incrementa o progresso
         });
-      }, 100);
+      }, 100); // Atualiza a barra de progresso a cada 100ms
     }
 
     return () => {
-      clearInterval(interval); // Garante que o intervalo é limpo ao desmontar
+      if (interval) clearInterval(interval); // Limpa o intervalo ao desmontar
     };
-  }, [isModalOpenError]);
+  }, [isModalOpenError]); // Reexecuta quando o modal abre ou fecha
 
   const closeModal = () => {
-    setIsModalOpenError(false); // Fecha o modal
-    setProgress(0); // Reseta o progresso
+    setIsModalOpenError(false); // Atualiza o estado para fechar o modal
+    setProgress(0); // Reinicia o progresso
   };
 
+  // Retorna null se o modal não estiver aberto
   if (!isModalOpenError) return null;
 
   return (
@@ -65,7 +56,6 @@ const ErrorModal = () => {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      {/* Título e Mensagem */}
       <div
         style={{
           marginBottom: "20px",
@@ -86,7 +76,7 @@ const ErrorModal = () => {
 
 
 
-      {/* Barra de progresso no rodapé */}
+      {/* Barra de progresso */}
       <div
         style={{
           position: "absolute",
