@@ -117,7 +117,7 @@ const QuizWella = () => {
       image: C6Finamciamento,
       questions: [
         {
-          text: "Como você avalia as taxa do C6 financimanto ?",
+          text: "Como você avalia as taxa do C6 financimento ?",
           options: ["Alta", "Execelente", "Razoavel"],
         },
       ],
@@ -160,41 +160,45 @@ const QuizWella = () => {
   };
 
   return (
-    <div className="flex flex-col items-center pt-10 min-h-screen antialiased bg-[#121212]">
+    <div className="flex flex-col items-center   antialiased bg-[#121212]">
       {/* Modal */}
       <ModalCash
         isVisible={isModalVisible}
         onClose={() => setModalVisible(false)}
         cashValue={currentCashValue}
       />
-      <section className="bg-[#121212] px-6 pt-6">
+      <section className="bg-[#242424]   rounded-lg  py-6">
         {/* Container Principal */}
-        <div className="w-full max-w-md bg-[#121212] shadow-md rounded-xl p-6">
+        <div className="w-full max-w-md bg-[#242424] shadow-md rounded-xl px-6">
           {/* Título */}
-          <h1 className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent font-c6text-bold text-center text-[1.4rem] mb-4">
+          <h1 className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent font-c6text-semibold  text-center text-[1.2rem] mb-6">
             {current.title}
           </h1>
           {/* Imagem */}
-          <div className="flex justify-center items-center mb-6 w-min-[90%] h-[12rem] bg-[#242424] rounded-md">
+          <div className="flex justify-center items-center mb-6 w-min-[90%] h-[10rem] bg-[#242424] rounded-md">
             <img
               src={current.image}
               alt="Produto"
-              className={`w-full h-[200px] rounded-md ${currentQuestionnaire === 0 ? "object-contain" : "object-cover"}`}
+              className={`w-[300px] h-[180px] border-[0.01rem] border-[#535050] rounded-lg ${currentQuestionnaire === 0 ? "object-contain" : "object-cover"}`}
             />
           </div>
           {/* Perguntas */}
           {current.questions.map((question, index) => (
             <div key={index} className="mb-6">
-              <p className="text-center text-white font-medium text-base mb-4">{question.text}</p>
-              {/* Opções */}
+              <div className="flex items-center justify-center">
+
+
+                <p className="text-center text-white self-center  font-c6display-light text-[1rem] mb-4 max-w-[250px]  flex items-center justify-center ">{question.text}</p>
+              </div>
+
               <div className="flex flex-col gap-4">
                 {question.options.map((option, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleOptionSelect(index, option)}
-                    className={`w-full py-[0.60rem] rounded-lg text-sm font-medium transition-all ${selectedOptions[index] === option
-                      ? "bg-[#fbfbfb] text-[#121212]"
-                      : "bg-black border text-white hover:bg-gray-300"
+                    className={`w-full py-[0.60rem] rounded-[0.85rem] text-sm font-c6display-light transition-all ${selectedOptions[index] === option
+                      ? "bg-[#FBFBFB] text-[#121212]"
+                      : "bg-black  border-[0.01rem] text-white hover:bg-gray-300"
                       }`}
                   >
                     {option}
@@ -209,14 +213,14 @@ const QuizWella = () => {
             <button
               onClick={handleNextQuestionnaire}
               disabled={!areAllQuestionsAnswered()}
-              className={`w-full py-3 rounded-lg text-[#121212] font-c6display-regular transition-all ${areAllQuestionsAnswered()
+              className={`w-full py-2 rounded-[0.85rem] text-[#121212] font-c6display-regular transition-all ${areAllQuestionsAnswered()
                 ? "bg-[#FBC161] hover:[#FBC161]"
                 : "bg-gray-300 cursor-not-allowed"
                 }`}
             >
               {currentQuestionnaire < questionnaires.length - 1
                 ? "Próximo"
-                : "Enviar respostas"}
+                : "Enviar resposta"}
             </button>
           </div>
         </div >

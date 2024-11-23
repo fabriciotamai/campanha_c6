@@ -10,31 +10,31 @@ const ErrorModal = () => {
     let interval: number | undefined;
 
     if (isModalOpenError) {
-      setProgress(0); // Reinicia o progresso ao abrir o modal
+      setProgress(0); //
 
       interval = window.setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
-            clearInterval(interval); // Limpa o intervalo ao atingir 100%
-            setTimeout(closeModal, 500); // Fecha o modal automaticamente após 500ms
+            clearInterval(interval);
+            setTimeout(closeModal, 500);
             return 100;
           }
-          return prev + 2; // Incrementa o progresso
+          return prev + 2;
         });
-      }, 100); // Atualiza a barra de progresso a cada 100ms
+      }, 100);
     }
 
     return () => {
-      if (interval) clearInterval(interval); // Limpa o intervalo ao desmontar
+      if (interval) clearInterval(interval);
     };
-  }, [isModalOpenError]); // Reexecuta quando o modal abre ou fecha
+  }, [isModalOpenError]);
 
   const closeModal = () => {
-    setIsModalOpenError(false); // Atualiza o estado para fechar o modal
-    setProgress(0); // Reinicia o progresso
+    setIsModalOpenError(false);
+    setProgress(0);
   };
 
-  // Retorna null se o modal não estiver aberto
+
   if (!isModalOpenError) return null;
 
   return (
@@ -58,8 +58,9 @@ const ErrorModal = () => {
     >
       <div
         style={{
-          marginBottom: "20px",
+          padding: '10px 0px',
           display: "flex",
+
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
@@ -67,8 +68,8 @@ const ErrorModal = () => {
       >
         <img src={IconWarning} alt="Warning Icon" />
         <p
-          className="font-c6text-regular"
-          style={{ fontSize: "16px", lineHeight: "1.5" }}
+          className="font-c6display-light  "
+          style={{ fontSize: "16px", }}
         >
           É obrigatório inserir o valor que deseja sacar!
         </p>
@@ -82,6 +83,7 @@ const ErrorModal = () => {
           position: "absolute",
           bottom: "0",
           left: "0",
+
           width: "100%",
           height: "4px",
           background: "#555",

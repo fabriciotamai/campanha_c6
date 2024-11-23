@@ -8,16 +8,16 @@ const Login = () => {
   const navigate = useNavigate();
   const { addToQuizScore } = useAppContext();
   const handleStart = () => {
-    addToQuizScore(123.98); // Som
+    addToQuizScore(123.98); // Soma ao score
     navigate("/selectmarket");
   };
 
   const expirationTime = new Date().getTime() + 4 * 60 * 60 * 1000;
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-black overflow-auto pb-16">
+    <div className="flex flex-col items-center min-h-screen bg-[#121212] overflow-auto ">
       {/* Conteúdo da página */}
-      <div className="relative max-w-[370px] sm:max-w-sm w-full bg-black rounded-xl overflow-hidden shadow-xl py-6 mt-16">
+      <div className="relative max-w-[370px] sm:max-w-sm w-full  rounded-xl overflow-hidden shadow-xl py-6">
         {/* Imagem de Fundo */}
         <img
           src={C6bank}
@@ -26,7 +26,7 @@ const Login = () => {
           className="mx-auto mb-4 rounded-[4rem] w-full h-[600px] object-cover border"
         />
         {/* Camada Preta Translúcida */}
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="absolute inset-0 bg-[#121212] bg-opacity-60"></div>
 
         {/* Conteúdo sobreposto */}
         <div className="absolute inset-0 flex flex-col py-24 px-6 text-center text-white">

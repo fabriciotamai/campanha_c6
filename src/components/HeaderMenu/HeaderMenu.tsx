@@ -1,18 +1,17 @@
 import ImgC6 from "../../assets/c6/logoc6bank.svg";
 import { useAppContext } from "../../context/AppContext";
 
-
 const Header = () => {
-  const { quizScore, setIsModalOpen } = useAppContext(); // Pega o estado do modal
+  const { quizScore, setIsModalOpen } = useAppContext();
 
   const handleOpenModal = () => {
-    setIsModalOpen(true); // Abre o modal
+    setIsModalOpen(true);
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-[#121212] shadow-md z-10">
-      <section className="flex items-center justify-between px-8 py-5">
-        <div className="flex items-center justify-between">
+    <header className=" w-full bg-[#121212] shadow-md z-10 h-20">
+      <section className="flex items-center justify-between px-8 py-5 h-full">
+        <div className="flex items-center">
           <img src={ImgC6} alt="C6 Bank Logo" width={80} height={50} />
         </div>
         <div>
@@ -22,7 +21,7 @@ const Header = () => {
             </span>
           ) : (
             <button
-              onClick={handleOpenModal} // Abre o modal ao clicar
+              onClick={handleOpenModal}
               className="bg-[#fbfbfb] font-c6display-light text-[0.90rem] rounded-md py-[0.40rem] px-4"
             >
               <p>Abrir minha conta</p>
