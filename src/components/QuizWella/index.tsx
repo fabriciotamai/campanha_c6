@@ -167,9 +167,9 @@ const QuizWella = () => {
         onClose={() => setModalVisible(false)}
         cashValue={currentCashValue}
       />
-      <section className="bg-[#242424]   rounded-lg  py-6">
+      <section className="bg-[#242424]    rounded-lg  py-6">
         {/* Container Principal */}
-        <div className="w-full max-w-md bg-[#242424] shadow-md rounded-xl px-6">
+        <div className="w-full  bg-[#242424] shadow-md rounded-xl px-4">
           {/* Título */}
           <h1 className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent font-c6text-semibold  text-center text-[1.2rem] mb-6">
             {current.title}
@@ -179,7 +179,7 @@ const QuizWella = () => {
             <img
               src={current.image}
               alt="Produto"
-              className={`w-[300px] h-[180px] border-[0.01rem] border-[#535050] rounded-lg ${currentQuestionnaire === 0 ? "object-contain" : "object-cover"}`}
+              className={`w-full min-w-[320px] h-[180px] border-[0.01rem] border-[#535050] rounded-lg ${currentQuestionnaire === 0 ? "object-contain" : "object-cover"}`}
             />
           </div>
           {/* Perguntas */}
@@ -188,15 +188,15 @@ const QuizWella = () => {
               <div className="flex items-center justify-center">
 
 
-                <p className="text-center text-white self-center  font-c6display-light text-[1rem] mb-4 max-w-[250px]  flex items-center justify-center ">{question.text}</p>
+                <p className="text-center text-white self-center  font-c6display-light text-[1rem] mb-4 max-w-[280px]  flex items-center justify-center ">{question.text}</p>
               </div>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 w-full">
                 {question.options.map((option, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleOptionSelect(index, option)}
-                    className={`w-full py-[0.60rem] rounded-[0.85rem] text-sm font-c6display-light transition-all ${selectedOptions[index] === option
+                    className={`w-full py-[0.7rem] rounded-[0.85rem] text-sm font-c6display-light transition-all ${selectedOptions[index] === option
                       ? "bg-[#FBFBFB] text-[#121212]"
                       : "bg-black  border-[0.01rem] text-white hover:bg-gray-300"
                       }`}

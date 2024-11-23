@@ -15,12 +15,15 @@ import Bra from '../../assets/c6/brasil.svg';
 import Dolar from '../../assets/c6/eua.svg';
 import Euro from '../../assets/c6/euro.svg';
 
+import InputMask from 'react-input-mask';
+
 const SaquePage = () => {
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const [selectedKey, setSelectedKey] = useState<string | null>('cpf');
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { quizScore, setIsModalOpenError, setIsModalOpenUnLock } = useAppContext();
   const [isWrapped, setIsWrapped] = useState(false);
   const [saqueValue, setSaqueValue] = useState<string>("");
+  const [pixKey, setPixKey] = useState<string>('');
 
 
   useEffect(() => {
@@ -156,7 +159,7 @@ const SaquePage = () => {
         >
           <img
             src={selectedKey === 'cpf' ? IconDocumentBlack : IconDocument}
-            className="w-4 h-4 mb-2"
+            className="w-5 h-5 mb-2"
           />
           <div className="py-2" />
           <p className="text-[0.70rem] font-c6display-light">CPF</p>
@@ -181,14 +184,14 @@ const SaquePage = () => {
         <div
           onClick={() => setSelectedKey('email')}
           className={`${selectedKey === 'email' ? 'bg-[#fbfbfb] text-black' : 'bg-[#242424] text-white'
-            } rounded-xl flex flex-col py-4 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
+            } rounded-xl flex flex-col py-2 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
         >
           <img
             src={selectedKey === 'email' ? IconmailBlack : Iconmail}
             alt="Email"
             className="w-5 h-5 mb-2"
           />
-          <div className="py-2" />
+          <div className="py-3" />
           <p className="text-[0.70rem] font-c6display-light">Email</p>
         </div>
 
@@ -196,41 +199,47 @@ const SaquePage = () => {
         <div
           onClick={() => setSelectedKey('qrcode')} // Define como selecionado
           className={`${selectedKey === 'qrcode' ? 'bg-[#fbfbfb] text-black' : 'bg-[#242424] text-white'
-            } rounded-xl flex flex-col py-4 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
+            } rounded-xl flex flex-col py-2 border-[#3b3b3b] border px-4 justify-between cursor-pointer hover:bg-[#fbfbfb] hover:text-black transition-all`}
         >
           <img
             src={selectedKey === 'qrcode' ? IconQrcodeBlack : IconQrcode} // Alterna ícone
             alt="QR Code"
             className="w-5 h-5 mb-2"
           />
-          <div className="py-2" />
+          <div className="py-3" />
           <p className="text-[0.70rem] font-c6display-light">QR Code</p>
         </div>
       </div>
 
       {/* Inputs */}
       <div className="m-4 w-full px-4 max-w-sm py-2 bg-[#242424] rounded-xl antialiased">
-        <input
-          className="w-full py-2    text-[1rem] font-c6text-regular  border-[#3b3b3b]  text-white bg-transparent  rounded-md mb-4 placeholder-gray-400 focus:outline-none  focus:ring-green-500"
+        <InputMask
+          className="w-full py-2 text-[1rem] font-c6text-regular border-[#3b3b3b] text-white bg-transparent rounded-md mb-4 placeholder-gray-400 focus:outline-none focus:ring-green-500"
           type="text"
           placeholder="Digite uma chave Pix"
-
+          value={pixKey}
+          onChange={(e) => setPixKey(e.target.value)}
+          mask={selectedKey === 'cpf' ? '999.999.999-99' : selectedKey === 'telefone' ? '(99) 99999-9999' : ''}
+          maskChar={null}
         />
         <p className=" text-[0.70rem] font-c6text-regular text-[#d3d3d3]">Celular, CPF. CNPJ, E-mail, Chave Aleatória ou Pix Copia e cola</p>
       </div>
       <div className=" w-full max-w-sm">
-        <input
-          className="w-full p-3 bg-[#242424] border-[#3b3b3b] border text-white  rounded-md mb-4 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500"
+        <InputMask
+          className="w-full p-3 bg-[#242424] border-[#3b3b3b] border text-white rounded-md mb-4 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500"
           type="text"
-          onChange={(e) => setSaqueValue(e.target.value)}
           placeholder="Digite o valor que deseja sacar"
+          value={saqueValue}
+          onChange={(e) => setSaqueValue(e.target.value)}
+          mask="R$ 999.999.999,99"
+          maskChar={null}
         />
       </div>
 
 
 
       {/* Botão */}
-      <button onClick={() => handleSacar()} className="bg-[#ffcd2e] w-full text-black font-c6display-regular  py-2 px-6 rounded-md hover:bg-green-600 transition-all">
+      <button onClick={() => handleSacar()} className="max-w-sm bg-[#ffcd2e] w-full text-black font-c6display-regular  py-2 px-8 rounded-md hover:bg-green-600 transition-all">
         Sacar
       </button>
     </div>
