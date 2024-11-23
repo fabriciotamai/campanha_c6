@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import C6ATomos from '../../assets/c6/c6atomos.webp';
 import C6Finamciamento from '../../assets/c6/c6financimento.webp';
 import C6Friend from '../../assets/c6/C6FRIEND.webp';
@@ -12,14 +11,15 @@ import C6Family from '../../assets/c6/seguro famili.webp';
 
 import { useAppContext } from "../../context/AppContext";
 import { ModalCash } from "../ModalCash";
+import { ModalComplet } from "../ModalComplet";
 
 const QuizWella = () => {
   const { addToQuizScore } = useAppContext();
-  const navigate = useNavigate();
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState<number>(0);
   const [selectedOptions, setSelectedOptions] = useState<{ [key: number]: string }>({});
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentCashValue, setCurrentCashValue] = useState<number>(0);
+  const [isCompleteModalVisible, setCompleteModalVisible] = useState(false);
 
   useEffect(() => {
     console.log('rodando')
@@ -164,7 +164,7 @@ const QuizWella = () => {
 
       setTimeout(() => {
         setModalVisible(false);
-        navigate("/agradecimento");
+        setCompleteModalVisible(true); // E
       }, 3000);
     }
   };
@@ -172,6 +172,10 @@ const QuizWella = () => {
   return (
     <div className="flex flex-col items-center   antialiased bg-[#121212] pt-24">
       {/* Modal */}
+      <ModalComplet
+        isVisible={isCompleteModalVisible}
+
+      />
       <ModalCash
         isVisible={isModalVisible}
         onClose={() => setModalVisible(false)}
@@ -189,7 +193,7 @@ const QuizWella = () => {
             <img
               src={current.image}
               alt="Produto"
-              className={`w-full min-w-[320px] h-[180px] border-[0.01rem] border-[#535050] rounded-lg ${currentQuestionnaire === 0 ? "object-contain" : "object-cover"}`}
+              className={`w-full min-w-[320px] h-[180px] border-[0.01rem] border-[#535050] rounded-lg object-cover`}
             />
           </div>
           {/* Perguntas */}
