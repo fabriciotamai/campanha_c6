@@ -23,6 +23,16 @@ const SaquePage = () => {
   const [saqueValue, setSaqueValue] = useState<string>("");
 
   useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }, 50);
+  }, []);
+
+  useEffect(() => {
     const checkWrap = () => {
       const container = containerRef.current;
       if (container) {
@@ -45,21 +55,16 @@ const SaquePage = () => {
 
       setIsModalOpenError(true);
     } else {
-      // Aqui você pode implementar a lógica para sacar o valor
+
       console.log(`Sacando o valor de: R$ ${saqueValue}`);
     }
   };
 
 
   return (
-    <div className="flex flex-col items-center px-4 pt-24 min-h-screen bg-[#121212] antialiased">
+    <div className="flex flex-col items-center px-4 pt-20 min-h-screen bg-[#121212] antialiased">
 
-      {/* <div className="bg-[#242424] border-[#3b3b3b] border shadow-md rounded-lg p-6 text-center w-full max-w-sm">
-        <p className="text-gray-400 text-[0.70rem] font-c6display-light">Seu saldo</p>
-        <p className="text-3xl text-green-500 font-bold">R$ 67,00</p>
-      </div> */}
 
-      {/* Título */}
       <section
         className="flex flex-row justify-between w-full gap-1 flex-wrap"
         ref={containerRef}
@@ -140,9 +145,9 @@ const SaquePage = () => {
         </div>
       </section>
 
-      <p className="mt-6 mb-4 text-gray-300 text-lg font-bold"></p>
+      <p className=" text-gray-300 text-lg font-bold "></p>
 
-
+      <p className="text-left flex text-[#fff] items-start self-start py-3 px-2">Pix</p>
       <div className="grid grid-cols-3 gap-[0.80rem] w-full max-w-md">
         <div
           onClick={() => setSelectedKey('cpf')}
@@ -204,16 +209,16 @@ const SaquePage = () => {
       </div>
 
       {/* Inputs */}
-      <div className="mt-6 w-full px-4 max-w-sm py-4 bg-[#242424] rounded-xl antialiased">
+      <div className="m-4 w-full px-4 max-w-sm py-2 bg-[#242424] rounded-xl antialiased">
         <input
-          className="w-full py-4    text-[1rem] font-c6text-regular  border-[#3b3b3b]  text-white bg-transparent  rounded-md mb-4 placeholder-gray-400 focus:outline-none  focus:ring-green-500"
+          className="w-full py-2    text-[1rem] font-c6text-regular  border-[#3b3b3b]  text-white bg-transparent  rounded-md mb-4 placeholder-gray-400 focus:outline-none  focus:ring-green-500"
           type="text"
           placeholder="Digite uma chave Pix"
 
         />
         <p className=" text-[0.70rem] font-c6text-regular text-[#d3d3d3]">Celular, CPF. CNPJ, E-mail, Chave Aleatória ou Pix Copia e cola</p>
       </div>
-      <div className="mt-6 w-full max-w-sm">
+      <div className=" w-full max-w-sm">
         <input
           className="w-full p-3 bg-[#242424] border-[#3b3b3b] border text-white  rounded-md mb-4 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500"
           type="text"
