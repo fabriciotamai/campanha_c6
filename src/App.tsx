@@ -5,6 +5,7 @@ import { useAppContext } from "./context/AppContext";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import ErrorModal from "./components/ErrorModal";
 import FooterMenu from "./components/FooterMenu/";
+import { CompletePage } from "./components/ModalComplet";
 import { Modal } from "./components/createaccount";
 import { ModalUnlock } from "./components/modalUnlock";
 import AdSection from "./screens/AdSection";
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/selectmarket" element={<SelectMarket />} />
           <Route path="/saque" element={<SaquePage />} />
           <Route path="/quiz" element={<AdSection />} />
+          <Route path="/saquegora" element={<CompletePage />} />
           <Route path="/gateway" element={<GatewayPage />} />
         </Routes>
       </div>

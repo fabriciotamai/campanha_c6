@@ -4,75 +4,71 @@ import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 
-type IsDataProps = {
-  isVisible: boolean;
-  onComplete?: () => void;
-};
-
-export function ModalComplet({ isVisible, onComplete }: IsDataProps) {
+export function CompletePage() {
   const [progress, setProgress] = useState(0);
   const { quizScore } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isVisible) {
-      setProgress(0);
+    setProgress(0);
 
-      const interval = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(interval);
-            if (onComplete) onComplete();
-            return 100;
-          }
-          return prev + 1;
-        });
-      }, 30);
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return prev + 1;
+      });
+    }, 30);
 
-      return () => clearInterval(interval);
-    }
-  }, [isVisible, onComplete]);
-
-  if (!isVisible) return null;
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="fixed inset-0 flex w-full justify-center bg-black bg-opacity-50 z-50 px-6 pt-20 antialiased shadow-lg">
-      <section className="bg-[#212121]  items-center h-[70%] flex flex-col rounded-xl">
-        <div className=" text-center w-full h-[16rem] flex flex-col items-center justify-center">
-          <div className="w-48 h-48 relative">
-            <CircularProgressbar
-              value={progress}
-              styles={buildStyles({
-                textColor: "#F4F4F4", // Cor principal do texto
-                pathColor: "#FBC161", // Cor do progresso
-                trailColor: "#d6d6d6", // Cor da trilha
-              })}
-            />
-            {/* Texto extra dentro do círculo */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <p className="text-white text-lg font-bold">
-                {`R$ ${quizScore?.toFixed(2)?.replace(".", ",")}`}
-              </p>
-              <p className="text-[#d3d3d3] text-sm mt-1">Saldo acumulado</p>
-            </div>
+    <div className="flex flex-col items-center  w-full min-h-screen   bg-[#212121] text-center antialiased ">
+      <div className="w-full max-w-md flex flex-col items-center pt-28">
+        {/* Progresso Circular */}
+        <div className="w-48 h-48 relative mb-8">
+          <CircularProgressbar
+            value={progress}
+            styles={buildStyles({
+              textColor: "#F4F4F4",
+              pathColor: "#FBC161",
+              trailColor: "#d6d6d6",
+            })}
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <p className="text-white text-lg font-bold">
+              {`R$ ${quizScore?.toFixed(2)?.replace(".", ",")}`}
+            </p>
+            <p className="text-[#d3d3d3] text-sm mt-1">Saldo acumulado</p>
           </div>
         </div>
-        <strong className="text-[#F4F4F4] text-center font-c6text-semibold flex py-4 text-[2rem]">
+
+        {/* Mensagem de agradecimento */}
+        <strong className="text-[#F4F4F4] font-c6text-semibold text-[2rem] mb-6">
           Muito obrigado!
         </strong>
-        <p className="text-[#d3d3d3] px-4 font-c6text-regular text-center">
+        <p className="text-[#d3d3d3] px-4 font-c6text-regular mb-10">
           Com base no seu questionamento sabemos onde estamos errando e quais
           produtos devemos melhorar para você{" "}
           <b className="text-[#ffff]">Cliente C6Bank</b> e todas as pessoas{" "}
-          <strong className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent ">
+          <strong className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent">
             No Brasil e no mundo!
           </strong>
         </p>
-        <button onClick={() => navigate('/saque')} className="w-[90%] bg-[#F4F4F4] px-12 py-3 rounded-[0.85rem] mt-20 font-bold">
+
+        {/* Botão para sacar o saldo */}
+        <button
+          onClick={() => navigate("/saque")}
+          className="w-[90%] bg-[#F4F4F4] px-12 py-3  mb-6 rounded-[0.85rem] font-bold text-[#212121] hover:bg-gray-300 transition"
+        >
           Sacar meu saldo
         </button>
-
-      </section>
+      </div>
     </div>
   );
 }
+
+export default CompletePage;

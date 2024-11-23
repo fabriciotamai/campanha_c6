@@ -9,9 +9,10 @@ import C6SORRISO from "../../assets/c6/c6sorriso.png";
 import C6BankLogo from '../../assets/c6/logoc6bank.svg';
 import C6Family from '../../assets/c6/seguro famili.webp';
 
+
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import { ModalCash } from "../ModalCash";
-import { ModalComplet } from "../ModalComplet";
 
 const QuizWella = () => {
   const { addToQuizScore } = useAppContext();
@@ -19,7 +20,8 @@ const QuizWella = () => {
   const [selectedOptions, setSelectedOptions] = useState<{ [key: number]: string }>({});
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentCashValue, setCurrentCashValue] = useState<number>(0);
-  const [isCompleteModalVisible, setCompleteModalVisible] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({
@@ -143,44 +145,32 @@ const QuizWella = () => {
   };
 
   const handleNextQuestionnaire = () => {
-
     setCurrentCashValue(current.value);
-
-
     addToQuizScore(current.value);
-
-
     setModalVisible(true);
 
     if (currentQuestionnaire < questionnaires.length - 1) {
-
       setTimeout(() => {
         setModalVisible(false);
         setCurrentQuestionnaire((prev) => prev + 1);
         setSelectedOptions({});
       }, 2000);
     } else {
-
       setTimeout(() => {
         setModalVisible(false);
-        setCompleteModalVisible(true); // E
+        navigate('/saquegora');
       }, 3000);
     }
   };
 
   return (
-    <div className="flex flex-col items-center   antialiased bg-[#121212] pt-24">
-      {/* Modal */}
-      <ModalComplet
-        isVisible={isCompleteModalVisible}
-
-      />
+    <div className="flex flex-col items-center   antialiased bg-[#121212] pt-24 px-6">
       <ModalCash
         isVisible={isModalVisible}
         onClose={() => setModalVisible(false)}
         cashValue={currentCashValue}
       />
-      <section className="bg-[#242424]    rounded-lg  py-6">
+      <section className="bg-[#242424]    rounded-lg  py-6 ">
         {/* Container Principal */}
         <div className="w-full  bg-[#242424] shadow-md rounded-xl px-4">
           {/* Título */}
@@ -192,7 +182,8 @@ const QuizWella = () => {
             <img
               src={current.image}
               alt="Produto"
-              className={`w-full min-w-[320px] h-[180px] border-[0.01rem] border-[#535050] rounded-lg object-cover`}
+              className={`w-full min-w-[320px] h-[180px] border-[0.01rem] border-[#535050] rounded-lg ${currentQuestionnaire === 0 ? "object-contain" : "object-cover"
+                }`}
             />
           </div>
           {/* Perguntas */}
@@ -209,7 +200,7 @@ const QuizWella = () => {
                   <button
                     key={idx}
                     onClick={() => handleOptionSelect(index, option)}
-                    className={`w-full py-[0.7rem] rounded-[0.85rem] text-sm font-c6display-light transition-all ${selectedOptions[index] === option
+                    className={`w-full py-[0.8rem] rounded-[0.85rem] text-sm font-semibold transition-all ${selectedOptions[index] === option
                       ? "bg-[#FBFBFB] text-[#121212]"
                       : "bg-black  border-[0.01rem] text-white hover:bg-gray-300"
                       }`}
@@ -226,7 +217,7 @@ const QuizWella = () => {
             <button
               onClick={handleNextQuestionnaire}
               disabled={!areAllQuestionsAnswered()}
-              className={`w-full py-2 rounded-[0.85rem] text-[#121212] font-c6display-regular transition-all ${areAllQuestionsAnswered()
+              className={`w-full py-2 rounded-[0.90rem] text-[#121212] font-c6text-bold transition-all ${areAllQuestionsAnswered()
                 ? "bg-[#FBC161] hover:[#FBC161]"
                 : "bg-gray-300 cursor-not-allowed"
                 }`}

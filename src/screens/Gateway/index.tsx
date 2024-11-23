@@ -1,7 +1,7 @@
 
 const GatewayPage = () => {
   return (
-    <div className="relative min-h-screen">
+    <div className="">
       <div className="w-full h-[calc(100vh-100px)] mt-4">
         <iframe
           src="https://go.disruptybr.com.br/djtek"
