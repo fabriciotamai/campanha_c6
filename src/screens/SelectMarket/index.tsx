@@ -48,8 +48,8 @@ export function SelectMarket() {
   };
 
   return (
-    <main className="flex flex-col items-center px-6 pt-36 space-y-6 min-h-screen antialiased">
-      <form className="w-full bg-[#242424] items-center flex flex-col rounded-md px-4 py-4">
+    <main className="flex flex-col items-center px-6 pt-36 space-y-6  antialiased">
+      <form className="w-full bg-[#242424] items-center flex flex-col rounded-lg px-4 py-4">
         <img
           src={IclonC6bank}
           alt="appc6"

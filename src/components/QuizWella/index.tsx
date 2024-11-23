@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import C6ATomos from '../../assets/c6/c6atomos.webp';
+import C6Finamciamento from '../../assets/c6/c6financimento.webp';
+import C6Friend from '../../assets/c6/C6FRIEND.webp';
 import C6investiment from '../../assets/c6/c6invest.webp';
 import Wella1 from "../../assets/c6/c6limit.webp";
 import C6Iphone from '../../assets/c6/c6seguroiphone.webp';
@@ -55,8 +57,19 @@ const QuizWella = () => {
       ],
     },
     {
-      title: `Responda e ganhe ${28.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
-      value: 28.90,
+      title: `Responda e ganhe ${34.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 34.90,
+      image: C6Friend,
+      questions: [
+        {
+          text: "Voce já desfruta do C6+Benefícios ?",
+          options: ["Sim", "Não", "Quero conhecer"],
+        },
+      ],
+    },
+    {
+      title: `Responda e ganhe ${52.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 52.90,
       image: Wella1,
       questions: [
         {
@@ -67,7 +80,7 @@ const QuizWella = () => {
     },
     {
       title: `Responda e ganhe ${24.34.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
-      value: 24.34,
+      value: 41.20,
       image: C6investiment,
       questions: [
         {
@@ -88,13 +101,24 @@ const QuizWella = () => {
       ],
     },
     {
-      title: `Responda e ganhe ${27.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
-      value: 26.90,
+      title: `Responda e ganhe ${30.99.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 30.99,
       image: C6SORRISO,
       questions: [
         {
           text: "Como você avalia o Seguro odontológico do C6 Bank?",
           options: ["Excelente", "Satisfatório", "Insatisfatório"],
+        },
+      ],
+    },
+    {
+      title: `Responda e ganhe ${37.90.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`,
+      value: 37.90,
+      image: C6Finamciamento,
+      questions: [
+        {
+          text: "Como você avalia as taxa do C6 financimanto ?",
+          options: ["Alta", "Execelente", "Razoavel"],
         },
       ],
     },
@@ -151,7 +175,7 @@ const QuizWella = () => {
             {current.title}
           </h1>
           {/* Imagem */}
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center items-center mb-6 w-min-[90%] h-[12rem] bg-[#242424] rounded-md">
             <img
               src={current.image}
               alt="Produto"
@@ -178,14 +202,15 @@ const QuizWella = () => {
                 ))}
               </div>
             </div>
-          ))}
+          ))
+          }
           {/* Botão de Envio */}
           <div className="mt-8">
             <button
               onClick={handleNextQuestionnaire}
               disabled={!areAllQuestionsAnswered()}
               className={`w-full py-3 rounded-lg text-[#121212] font-c6display-regular transition-all ${areAllQuestionsAnswered()
-                ? "bg-[#FBC161] hover:bg-orange-600"
+                ? "bg-[#FBC161] hover:[#FBC161]"
                 : "bg-gray-300 cursor-not-allowed"
                 }`}
             >
@@ -194,9 +219,9 @@ const QuizWella = () => {
                 : "Enviar respostas"}
             </button>
           </div>
-        </div>
-      </section>
-    </div>
+        </div >
+      </section >
+    </div >
   );
 };
 

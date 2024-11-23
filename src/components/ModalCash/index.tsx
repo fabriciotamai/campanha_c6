@@ -32,11 +32,11 @@ export function ModalCash({ isVisible, cashValue, onClose }: ModalCashProps) {
 
   return (
     <div
-      className="fixed inset-0 flex h-full justify-center bg-black bg-opacity-50 z-50 px-6 pt-48 py-4"
+      className="fixed inset-0 flex h-full  justify-center bg-black bg-opacity-50 z-50 px-6 pt-56 py-4"
       onClick={onClose} // Fecha o modal ao clicar fora
     >
       <div
-        className="bg-[#242424] h-[15rem] px-4 py-10 rounded-lg shadow-lg max-w-md w-full flex flex-col items-center"
+        className="bg-[#242424] h-[15rem] px-4 py-10 rounded-2xl shadow-lg max-w-md w-full flex flex-col items-center"
         onClick={(e) => e.stopPropagation()} // Impede que o clique dentro do modal feche-o
       >
         {/* Logo */}

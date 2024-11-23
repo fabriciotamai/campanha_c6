@@ -1,6 +1,7 @@
 import ImgC6 from "../../assets/c6/logoc6bank.svg";
 import { useAppContext } from "../../context/AppContext";
 
+
 const Header = () => {
   const { quizScore, setIsModalOpen } = useAppContext(); // Pega o estado do modal
 

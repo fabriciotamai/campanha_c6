@@ -73,7 +73,7 @@ const Login = () => {
           </div>
           <button
             onClick={handleStart}
-            className="bg-white hover:bg-orange-600 w-full text-black font-c6display-regular py-2 px-6 rounded-md justify-end transition"
+            className="bg-white hover:bg-[#fbc161] w-full text-black font-c6display-regular py-2 px-6 rounded-md justify-end transition"
           >
             Começar
           </button>
