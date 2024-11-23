@@ -67,7 +67,7 @@ const SaquePage = () => {
 
 
   return (
-    <div className="flex flex-col items-center px-4 pt-4  bg-[#121212] antialiased">
+    <div className="flex flex-col items-center px-4 pt-24  bg-[#121212] antialiased">
       <section
         className="flex flex-row justify-between w-full gap-1 flex-wrap"
         ref={containerRef}

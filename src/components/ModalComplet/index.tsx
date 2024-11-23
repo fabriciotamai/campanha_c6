@@ -37,8 +37,8 @@ export function ModalComplet({ isVisible, onComplete }: IsDataProps) {
 
   return (
     <div className="fixed inset-0 flex w-full justify-center bg-black bg-opacity-50 z-50 px-6 pt-20 antialiased shadow-lg">
-      <section className="bg-[#121212] rounded-xl items-center h-[70%] flex flex-col">
-        <div className="rounded-lg shadow-lg text-center w-full h-[16rem] flex flex-col items-center justify-center">
+      <section className="bg-[#212121]  items-center h-[70%] flex flex-col rounded-xl">
+        <div className=" text-center w-full h-[16rem] flex flex-col items-center justify-center">
           <div className="w-48 h-48 relative">
             <CircularProgressbar
               value={progress}
@@ -71,6 +71,7 @@ export function ModalComplet({ isVisible, onComplete }: IsDataProps) {
         <button onClick={() => navigate('/saque')} className="w-[90%] bg-[#F4F4F4] px-12 py-3 rounded-[0.85rem] mt-20 font-bold">
           Sacar meu saldo
         </button>
+
       </section>
     </div>
   );

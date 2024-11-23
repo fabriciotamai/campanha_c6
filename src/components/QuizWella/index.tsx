@@ -22,7 +22,6 @@ const QuizWella = () => {
   const [isCompleteModalVisible, setCompleteModalVisible] = useState(false);
 
   useEffect(() => {
-    console.log('rodando')
     window.scrollTo({
       top: 0,
       left: 0,
