@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import C6ATomos from '../../assets/c6/c6atomos.webp';
 import C6Finamciamento from '../../assets/c6/c6financimento.webp';
@@ -20,6 +20,16 @@ const QuizWella = () => {
   const [selectedOptions, setSelectedOptions] = useState<{ [key: number]: string }>({});
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentCashValue, setCurrentCashValue] = useState<number>(0);
+
+  useEffect(() => {
+    console.log('rodando')
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+
+  }, []);
 
 
   const questionnaires = [
@@ -160,7 +170,7 @@ const QuizWella = () => {
   };
 
   return (
-    <div className="flex flex-col items-center   antialiased bg-[#121212]">
+    <div className="flex flex-col items-center   antialiased bg-[#121212] pt-24">
       {/* Modal */}
       <ModalCash
         isVisible={isModalVisible}
