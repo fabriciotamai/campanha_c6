@@ -49,7 +49,7 @@ const ErrorModal = () => {
         background: "#212121",
         borderRadius: "10px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        padding: "15px 20px",
+        padding: "0px 20px",
         textAlign: "left",
         color: "#fff",
         alignItems: "center",
@@ -58,7 +58,8 @@ const ErrorModal = () => {
     >
       <div
         style={{
-          padding: '10px 0px',
+          paddingTop: "30px",
+          paddingBottom: '20px',
           display: "flex",
           flexDirection: "row",
           alignItems: "center",

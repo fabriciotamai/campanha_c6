@@ -171,7 +171,7 @@ const QuizWella = () => {
         cashValue={currentCashValue}
       />
       <section className="bg-[#242424]    rounded-lg  py-6 ">
-        {/* Container Principal */}
+
         <div className="w-full  bg-[#242424] shadow-md rounded-xl px-4">
           {/* Título */}
           <h1 className="bg-gradient-to-r from-gradient1 via-gradient3 to-gradient6 bg-clip-text text-transparent font-c6text-semibold  text-center text-[1.2rem] mb-6">
@@ -217,7 +217,7 @@ const QuizWella = () => {
             <button
               onClick={handleNextQuestionnaire}
               disabled={!areAllQuestionsAnswered()}
-              className={`w-full py-2 rounded-[0.90rem] text-[#121212] font-c6text-bold transition-all ${areAllQuestionsAnswered()
+              className={`w-full py-3 rounded-[0.90rem] text-[#121212] font-c6text-bold transition-all ${areAllQuestionsAnswered()
                 ? "bg-[#FBC161] hover:[#FBC161]"
                 : "bg-gray-300 cursor-not-allowed"
                 }`}

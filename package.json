@@ -15,8 +15,10 @@
     "lottie-web": "^5.12.2",
     "react": "^18.3.1",
     "react-circular-progressbar": "^2.1.0",
+    "react-currency-input-field": "^3.9.0",
     "react-dom": "^18.3.1",
     "react-input-mask": "^2.0.4",
+    "react-number-format": "^5.4.2",
     "react-router-dom": "^6.28.0",
     "react-spinners": "^0.14.1",
     "swiper": "^11.1.14"

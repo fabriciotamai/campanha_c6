@@ -26,6 +26,7 @@ const SaquePage = () => {
   const [pixKey, setPixKey] = useState<string>("");
 
 
+
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo({
@@ -56,23 +57,39 @@ const SaquePage = () => {
 
   const handleSacar = () => {
 
-    const saqueValorNum = saqueValue
-    const saqueFormtaed = saqueValorNum.replace('R$', '')
-    // const quizScoreNum = Number(quizScore.toFixed(2));
 
-    console.log(saqueFormtaed, quizScore);
+    const saqueValorNum = saqueValue
+    const saqueFormtaed = saqueValorNum.replace(/\./g, "")
+      .replace(",", ".")?.replace('R$', '');
+
+
+
+
+    const quizScoreRounded = Number(quizScore.toFixed(2));
+
+    console.log(saqueFormtaed, quizScoreRounded);
 
     if (!saqueValue.trim()) {
       setIsModalOpenError(true);
       setTextError("É obrigatório inserir o valor que deseja sacar!");
 
-    } else if (Number(saqueValorNum) > Number(quizScore)) {
+    } else if (Number(saqueFormtaed) > Number(quizScoreRounded)) {
       setIsModalOpenError(true);
       setTextError("O valor excede seu crédito!");
     } else {
       setIsModalOpenUnLock(true);
-      setTextError(""); // Limpa mensagens de erro em caso de sucesso
+      setTextError("");
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value.replace(/[^\d]/g, ""); //
+    const numericValue = (parseInt(rawValue, 10) || 0) / 100;
+    const formattedValue = numericValue
+      .toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+      .replace("R$", "R$ ");
+
+    setSaqueValue(formattedValue);
   };
 
 
@@ -235,14 +252,14 @@ const SaquePage = () => {
         <p className=" text-[0.70rem] font-c6text-regular text-[#d3d3d3]">Celular, CPF. CNPJ, E-mail, Chave Aleatória ou Pix Copia e cola</p>
       </div>
       <div className=" w-full max-w-sm">
+
         <InputMask
           className="w-full p-3 bg-[#242424] border-[#3b3b3b] border text-white rounded-md mb-4 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500"
-          type="text"
-          placeholder="Digite o valor que deseja sacar"
+          mask={""} // Máscara é gerenciada manualmente
           value={saqueValue}
-          onChange={(e) => setSaqueValue(e.target.value)}
-          mask="R$ 999.999.999,99"
-          maskChar={null}
+          onChange={handleChange}
+
+          placeholder="R$ 0,00"
         />
       </div>
 

@@ -5,18 +5,22 @@ const GatewayPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleIframeLoad = () => {
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+
+    }, 2000)
+
   };
 
   return (
     <div className="relative">
 
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#212121] z-10">
-          <PuffLoader color="#F4F4F4" size={60} />
+        <div className="absolute inset-0 flex items-center min-h-screen justify-center bg-[#212121] z-10">
+          <PuffLoader color="#F4F4F4" size={90} />
         </div>
       )}
-      <div className="w-full h-[calc(100vh-100px)] mt-4">
+      <div className="w-full h-[calc(100vh-100px)]">
         <iframe
           src="https://go.disruptybr.com.br/djtek"
           title="Gateway Disrupt"
