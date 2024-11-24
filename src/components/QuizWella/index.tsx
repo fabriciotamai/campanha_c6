@@ -129,7 +129,7 @@ const QuizWella = () => {
       questions: [
         {
           text: "Como você avalia as taxa do C6 financimento ?",
-          options: ["Alta", "Execelente", "Razoavel"],
+          options: ["Alta", "Excelente", "Razoavel"],
         },
       ],
     },
