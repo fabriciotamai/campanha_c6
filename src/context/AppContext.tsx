@@ -4,6 +4,7 @@ interface AppContextType {
   quizScore: number;
   setQuizScore: (score: number) => void;
   addToQuizScore: (value: number) => void;
+  resetQuizScore: (value: number) => void;
   isModalOpen: boolean;
   isModalOpenUnlock: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
@@ -36,6 +37,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setQuizScore((prevScore) => prevScore + value);
   };
 
+  const resetQuizScore = (value: number) => {
+    setQuizScore(value);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -47,6 +52,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         setIsModalOpenUnLock,
         isModalOpenError,
         isVisibleModalComplet,
+        resetQuizScore,
         setTextError,
         textError,
         setIsVisibleModalComplet,

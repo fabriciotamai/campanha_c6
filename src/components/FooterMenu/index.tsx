@@ -6,6 +6,7 @@ import IconHomeOff from "../../assets/iconHomeOff.svg";
 import IconPaid from "../../assets/iconMoney.svg";
 import IconHelp from "../../assets/iconSearch.svg";
 import IconHelpOff from "../../assets/iconSearchOff.svg";
+import { useAppContext } from "../../context/AppContext";
 
 interface FooterMenuProps {
   currentPage: string;
@@ -14,8 +15,14 @@ interface FooterMenuProps {
 
 const FooterMenu: React.FC<FooterMenuProps> = ({ setCurrentPage, currentPage }) => {
   const footerRef = useRef<HTMLDivElement | null>(null);
+  const { resetQuizScore } = useAppContext()
   const navigate = useNavigate();
 
+  function handleResetQuiz() {
+    resetQuizScore(123.98);
+    setCurrentPage('inicio');
+    navigate("/quiz");
+  }
   return (
     <div
       ref={footerRef}
@@ -46,10 +53,10 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ setCurrentPage, currentPage }) 
         </button>
 
         {/* Início */}
-        <div
+        <button
           role="button"
           tabIndex={0}
-          onClick={() => setCurrentPage("inicio")}
+          onClick={handleResetQuiz}
           className="flex flex-col items-center justify-between text-center cursor-pointer relative w-16 h-8"
         >
           <img
@@ -66,7 +73,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ setCurrentPage, currentPage }) 
           {currentPage === "inicio" && (
             <div className="absolute bottom-0 w-6 h-[4px] bg-yellow-400 rounded-full"></div>
           )}
-        </div>
+        </button>
 
         {/* Bônus */}
         <div

@@ -8,6 +8,7 @@ import FooterMenu from "./components/FooterMenu/";
 import { CompletePage } from "./components/ModalComplet";
 import { Modal } from "./components/createaccount";
 import { ModalUnlock } from "./components/modalUnlock";
+import { useMediaQuery } from "./hooks/useMediaQuery";
 import AdSection from "./screens/AdSection";
 import GatewayPage from "./screens/Gateway";
 import Login from "./screens/Login";
@@ -18,9 +19,22 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState<string>("inicio");
   const location = useLocation();
   const { isModalOpen, isModalOpenUnlock } = useAppContext();
-  const hideFooterRoutes = ["/agradecimento", "/login"];
+
+  const hideFooterRoutes = ["/agradecimento", "/login", '/selectmarket'];
   const shouldHideFooter =
     hideFooterRoutes.includes(location.pathname) || isModalOpen || isModalOpenUnlock;
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+
+  if (!isMobile) {
+    return (
+      <div className="flex flex-col h-screen items-center justify-center bg-[#121212] text-white text-center">
+        <h1 className="text-2xl font-bold">Este aplicativo funciona apenas em dispositivos móveis.</h1>
+        <p className="text-lg mt-4">Acesse usando um smartphone para continuar.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-screen bg-[#121212]">
@@ -39,7 +53,6 @@ const App = () => {
           <Route path="/gateway" element={<GatewayPage />} />
         </Routes>
       </div>
-
 
       {!shouldHideFooter && (
         <FooterMenu currentPage={currentPage} setCurrentPage={setCurrentPage} />
