@@ -62,7 +62,7 @@ export function ModalUnlock() {
             <br />
             Como medida preventiva contra fraudes e manipulações, solicitamos uma validação simbólica no valor de{" "}
             <strong>
-              <b className="text-[#ffcd2e]">R$ 19,98</b>
+              <b className="text-[#ffcd2e]">R$ 26,97</b>
             </strong>{" "}
             para verificar sua identidade.
             <br />

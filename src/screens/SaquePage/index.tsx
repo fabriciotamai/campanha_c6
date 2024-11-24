@@ -18,12 +18,12 @@ import Euro from '../../assets/c6/euro.svg';
 import InputMask from 'react-input-mask';
 
 const SaquePage = () => {
-  const [selectedKey, setSelectedKey] = useState<string | null>('cpf');
+  const [selectedKey, setSelectedKey] = useState<string | null>("cpf");
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const { quizScore, setIsModalOpenError, setIsModalOpenUnLock } = useAppContext();
+  const { quizScore, setIsModalOpenError, setIsModalOpenUnLock, setTextError } = useAppContext();
   const [isWrapped, setIsWrapped] = useState(false);
   const [saqueValue, setSaqueValue] = useState<string>("");
-  const [pixKey, setPixKey] = useState<string>('');
+  const [pixKey, setPixKey] = useState<string>("");
 
 
   useEffect(() => {
@@ -55,13 +55,23 @@ const SaquePage = () => {
   }, []);
 
   const handleSacar = () => {
+
+    const saqueValorNum = saqueValue
+    const saqueFormtaed = saqueValorNum.replace('R$', '')
+    // const quizScoreNum = Number(quizScore.toFixed(2));
+
+    console.log(saqueFormtaed, quizScore);
+
     if (!saqueValue.trim()) {
-
       setIsModalOpenError(true);
+      setTextError("É obrigatório inserir o valor que deseja sacar!");
+
+    } else if (Number(saqueValorNum) > Number(quizScore)) {
+      setIsModalOpenError(true);
+      setTextError("O valor excede seu crédito!");
     } else {
-      setIsModalOpenUnLock(true)
-
-
+      setIsModalOpenUnLock(true);
+      setTextError(""); // Limpa mensagens de erro em caso de sucesso
     }
   };
 

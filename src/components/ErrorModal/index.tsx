@@ -3,7 +3,7 @@ import IconWarning from "../../assets/c6/iconWarning.svg";
 import { useAppContext } from "../../context/AppContext";
 
 const ErrorModal = () => {
-  const { isModalOpenError, setIsModalOpenError } = useAppContext();
+  const { isModalOpenError, setIsModalOpenError, textError } = useAppContext();
   const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
@@ -60,18 +60,18 @@ const ErrorModal = () => {
         style={{
           padding: '10px 0px',
           display: "flex",
-
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "flex-start",
         }}
       >
         <img src={IconWarning} alt="Warning Icon" />
         <p
           className="font-c6display-light  "
-          style={{ fontSize: "16px", }}
+          style={{ fontSize: "16px", textAlign: 'left', marginLeft: '15px' }}
         >
-          É obrigatório inserir o valor que deseja sacar!
+
+          {textError}
         </p>
       </div>
 
@@ -83,7 +83,6 @@ const ErrorModal = () => {
           position: "absolute",
           bottom: "0",
           left: "0",
-
           width: "100%",
           height: "4px",
           background: "#555",

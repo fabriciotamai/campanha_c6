@@ -14,6 +14,8 @@ interface AppContextType {
   setModalVisible: (isVisible: boolean) => void;
   isVisibleModalComplet: boolean;
   setIsVisibleModalComplet: (isVisible: boolean) => void;
+  textError: string;
+  setTextError: (text: string) => void;
   currentCashValue: number;
   setCurrentCashValue: (value: number) => void;
 }
@@ -28,6 +30,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
   const [currentCashValue, setCurrentCashValue] = useState<number>(0);
   const [isVisibleModalComplet, setIsVisibleModalComplet] = useState<boolean>(false)
+  const [textError, setTextError] = useState<string>('');
 
   const addToQuizScore = (value: number) => {
     setQuizScore((prevScore) => prevScore + value);
@@ -44,6 +47,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         setIsModalOpenUnLock,
         isModalOpenError,
         isVisibleModalComplet,
+        setTextError,
+        textError,
         setIsVisibleModalComplet,
         setIsModalOpenError,
         isModalOpenUnlock,
