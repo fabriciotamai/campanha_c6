@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import VideoCampanha from '../../assets/c6/C1.mp4';
+
 import Iconc6Payment from '../../assets/c6/c6icon.svg';
 import { useAppContext } from '../../context/AppContext';
 
@@ -30,10 +30,13 @@ export function PaymentVideo() {
       <p className="text-[#d3d3d3] text-center px-8 pt-2">Veja como liberar seu saque assistindo ao video.</p>
       <section className="flex justify-center mt-2 px-6 ">
         <video
-          src={VideoCampanha}
+          src="/C1.mp4"
           controls
+          controlsList="nodownload"
           loop
+          playsInline
           className="w-full max-w-3xl border border-gray-700 rounded-lg"
+          onContextMenu={(e) => e.preventDefault()}
         />
       </section>
       <div className="px-6">
