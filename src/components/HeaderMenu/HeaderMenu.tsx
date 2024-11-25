@@ -1,4 +1,5 @@
 import ImgC6 from "../../assets/c6/logoc6bank.svg";
+import IconMenu from '../../assets/c6/menu.svg';
 import { useAppContext } from "../../context/AppContext";
 
 const Header = () => {
@@ -20,12 +21,16 @@ const Header = () => {
               R$ {quizScore.toFixed(2).replace('.', ',')}
             </span>
           ) : (
-            <button
-              onClick={handleOpenModal}
-              className="bg-[#fbfbfb] font-c6display-light text-[0.90rem] rounded-md py-[0.40rem] px-4"
-            >
-              <p>Abrir minha conta</p>
-            </button>
+            <div className="flex gap-2">
+
+              <button
+                onClick={handleOpenModal}
+                className="bg-[#fbfbfb] font-c6display-light text-[0.90rem] rounded-md py-[0.40rem] px-4"
+              >
+                <p>Abrir minha conta</p>
+              </button>
+              <img src={IconMenu} width={20} height={20} alt="menu" />
+            </div>
           )}
         </div>
       </section>
