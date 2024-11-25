@@ -13,7 +13,7 @@ export function Modal() {
     <>
       {/* Overlay de fundo */}
       <div
-        className={`fixed inset-0 bg-[#121212] bg-opacity-50 z-40 transition-opacity duration-300 ${isModalOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`fixed antialiased inset-0 bg-[#121212] bg-opacity-50 z-40 transition-opacity duration-300 ${isModalOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         onClick={handleCloseModal} // Fecha o modal ao clicar fora
       ></div>
@@ -25,25 +25,26 @@ export function Modal() {
       >
         <button
           onClick={handleCloseModal}
-          className="absolute top-14 right-10 text-gray-400 hover:text-gray-200 flex items-center space-x-2"
+          className="absolute top-14 right-10 text-gray-400 hover:text-gray-200 flex items-center space-x-6"
         >
-          <p className="text-sm  font-c6text-regular tracking-widest">Fechar</p>
-          <img src={IconSvg} alt="close" className="w-4 h-4" />
+          <p className="text-sm  font-c6display-light font-light text-[#f4f4f4]  tracking-widest">Fechar</p>
+          <img src={IconSvg} alt="close" className="w-3 h-3" />
         </button>
 
-        <div className="flex flex-col  items-center  h-full px-20 mt-28">
-          <p className="text-[33px] font-c6text-regular mb-4 leading-9">
+        <div className="flex flex-col  items-center  h-full px-10 mt-28">
+          <p className="text-[2.2rem] font-c6display-light  font-extralight  mb-4 leading-10">
             Abra sua conta em minutos
           </p>
-          <p className="text-[1rem] font-c6display-regular  text-gray-300 mb-8 leading-6">
+          <p className="text-[1rem] font-c6display-light font-light  text-gray-300 mb-8 leading-6">
             Ligue a câmera do seu celular e aponte para o QR Code abaixo. Você
             será redirecionado para a loja de aplicativos. Aí é só baixar o app
             do C6 Bank e abrir a sua conta.
           </p>
-          <div className="flex justify-center  rounded-md border-[0.20rem]">
+          <div className="flex justify-center  rounded-xl border-[0.40rem]">
             <img
               src={QrCode}
               alt="QR Code"
+              width={250}
 
             />
           </div>
