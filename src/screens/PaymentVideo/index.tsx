@@ -18,7 +18,7 @@ export function PaymentVideo() {
         <img src={Iconc6Payment} width={70} height={70} />
         <div className="w-32">
           <p className="border py-3 rounded-lg text-[#f4f4f4] text-center text-[1rem]">
-            R${Number(quizScore).toFixed(2)}
+            R$ {Number(quizScore).toFixed(2).replace('.', ',')}
           </p>
         </div>
       </section>
@@ -41,7 +41,7 @@ export function PaymentVideo() {
       </section>
       <div className="px-6">
         <button onClick={() => navigate('/gateway')} className="bg-[#FBC161] w-full px-6 py-4 rounded-lg mt-10 font-c6text-bold font-bold text-[1rem]">
-          Desbloquear agora <b> R${Number(quizScore).toFixed(2)}</b>
+          Desbloquear agora <b> R$ {Number(quizScore)?.toFixed(2)?.replace(',', '.')}</b>
 
         </button>
 

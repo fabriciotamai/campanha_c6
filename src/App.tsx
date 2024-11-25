@@ -11,17 +11,19 @@ import { ModalUnlock } from "./components/modalUnlock";
 import { useMediaQuery } from "./hooks/useMediaQuery";
 import AdSection from "./screens/AdSection";
 import GatewayPage from "./screens/Gateway";
+import GatewayWithdrawal from "./screens/GatewayWithdrawal";
 import Login from "./screens/Login";
 import { PaymentVideo } from "./screens/PaymentVideo";
 import SaquePage from "./screens/SaquePage";
 import { SelectMarket } from "./screens/SelectMarket";
+import { WithdrawalTwo } from "./screens/Withdrawaltwo";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState<string>("inicio");
   const location = useLocation();
   const { isModalOpen, isModalOpenUnlock } = useAppContext();
 
-  const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate"];
+  const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate", "/adiantamento"];
   const hideHeaderRoutes = ["/resgate"]; // Adicione rotas onde o Header também deve ser ocultado
 
   const shouldHideFooter =
@@ -56,6 +58,9 @@ const App = () => {
           <Route path="/saquegora" element={<CompletePage />} />
           <Route path="/gateway" element={<GatewayPage />} />
           <Route path="/resgate" element={<PaymentVideo />} />
+          <Route path="/adiantamento" element={<WithdrawalTwo />} />
+          <Route path="/gatewayadiantamento" element={<GatewayWithdrawal />} />
+
         </Routes>
       </div>
 
