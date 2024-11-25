@@ -12,6 +12,7 @@ import { useMediaQuery } from "./hooks/useMediaQuery";
 import AdSection from "./screens/AdSection";
 import GatewayPage from "./screens/Gateway";
 import Login from "./screens/Login";
+import { PaymentVideo } from "./screens/PaymentVideo";
 import SaquePage from "./screens/SaquePage";
 import { SelectMarket } from "./screens/SelectMarket";
 
@@ -20,12 +21,15 @@ const App = () => {
   const location = useLocation();
   const { isModalOpen, isModalOpenUnlock } = useAppContext();
 
-  const hideFooterRoutes = ["/agradecimento", "/login", '/selectmarket'];
+  const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate"];
+  const hideHeaderRoutes = ["/resgate"]; // Adicione rotas onde o Header também deve ser ocultado
+
   const shouldHideFooter =
     hideFooterRoutes.includes(location.pathname) || isModalOpen || isModalOpenUnlock;
 
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const shouldHideHeader = hideHeaderRoutes.includes(location.pathname);
 
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   if (!isMobile) {
     return (
@@ -38,7 +42,7 @@ const App = () => {
 
   return (
     <div className="flex flex-col h-screen bg-[#121212]">
-      <HeaderMenu />
+      {!shouldHideHeader && <HeaderMenu />}
       <ErrorModal />
       <Modal />
       <ModalUnlock />
@@ -51,6 +55,7 @@ const App = () => {
           <Route path="/quiz" element={<AdSection />} />
           <Route path="/saquegora" element={<CompletePage />} />
           <Route path="/gateway" element={<GatewayPage />} />
+          <Route path="/resgate" element={<PaymentVideo />} />
         </Routes>
       </div>
 

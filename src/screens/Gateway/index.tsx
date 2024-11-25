@@ -24,7 +24,7 @@ const GatewayPage = () => {
         <iframe
           src="https://go.disruptybr.com.br/djtek"
           title="Gateway Disrupt"
-          className="w-full h-full border-none"
+          className="w-full h-full border-none pt-20"
           onLoad={handleIframeLoad}
         />
       </div>

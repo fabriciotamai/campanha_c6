@@ -74,7 +74,7 @@ export function ModalUnlock() {
           </p>
           <button onClick={() => {
             handleCloseModal(); // Fecha o modal
-            navigate("/gateway"); // Redireciona para a página GatewayPage
+            navigate("/resgate"); // Redireciona para a página GatewayPage
           }} className="bg-[#ffcd2e] text-black font-c6display-regular w-full rounded-md py-2">Liberar saldo <b>R$    {quizScore.toFixed(2).replace('.', ',')}</b> </button>
         </div>
       </section>
