@@ -24,7 +24,7 @@ const App = () => {
   const { isModalOpen, isModalOpenUnlock } = useAppContext();
 
   const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate", "/adiantamento"];
-  const hideHeaderRoutes = ["/resgate"]; // Adicione rotas onde o Header também deve ser ocultado
+  const hideHeaderRoutes = ["/resgate", '/adiantamento']; // Adicione rotas onde o Header também deve ser ocultado
 
   const shouldHideFooter =
     hideFooterRoutes.includes(location.pathname) || isModalOpen || isModalOpenUnlock;

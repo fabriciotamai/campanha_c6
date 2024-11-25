@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PuffLoader from "react-spinners/PuffLoader";
 
 const GatewayPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [isLoading]);
+
   const handleIframeLoad = () => {
     setTimeout(() => {
       setIsLoading(false);
-
-    }, 2000)
-
+    }, 2000);
   };
 
   return (
