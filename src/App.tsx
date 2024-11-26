@@ -10,6 +10,7 @@ import { Modal } from "./components/createaccount";
 import { ModalUnlock } from "./components/modalUnlock";
 import { useMediaQuery } from "./hooks/useMediaQuery";
 import AdSection from "./screens/AdSection";
+import { ChatBot } from "./screens/ChatBot";
 import GatewayPage from "./screens/Gateway";
 import GatewayWithdrawal from "./screens/GatewayWithdrawal";
 import Login from "./screens/Login";
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/resgate" element={<PaymentVideo />} />
           <Route path="/adiantamento" element={<WithdrawalTwo />} />
           <Route path="/gatewayadiantamento" element={<GatewayWithdrawal />} />
+          <Route path="/chat" element={<ChatBot />} />
           <Route path="/perguntas" element={<Question />} />
 
         </Routes>
