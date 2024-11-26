@@ -89,7 +89,7 @@ export function SelectMarket() {
   };
 
   return (
-    <main className="flex flex-col items-center px-8 py-4 space-y-6 antialiased pt-24">
+    <main className="flex flex-col items-center px-8 py-4 space-y-6 antialiased pt-32">
       {/* <div ref={containerRef} className="w-full h-full absolute bottom-80 -right-48 opacity-15 object-cover" /> */}
       <form className="w-full max-w-md bg-[#242424] flex flex-col items-center rounded-md px-6 py-5 opacity-80">
         <img src={IclonC6bank} alt="appc6" className="w-32 py-4 rounded-lg" />
@@ -103,14 +103,15 @@ export function SelectMarket() {
 
         <div className="w-full">
           {/* Campo para email */}
-          <input
+          <input type="email"
             value={email}
             onChange={(e) => {
+
               setEmail(e.target.value);
               setIsEmailValid(true); // Resetar borda ao digitar
               setEmailError(null);
             }}
-            className={`rounded-[0.85rem] w-full border ${isEmailValid ? "border-[#F4F4F4]" : "border-red-500"
+            className={`rounded-[0.85rem] bg-none bg-transparent w-full border ${isEmailValid ? "border-[#F4F4F4]" : "border-red-500"
               } bg-transparent text-white font-c6display-regular text-base py-3 bg-black px-4 placeholder:text-sm focus:outline-none focus:border-[#fbc161] focus:ring-[#fbc161] focus:ring-1`}
             placeholder="Digite um email válido"
           />
@@ -144,7 +145,7 @@ export function SelectMarket() {
               <input
                 key={index}
                 id={`input-${index}`}
-                type="text"
+                type="numeric"
                 value={digit}
                 onFocus={preventScrollOnFocus} // Evitar scroll ao focar
                 onChange={(e) => handleInputChange(e.target.value, index)}
