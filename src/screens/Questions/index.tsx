@@ -1,6 +1,11 @@
 import { useState } from "react";
+import IconMesage from '../../assets/c6/chat.svg';
+
+// import {ChatBot} from '../ChatBot'
+import { useNavigate } from "react-router-dom";
 export function Question() {
   const [openQuestion, setOpenQuestion] = useState<number | null>(null);
+  const navigate = useNavigate();
   const toggleQuestion = (index: number) => {
     setOpenQuestion((prev) => (prev === index ? null : index));
   };
@@ -79,6 +84,12 @@ export function Question() {
           )}
         </div>
       </div>
+      <section onClick={() => navigate('/chat')} className="pt-20 px-6 justify-end items-end flex">
+        <button className="bg-[#242424] px-4 py-4 rounded-full ">
+          <img src={IconMesage} />
+
+        </button>
+      </section>
     </main>
   );
 }
