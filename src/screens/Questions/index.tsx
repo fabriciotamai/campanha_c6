@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SyncLoader } from "react-spinners";
-import Iconsend from '../../assets/c6/iconsend.svg';
+import Iconsend from "../../assets/c6/iconsend.svg";
 
 export function Question() {
   const [messages, setMessages] = useState<{ sender: string; text: string; timestamp: string }[]>([]);
@@ -11,6 +11,8 @@ export function Question() {
   const [isOnline, setIsOnline] = useState(true);
   const [inactiveTimer, setInactiveTimer] = useState<NodeJS.Timeout | null>(null); // Timer de inatividade
 
+  // Referência para o contêiner de mensagens
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const questions = [
     "Porque é preciso pagar a taxa?",
@@ -26,12 +28,10 @@ export function Question() {
     "O C6 Bank disponibiliza até 3 tokens por endereço de e-mail, o que significa que você tem até 3 oportunidades para concluir o processo com sucesso.",
   ];
 
-
   const getTimestamp = () => {
     const now = new Date();
     return now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
   };
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,6 +48,16 @@ export function Question() {
     startInactiveTimer();
   }, []);
 
+  // Sempre rola até o final quando as mensagens mudarem
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const startInactiveTimer = () => {
     if (inactiveTimer) clearTimeout(inactiveTimer);
@@ -62,7 +72,6 @@ export function Question() {
     );
   };
 
-
   const resetChat = () => {
     setIsOnline(true);
     setMessages([
@@ -75,7 +84,6 @@ export function Question() {
 
   const handleSendMessage = () => {
     if (input.trim() === "") return;
-
 
     if (!isOnline) {
       resetChat();
@@ -136,7 +144,7 @@ export function Question() {
   };
 
   return (
-    <main className="bg-[#121212] h-screen flex flex-col pt-24 ">
+    <main className="bg-[#121212]  flex flex-col pt-24 antialiased">
       <header className="bg-[#1e1e1e] py-2 text-[#f4f4f4] text-center font-medium flex justify-center items-center space-x-2">
         <div
           className={`w-3 h-3 rounded-full ${isOnline ? "bg-green-500" : "bg-gray-400"}`}
@@ -145,20 +153,20 @@ export function Question() {
         <span>Bianca - Assistente Virtual</span>
       </header>
 
-      <div className="flex-1 px-6 overflow-y-auto space-y-4 mt-4">
+      <div className="flex-1 px-6 overflow-y-auto space-y-4 mt-4 pb-24">
         {messages.map((message, index) => (
           <div
             key={index}
             className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-xs p-3 text-[0.80rem] rounded-lg ${message.sender === "user"
+              className={`max-w-xs px-3   flex flex-col py-2 text-[0.80rem] rounded-lg ${message.sender === "user"
                 ? "bg-[#fbc161] text-[#121212]"
                 : "bg-[#2b2b2b] text-[#f4f4f4]"
                 }`}
             >
               <p>{message.text}</p>
-              <p className="text-xs text-gray-400 text-right mt-1">{message.timestamp}</p>
+              <p className="text-[0.60rem] text-gray-400 text-right mt-1">{message.timestamp}</p>
             </div>
           </div>
         ))}
@@ -171,23 +179,25 @@ export function Question() {
             </div>
           </div>
         )}
+
+        {/* Referência para o scroll */}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="fixed bottom-12 left-0 w-full bg-[#1e1e1e] p-4 flex items-center space-x-2">
         <input
           type="text"
-          className="w-[90%] py-2  px-4 rounded-md bg-[#2b2b2b] text-[#d3d3d3] outline-none"
+          className="w-[90%] py-2 px-4 rounded-md bg-[#2b2b2b] text-[#d3d3d3] outline-none"
           placeholder={userName ? "Digite sua mensagem..." : "Digite seu nome..."}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
         />
         <button
-          className="  bg-[#2b2b2b] text-[#121212] py-2 px-3 rounded-md font-bold"
+          className="bg-[#2b2b2b] text-[#121212] py-2 px-3 rounded-md font-bold"
           onClick={handleSendMessage}
         >
-          <img src={Iconsend} />
-
+          <img src={Iconsend} alt="Enviar" />
         </button>
       </div>
     </main>
