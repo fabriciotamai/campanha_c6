@@ -266,7 +266,7 @@ const SaquePage = () => {
 
 
       {/* Botão */}
-      <button onClick={() => handleSacar()} className="max-w-sm bg-[#ffcd2e] w-full uppercase font-bold text-black font-c6display-regular  py-2 px-8 rounded-md hover:bg-green-600 transition-all">
+      <button onClick={() => handleSacar()} className="max-w-sm bg-[#ffcd2e] w-full   text-black font-c6display-regular  py-2 px-8 rounded-md hover:bg-green-600 transition-all">
         Liberar saque
       </button>
     </div>
