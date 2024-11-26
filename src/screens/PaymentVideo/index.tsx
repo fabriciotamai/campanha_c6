@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import Iconc6Payment from '../../assets/c6/c6icon.svg';
+import poster from '../../assets/c6/thumb.png';
 import { useAppContext } from '../../context/AppContext';
 
 export function PaymentVideo() {
@@ -34,6 +35,7 @@ export function PaymentVideo() {
           controls
           controlsList="nodownload"
           loop
+          poster={poster}
           playsInline
           className="w-full max-w-3xl border border-gray-700 rounded-lg"
           onContextMenu={(e) => e.preventDefault()}
