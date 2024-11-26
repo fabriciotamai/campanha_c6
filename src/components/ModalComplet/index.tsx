@@ -64,7 +64,7 @@ export function CompletePage() {
           onClick={() => navigate("/saque")}
           className="w-[90%] bg-[#F4F4F4] px-12 py-3  mb-6 rounded-[0.85rem] font-bold text-[#212121] hover:bg-gray-300 transition"
         >
-          Sacar meu saldo
+          Liberar meu saldo
         </button>
       </div>
     </div>

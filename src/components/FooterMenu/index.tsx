@@ -23,6 +23,12 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ setCurrentPage, currentPage }) 
     setCurrentPage('inicio');
     navigate("/quiz");
   }
+
+  function handleResetQuestion() {
+    resetQuizScore(0);
+    setCurrentPage('bonus');
+    navigate("/perguntas");
+  }
   return (
     <div
       ref={footerRef}
@@ -79,7 +85,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ setCurrentPage, currentPage }) 
         <div
           role="button"
           tabIndex={0}
-          onClick={() => setCurrentPage("bonus")}
+          onClick={handleResetQuestion}
           className="flex flex-col items-center justify-between text-center cursor-pointer relative w-16 h-8"
         >
           <img

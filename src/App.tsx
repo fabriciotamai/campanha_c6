@@ -14,6 +14,7 @@ import GatewayPage from "./screens/Gateway";
 import GatewayWithdrawal from "./screens/GatewayWithdrawal";
 import Login from "./screens/Login";
 import { PaymentVideo } from "./screens/PaymentVideo";
+import { Question } from "./screens/Questions";
 import SaquePage from "./screens/SaquePage";
 import { SelectMarket } from "./screens/SelectMarket";
 import { WithdrawalTwo } from "./screens/Withdrawaltwo";
@@ -50,7 +51,7 @@ const App = () => {
       <ModalUnlock />
       <div className="flex-grow overflow-y-auto pb-16">
         <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/perguntas" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/selectmarket" element={<SelectMarket />} />
           <Route path="/saque" element={<SaquePage />} />
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/resgate" element={<PaymentVideo />} />
           <Route path="/adiantamento" element={<WithdrawalTwo />} />
           <Route path="/gatewayadiantamento" element={<GatewayWithdrawal />} />
+          <Route path="/perguntas" element={<Question />} />
 
         </Routes>
       </div>
