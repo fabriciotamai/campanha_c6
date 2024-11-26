@@ -51,7 +51,7 @@ const App = () => {
       <ModalUnlock />
       <div className="flex-grow overflow-y-auto pb-16">
         <Routes>
-          <Route path="/" element={<Navigate to="/perguntas" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/selectmarket" element={<SelectMarket />} />
           <Route path="/saque" element={<SaquePage />} />
