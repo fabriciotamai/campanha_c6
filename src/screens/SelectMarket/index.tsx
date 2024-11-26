@@ -145,7 +145,7 @@ export function SelectMarket() {
               <input
                 key={index}
                 id={`input-${index}`}
-                type="numeric"
+                type="number"
                 value={digit}
                 onFocus={preventScrollOnFocus} // Evitar scroll ao focar
                 onChange={(e) => handleInputChange(e.target.value, index)}
