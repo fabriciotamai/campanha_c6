@@ -114,7 +114,7 @@ const SaquePage = () => {
               <p className="text-[0.70rem]">Real</p>
             </div>
             <div className="py-2" />
-            <p className="text-[0.90rem] font-c6display-light py-2">
+            <p className="text-[0.90rem] font-c6display-regular py-2 text-left ">
               R$ {(quizScore)?.toFixed(2)?.replace('.', ',') ?? '0,00'}
             </p>
           </div>
@@ -143,7 +143,7 @@ const SaquePage = () => {
               <p className="text-[0.70rem]">Dólar</p>
             </div>
             <div className="py-2" />
-            <p className="text-[0.90rem] font-c6display-light py-2">R$ 0,00</p>
+            <p className="text-[0.90rem] font-c6display-regular py-2 text-left ">R$ 0,00</p>
           </div>
           <div className="flex flex-row items-center rounded-b-md bg-[#ffcd2e] justify-between border-t-[1px] border-t-[#4b4a4a] border-opacity-50 py-2 px-2">
             <p className="text-[0.70rem] text-[#000]">Indisponível</p>
@@ -166,7 +166,7 @@ const SaquePage = () => {
               <p className="text-[0.70rem]">Euro</p>
             </div>
             <div className="py-2" />
-            <p className="text-[0.90rem] font-c6display-light py-2">R$ 0,00</p>
+            <p className="text-[0.90rem] font-c6display-regular py-2 text-left ">R$ 0,00</p>
           </div>
           <div className="flex flex-row items-center rounded-b-md bg-[#ffcd2e] justify-between border-t-[1px] border-t-[#4b4a4a] border-opacity-50 py-2 px-2">
             <p className="text-[0.70rem] text-[#000]">Indisponível</p>

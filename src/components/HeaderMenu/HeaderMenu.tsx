@@ -17,7 +17,7 @@ const Header = () => {
         </div>
         <div>
           {quizScore > 0 ? (
-            <span className="bg-white text-black font-c6display-light px-6 py-2 rounded-md text-[1.15rem]">
+            <span className="bg-white text-black font-c6display-regular px-6 py-2 rounded-md text-[1.15rem]">
               R$ {quizScore.toFixed(2).replace('.', ',')}
             </span>
           ) : (
@@ -25,7 +25,7 @@ const Header = () => {
 
               <button
                 onClick={handleOpenModal}
-                className="bg-[#fbfbfb] font-c6display-light text-[0.90rem] rounded-md py-[0.40rem] px-4"
+                className="bg-[#fbfbfb] font-c6display-regular text-[0.90rem] rounded-md py-[0.40rem] px-4"
               >
                 <p>Abrir minha conta</p>
               </button>
