@@ -15,7 +15,7 @@ const Login = () => {
   const expirationTime = new Date().getTime() + 4 * 60 * 60 * 1000;
 
   return (
-    <div className="flex flex-col items-center  bg-[#121212] overflow-auto pt-20 pb-16 ">
+    <div className="flex flex-col items-center  bg-[#121212] overflow-auto pt-20 ">
       {/* Conteúdo da página */}
       <div className="relative max-w-[370px] sm:max-w-sm w-full  rounded-xl overflow-hidden shadow-xl py-6">
         {/* Imagem de Fundo */}
