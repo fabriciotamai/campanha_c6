@@ -90,7 +90,7 @@ export function TransationBlackPay() {
       setQrCode(response.data.pix.code);
       setShowModal(true);
     } catch (err) {
-      setError('Erro ao criar a transação. Tente novamente.');
+      setError('Cheque os dados e tente novamente !');
       console.error(err);
     } finally {
       setLoading(false);
