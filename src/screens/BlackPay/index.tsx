@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
 import { FooterOriginalC6 } from '../../components/FooterOriginalC6';
 import { QrCodeStepOne, } from '../../components/QrCodeStepOne';
 import api from '../../lib/api';
 
 export function TransationBlackPay() {
-  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
