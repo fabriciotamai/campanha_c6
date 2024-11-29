@@ -4,6 +4,8 @@ import { FooterOriginalC6 } from '../../components/FooterOriginalC6';
 import { QrCodeStepOne, } from '../../components/QrCodeStepOne';
 import api from '../../lib/api';
 
+import InputMask from 'react-input-mask';
+
 export function TransationBlackPay() {
 
   const [formData, setFormData] = useState({
@@ -136,7 +138,7 @@ export function TransationBlackPay() {
           <input
             type="text"
             name="nome"
-            className="custom-input bg-[#303030] text-white shadow-lg rounded-xl font-c6display-light font-light placeholder-white px-4 py-2 text-[0.90rem] border-[#3b3b3b] border outline-none"
+            className="custom-input bg-[#303030] text-white rounded-xl font-c6display-light font-light placeholder-white px-4 py-3 text-[0.90rem] border-[#3b3b3b] border outline-none focus:border-[#FBC161] focus:outline-none"
             value={formData.nome}
             onChange={handleChange}
             placeholder="Nome"
@@ -144,27 +146,39 @@ export function TransationBlackPay() {
           <input
             type="email"
             name="email"
-            className="custom-input bg-[#303030] text-white shadow-lg rounded-xl font-c6display-light font-light placeholder-white px-4 py-2 text-[0.90rem] border-[#3b3b3b] border outline-none appearance-none"
+            className="custom-input bg-[#303030] text-white rounded-xl font-c6display-light font-light placeholder-white px-4 py-3 text-[0.90rem] border-[#3b3b3b] border outline-none focus:border-[#FBC161] focus:outline-none"
             value={formData.email}
             onChange={handleChange}
             placeholder="E-mail"
           />
-          <input
-            type="text"
-            name="telefone"
-            className="custom-input bg-[#303030] text-white rounded-xl font-c6display-light font-light placeholder-white px-4 py-2 text-[0.90rem] border-[#3b3b3b] border outline-none appearance-none"
+          <InputMask
+            mask="(99) 99999-9999"
             value={formData.telefone}
             onChange={handleChange}
-            placeholder="Telefone"
-          />
-          <input
-            type="text"
-            name="cpf"
-            className="custom-input bg-[#303030] text-white shadow-lg rounded-xl font-c6display-light font-light placeholder-white px-4 py-2 text-[0.90rem] border-[#3b3b3b] border outline-none appearance-none"
+          >
+            {() => (
+              <input
+                type="text"
+                name="telefone"
+                className="custom-input bg-[#303030] text-white rounded-xl font-c6display-light font-light placeholder-white px-4 py-3 text-[0.90rem] border-[#3b3b3b] border outline-none focus:border-[#FBC161] focus:outline-none"
+                placeholder="Telefone"
+              />
+            )}
+          </InputMask>
+          <InputMask
+            mask="999.999.999-99"
             value={formData.cpf}
             onChange={handleChange}
-            placeholder="CPF"
-          />
+          >
+            {() => (
+              <input
+                type="text"
+                name="cpf"
+                className="custom-input bg-[#303030] text-white rounded-xl font-c6display-light font-light placeholder-white px-4 py-3 text-[0.90rem] border-[#3b3b3b] border outline-none focus:border-[#FBC161] focus:outline-none"
+                placeholder="CPF"
+              />
+            )}
+          </InputMask>
           <button
             type="submit"
             className="bg-[#f4f4f4] flex items-center justify-center gap-2 py-[0.70rem] rounded-xl"
@@ -172,15 +186,18 @@ export function TransationBlackPay() {
           >
             {loading ? (
               <>
-                <PulseLoader color="#000" size={10} />
-                Gerando QRCode...
+                <div>
+
+
+                  <PulseLoader color="#000" size={10} />
+                </div>
+
               </>
             ) : (
               'Gerar'
             )}
           </button>
         </form>
-
         {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
 
 
