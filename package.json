@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@leenguyen/react-flip-clock-countdown": "^1.6.0",
-    "axios": "^1.7.7",
+    "axios": "^1.7.8",
+    "dotenv": "^16.4.5",
     "lottie-web": "^5.12.2",
+    "qrcode.react": "^4.1.0",
     "react": "^18.3.1",
     "react-circular-progressbar": "^2.1.0",
     "react-currency-input-field": "^3.9.0",

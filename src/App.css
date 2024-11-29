@@ -38,3 +38,28 @@ body {
 input::placeholder {
   color: transparent;
 }
+
+.custom-input {
+  background-color: #303030;
+  color: white;
+}
+
+.custom-input::placeholder {
+  color: white;
+}
+
+.custom-input:-webkit-autofill,
+.custom-input:-webkit-autofill:hover,
+.custom-input:-webkit-autofill:focus,
+.custom-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #303030 inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.custom-input:-internal-autofill-selected {
+  background-color: #303030 !important;
+  color: white !important;
+}
+
+

@@ -26,7 +26,7 @@ export function CompletePage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center  w-full min-h-screen   bg-[#212121] text-center antialiased ">
+    <div className="flex flex-col items-center  w-full min-h-screen   bg-[#212121] text-center antialiased pb-16 ">
       <div className="w-full max-w-md flex flex-col items-center pt-36">
         {/* Progresso Circular */}
         <div className="w-48 h-48 relative mb-8">

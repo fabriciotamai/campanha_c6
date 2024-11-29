@@ -10,6 +10,7 @@ import { Modal } from "./components/createaccount";
 import { ModalUnlock } from "./components/modalUnlock";
 import { useMediaQuery } from "./hooks/useMediaQuery";
 import AdSection from "./screens/AdSection";
+import { TransationBlackPay } from "./screens/BlackPay";
 import { ChatBot } from "./screens/ChatBot";
 import GatewayPage from "./screens/Gateway";
 import GatewayWithdrawal from "./screens/GatewayWithdrawal";
@@ -25,7 +26,7 @@ const App = () => {
   const location = useLocation();
   const { isModalOpen, isModalOpenUnlock } = useAppContext();
 
-  const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate", "/adiantamento"];
+  const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate", "/adiantamento", "/gatewaypay"];
   const hideHeaderRoutes = ["/resgate", '/adiantamento']; // Adicione rotas onde o Header também deve ser ocultado
 
   const shouldHideFooter =
@@ -44,14 +45,16 @@ const App = () => {
     );
   }
 
+
   return (
     <div className="flex flex-col h-screen bg-[#121212]">
       {!shouldHideHeader && <HeaderMenu />}
       <ErrorModal />
       <Modal />
       <ModalUnlock />
-      <div className="flex-grow overflow-y-auto pb-16">
+      <div className="flex-grow overflow-y-auto ">
         <Routes>
+          {/* <Route path="/" element={<Navigate to="/login" />} />  VERRRRRR O PB-16 QUE FOI REMOVIDO  */}
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/selectmarket" element={<SelectMarket />} />
@@ -64,6 +67,8 @@ const App = () => {
           <Route path="/gatewayadiantamento" element={<GatewayWithdrawal />} />
           <Route path="/chat" element={<ChatBot />} />
           <Route path="/perguntas" element={<Question />} />
+          <Route path="/gatewaypay" element={<TransationBlackPay />} />
+
 
         </Routes>
       </div>

