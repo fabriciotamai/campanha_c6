@@ -89,7 +89,7 @@ export function SelectMarket() {
   };
 
   return (
-    <main className="flex flex-col items-center px-8 py-4 space-y-6 antialiased pt-32">
+    <main className="flex flex-col items-center px-8 py-4 space-y-6 antialiased pt-32 pb-16">
       {/* <div ref={containerRef} className="w-full h-full absolute bottom-80 -right-48 opacity-15 object-cover" /> */}
       <form className="w-full max-w-md bg-[#242424] flex flex-col items-center rounded-md px-6 py-5 opacity-80">
         <img src={IclonC6bank} alt="appc6" className="w-32 py-4 rounded-lg" />

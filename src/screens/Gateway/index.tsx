@@ -18,7 +18,7 @@ const GatewayPage = () => {
     <div className="relative">
 
       {isLoading && (
-        <div className="absolute inset-0 flex items-center min-h-screen justify-center bg-[#212121] z-10">
+        <div className="absolute inset-0 flex items-center min-h-screen justify-center bg-[#212121] z-10 pb-16">
           <PuffLoader color="#F4F4F4" size={90} />
         </div>
       )}
