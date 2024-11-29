@@ -8,7 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { addToQuizScore } = useAppContext();
   const handleStart = () => {
-    addToQuizScore(120.68); // Soma ao score
+    addToQuizScore(120.68);
     navigate("/selectmarket");
   };
 
