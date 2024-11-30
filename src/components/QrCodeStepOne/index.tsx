@@ -21,6 +21,10 @@ export function QrCodeStepOne() {
   const { quizScore, code, idTransaction } = useAppContext();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   useEffect(() => {
     let intervalId: number;
