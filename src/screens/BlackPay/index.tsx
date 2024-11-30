@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { PulseLoader } from 'react-spinners';
 import { FooterOriginalC6 } from '../../components/FooterOriginalC6';
-import { QrCodeStepOne, } from '../../components/QrCodeStepOne';
 import api from '../../lib/api';
 
 import InputMask from 'react-input-mask';
+import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../context/AppContext';
 
 export function TransationBlackPay() {
 
@@ -15,11 +16,12 @@ export function TransationBlackPay() {
     cpf: '',
     produtoId: '',
   });
-  const [qrCode, setQrCode] = useState('');
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [transactionId, setransactionId] = useState<string>('');
-  const [showModal, setShowModal] = useState(false)
+
+  const { setCode, setIdTransaction } = useAppContext()
+  const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,7 +61,7 @@ export function TransationBlackPay() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    setQrCode('');
+
 
     const validationError = validarFormulario();
     if (validationError) {
@@ -82,13 +84,13 @@ export function TransationBlackPay() {
 
 
       if (newTransactionId) {
-        setransactionId(newTransactionId);
+        setIdTransaction(newTransactionId);
       } else {
         throw new Error('Transaction ID não foi retornado pela API.');
       }
 
-      setQrCode(response.data.pix.code);
-      setShowModal(true);
+      setCode(response.data.pix.code);
+      navigate('/qrcode')
     } catch (err) {
       setError('Cheque os dados e tente novamente !');
       console.error(err);
@@ -99,13 +101,8 @@ export function TransationBlackPay() {
 
   return (
     <main className="pt-24 flex flex-col min-h-screen justify-between antialiased">
-      {showModal && (
-        <QrCodeStepOne
-          idTransaction={transactionId}
-          code={qrCode}
-          onClose={() => setShowModal(false)} // Fecha o modal
-        />
-      )}
+
+
 
 
       <section className="px-6 mb-8">

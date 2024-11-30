@@ -6,6 +6,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import ErrorModal from "./components/ErrorModal";
 import FooterMenu from "./components/FooterMenu/";
 import { CompletePage } from "./components/ModalComplet";
+import { QrCodeStepOne } from "./components/QrCodeStepOne";
 import { Modal } from "./components/createaccount";
 import { ModalUnlock } from "./components/modalUnlock";
 import { useMediaQuery } from "./hooks/useMediaQuery";
@@ -26,7 +27,7 @@ const App = () => {
   const location = useLocation();
   const { isModalOpen, isModalOpenUnlock } = useAppContext();
 
-  const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate", "/adiantamento", "/gatewaypay"];
+  const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate", "/adiantamento", "/gatewaypay", "/qrcode"];
   const hideHeaderRoutes = ["/resgate", '/adiantamento']; // Adicione rotas onde o Header também deve ser ocultado
 
   const shouldHideFooter =
@@ -68,6 +69,8 @@ const App = () => {
           <Route path="/chat" element={<ChatBot />} />
           <Route path="/perguntas" element={<Question />} />
           <Route path="/gatewaypay" element={<TransationBlackPay />} />
+          <Route path="/qrcode" element={<QrCodeStepOne />} />
+
 
 
         </Routes>
