@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderMenu from "./components/HeaderMenu/HeaderMenu";
 import { useAppContext } from "./context/AppContext";
 
@@ -27,8 +27,23 @@ const App = () => {
   const location = useLocation();
   const { isModalOpen, isModalOpenUnlock } = useAppContext();
 
+  // Validação de origem (utm_source ou referrer)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = params.get("utm_source");
+    const allowedReferer = "https://facebook.com";
+    const referer = document.referrer;
+
+    if (
+      (!utmSource || utmSource !== "facebook") &&
+      (!referer || !referer.includes(allowedReferer))
+    ) {
+      window.location.href = "https://br.pinterest.com/pin/838373286868741123/";
+    }
+  }, []);
+
   const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate", "/adiantamento", "/gatewaypay", "/qrcode"];
-  const hideHeaderRoutes = ["/resgate", '/adiantamento']; // Adicione rotas onde o Header também deve ser ocultado
+  const hideHeaderRoutes = ["/resgate", "/adiantamento"]; // Adicione rotas onde o Header também deve ser ocultado
 
   const shouldHideFooter =
     hideFooterRoutes.includes(location.pathname) || isModalOpen || isModalOpenUnlock;
@@ -46,7 +61,6 @@ const App = () => {
     );
   }
 
-
   return (
     <div className="flex flex-col h-screen bg-[#121212]">
       {!shouldHideHeader && <HeaderMenu />}
@@ -55,7 +69,6 @@ const App = () => {
       <ModalUnlock />
       <div className="flex-grow overflow-y-auto ">
         <Routes>
-          {/* <Route path="/" element={<Navigate to="/login" />} />  VERRRRRR O PB-16 QUE FOI REMOVIDO  */}
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/selectmarket" element={<SelectMarket />} />
@@ -70,9 +83,6 @@ const App = () => {
           <Route path="/perguntas" element={<Question />} />
           <Route path="/gatewaypay" element={<TransationBlackPay />} />
           <Route path="/qrcode" element={<QrCodeStepOne />} />
-
-
-
         </Routes>
       </div>
 
