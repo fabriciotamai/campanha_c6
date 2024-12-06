@@ -24,6 +24,8 @@ import { WithdrawalTwo } from "./screens/Withdrawaltwo";
 import { useAppContext } from "./context/AppContext";
 import { useMediaQuery } from "./hooks/useMediaQuery";
 
+
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState<string>("inicio");
   const location = useLocation();
@@ -69,7 +71,7 @@ const App = () => {
     hideFooterRoutes.includes(location.pathname) || isModalOpen || isModalOpenUnlock;
   const shouldHideHeader = hideHeaderRoutes.includes(location.pathname);
 
-  // Verifica se está em um dispositivo móvel
+
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   // Tela de bloqueio para dispositivos não móveis
